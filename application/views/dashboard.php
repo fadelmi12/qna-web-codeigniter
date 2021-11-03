@@ -78,26 +78,32 @@
 	<section id="about" class="about">
 		<div class="container  px-sm-5">
 			<div class="row">
-				<div class="col-12 col-sm-8">
-					<div class="d-flex mb-2 justify-content-between align-items-center">
+				<div class="col-12 col-lg-8">
+					<div class="d-flex mb-3 mb-lg-2 justify-content-center justify-content-lg-between align-items-center">
 
 						<h3 class="mb-0 text-center text-sm-start " style="font-weight: bold;">
 							Pertanyaan Terbaru
 						</h3>
-						<div class="filter me-2 py-1 px-3 d-flex align-items-center" id="filter-toggle">
+						<!-- filter khusus desktop -->
+						<div class="filter me-2 py-1 px-3 d-none d-lg-flex align-items-center" id="filter-toggle">
 							<i class="iconify me-1" data-icon="cil:list-filter"></i>
 							<div class="fw-bold">
 								Filter
 							</div>
-							<!-- <h6 class="fw-bold bg-danger">Filter</h6> -->
-
 						</div>
 
 					</div>
+					<!-- filter khusus hp -->
+					<div class="filter mb-3 py-1 px-3 d-flex d-lg-none align-items-center mx-auto" id="filter-toggle-m" style="width:max-content">
+						<i class="iconify me-1" data-icon="cil:list-filter"></i>
+						<div class="fw-bold">
+							Filter
+						</div>
+					</div>
 					<div class="filter-pop">
-						<div class="mb-3 d-flex filter-menu justify-content-between py-3 px-3">
+						<div class="mb-3 d-flex filter-menu justify-content-around justify-content-lg-between  py-3 px-3">
 							<!-- <h6 class="m-0 me-3">Urut Berdasarkan</h6> -->
-							<select name="filter" id="filter" class="px-2" >
+							<select name="filter" id="filter" class="px-2">
 								<option value="">Harga : </option>
 								<option value="Terlama">Termurah</option>
 								<option value="Terbaru">Termahal</option>
@@ -324,7 +330,7 @@
 					</div>
 
 				</div>
-				<div class="d-none d-md-block col-12 col-sm-4">
+				<div class="d-none d-md-block col-12 col-lg-4">
 					<h3 class="mb-3 " style="font-weight: bold;">
 						User Activity
 					</h3>
