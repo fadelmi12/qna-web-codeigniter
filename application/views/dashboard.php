@@ -79,10 +79,55 @@
 		<div class="container  px-sm-5">
 			<div class="row">
 				<div class="col-12 col-sm-8">
-					<h3 class="mb-3 text-center text-sm-start " style="font-weight: bold;">
-						Pertanyaan Terbaru
-					</h3>
-					<div class="list-pertanyaan" >
+					<div class="d-flex mb-2 justify-content-between align-items-center">
+
+						<h3 class="mb-0 text-center text-sm-start " style="font-weight: bold;">
+							Pertanyaan Terbaru
+						</h3>
+						<div class="filter me-2 py-1 px-3 d-flex align-items-center" id="filter-toggle">
+							<i class="iconify me-1" data-icon="cil:list-filter"></i>
+							<div class="fw-bold">
+								Filter
+							</div>
+							<!-- <h6 class="fw-bold bg-danger">Filter</h6> -->
+
+						</div>
+
+					</div>
+					<div class="filter-pop">
+						<div class="mb-3 d-flex filter-menu justify-content-between py-3 px-3">
+							<!-- <h6 class="m-0 me-3">Urut Berdasarkan</h6> -->
+							<select name="filter" id="filter" class="px-2" >
+								<option value="">Harga : </option>
+								<option value="Terlama">Termurah</option>
+								<option value="Terbaru">Termahal</option>
+							</select>
+							<div class="d-none d-lg-flex">
+								<div class="filter-kategori p-1 me-2 px-3 ">
+									Matematika
+								</div>
+								<div class="filter-kategori p-1 me-2 px-3 ">
+									Sejarah
+								</div>
+								<div class="filter-kategori p-1 me-2 px-3 ">
+									Fisika
+								</div>
+								<div class="filter-kategori p-1 me-2 px-3 ">
+									Biologi
+								</div>
+							</div>
+							<select name="filter" id="filter" class="px-2">
+								<option value="">Waktu : </option>
+								<option value="Terlama">Terlama</option>
+								<option value="Terbaru">Terbaru</option>
+							</select>
+
+
+						</div>
+
+					</div>
+
+					<div class="list-pertanyaan">
 						<ul class="px-1 px-lg-2">
 
 							<?php foreach ($question as $qty) :
@@ -440,7 +485,7 @@
 									<canvas id="the-canvas3" style="max-width:100%;max-height:100%;display:block" data-value="olahraga.pdf"></canvas>
 
 								</div>
-								
+
 								<a href="<?php echo base_url(); ?>artikel/detail/sehat-berolahraga">
 									<div class="text-center px-4">
 										<h6 class="mt-2 mb-0">
@@ -454,7 +499,7 @@
 							<li class="col-6 mt-3">
 								<div class="col-9 mx-auto  text-center ">
 									<canvas id="the-canvas4" style="max-width:100%;max-height:100%;display:block" data-value="budaya.pdf"></canvas>
-									
+
 								</div>
 								<a href="<?php echo base_url(); ?>artikel/detail/ragam-budaya">
 									<div class="text-center px-4">
@@ -501,9 +546,7 @@
 						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Apakah kita bisa mendapatkan uang di siswarajin.com ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
 						<div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
 							<p>
-								Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-								donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
-								ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+								Tentu saja, anda dapat menghasilkan uang di siswarajin.com dengan cara menjawab pertanyaan yang diajukan
 							</p>
 						</div>
 					</li>
@@ -512,10 +555,7 @@
 						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Bagaimana cara mendapatkan uang di siswarajin.com ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
 						<div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
 							<p>
-								Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
-								integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt.
-								Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi
-								quis
+								Anda dapat memperoleh coin dari menjawab pertanyaan yang nantinya akan dapat di tukarkan dengan uang
 							</p>
 						</div>
 					</li>
@@ -524,9 +564,7 @@
 						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Apa saja yang dapat kita tanyakan di siswarajin.com? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
 						<div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
 							<p>
-								Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc
-								vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus
-								gravida quis blandit turpis cursus in.
+								Kita dapat bertanya seputar materi sekolah dan tugas yang diberikan guru
 							</p>
 						</div>
 					</li>
@@ -535,9 +573,7 @@
 						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Bagaimana cara mencairkan uang di siswarajin.com ?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
 						<div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
 							<p>
-								Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada
-								nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis
-								tellus in metus vulputate eu scelerisque.
+								Untuk mencairkan uang, anda harus terlebih dahulu menghubungkan akun anda dengan rekening. Selanjutnya buat permintaan penarikan di menu keuangan.
 							</p>
 						</div>
 					</li>
@@ -552,11 +588,11 @@
 			<div class="section-title">
 				<h2>Supported by </h2>
 			</div>
-			<div class="d-flex">
-				<div class="col-8 col-md-4 text-center mx-auto">
+			<div class="row">
+				<div class="col-5 col-md-4 text-center mx-auto">
 					<img src="https://docs.midtrans.com/asset/image/main/midtrans-logo.png" alt="" class="img-fluid">
 				</div>
-				<div class="col-8 col-md-4 text-center mx-auto">
+				<div class="col-5 col-md-4 text-center mx-auto">
 					<img src="https://bse.belajar.kemdikbud.go.id/images/logo-rumah-belajar.png" alt="" class="img-fluid">
 				</div>
 			</div>

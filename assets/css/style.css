@@ -565,6 +565,7 @@ section {
   max-height: 120vh;
   overflow: hidden;
 }
+
 .about .list-pertanyaan li .nama h5{
   font-size:16px;
   font-weight:bold;
@@ -679,14 +680,37 @@ section {
   }
 
   .about .list-pertanyaan ul{
-    overflow-y: hidden;
+    
     max-height: auto;
   }
 
   .about .list-pertanyaan {
-    max-height: max-content;
+    max-height: 100%;
+    overflow: hidden;
   }
 
+}
+.about .filter{
+  background-color: #e7ffec;
+  border-radius:10px;
+  cursor:pointer
+}
+.about .filter-pop{
+  display: none;
+}
+.about .filter-menu{
+  border-top: solid 1px #cecece;
+  border-bottom: solid 1px #cecece;
+}
+
+.about .filter-menu select{
+  border-radius:10px;
+  border: solid 1px #cecece;
+  outline: none;
+}
+.about .filter-menu .filter-kategori{
+  background-color: #f5f5f5;
+  border-radius: 10px;
 }
 .about .user-activity{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;

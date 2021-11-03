@@ -70,6 +70,17 @@
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#filter-toggle').click(function() {
+      // console.log('ss');
+      $('.filter-pop').slideToggle("fast");
+      // Alternative animation for example
+      // slideToggle("fast");
+    });
+  });
+</script>
 <script>
   $(document).ready(function() {
     $('.js-select2-multi').select2({
