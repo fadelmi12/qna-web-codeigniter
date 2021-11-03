@@ -2,13 +2,13 @@
 
   <div class="footer-top">
     <div class="container">
-      <div class="row justify-content-between">
+      <div class="row justify-content-center justify-content-lg-between ">
 
-        <div class="col-lg-3 col-md-6 footer-contact">
+        <div class="col-lg-3 col-md-6 footer-contact text-center text-lg-start">
           <a href="index.html">
             <img src="<?php echo base_url(); ?>assets/img/logo.svg" alt="">
           </a>
-          <p>
+          <p  class="mt-3 mt-lg-0">
             Madiun, Jawa Timur <br>
             Indonesia<br>
             <strong>Phone :</strong> +62 89 532 999 0656<br>
@@ -16,15 +16,15 @@
           </p>
         </div>
 
-        <div class="col-lg-3 col-md-6 footer-links">
+        <div class="col-lg-3 col-md-6 footer-links text-center text-lg-start">
           <h4>Fitur</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Question and Answer</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Jurnal dan Modul Ajar</a></li>
+            <li class="d-flex justify-content-center justify-content-lg-start"><i class="bx bx-chevron-right"></i> <a href="#">Question and Answer</a></li>
+            <li class="d-flex justify-content-center justify-content-lg-start"><i class="bx bx-chevron-right"></i> <a href="#">Jurnal dan Modul Ajar</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-6 footer-links">
+        <div class="col-lg-3 col-md-6 footer-links text-center text-lg-start">
           <h4>Sosial Media</h4>
           <p>Ikuti Sosial Media dari siswarajin.com</p>
           <div class="social-links mt-3">
@@ -70,6 +70,28 @@
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#filter-toggle').click(function() {
+      // console.log('ss');
+      $('.filter-pop').slideToggle("fast");
+      // Alternative animation for example
+      // slideToggle("fast");
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#filter-toggle-m').click(function() {
+      // console.log('ss');
+      $('.filter-pop').slideToggle("fast");
+      // Alternative animation for example
+      // slideToggle("fast");
+    });
+  });
+</script>
 <script>
   $(document).ready(function() {
     $('.js-select2-multi').select2({
