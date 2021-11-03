@@ -127,11 +127,14 @@ class Profile extends CI_Controller
 			$data['money'] = json_encode($duit);
 		} else {
 		}
+
 		$nav['judul'] = "Buat Pertanyaan";
 		$nav['sidebar'] = "keuangan";
 		$this->load->view('templates/header-page', $nav);
 		$id = $this->session->userdata('id_user');
 		$data['datadiri'] = $this->Model_profile->getProfile($id)->row();
+		$idprofil = $data['datadiri']->id_profile;
+		$data['logmoney'] = $this->Model_profile->get_log_money($idprofil)->result_array();
 		$this->load->view('profil/keuangan', $data);
 		$this->load->view('templates/footer');
 	}

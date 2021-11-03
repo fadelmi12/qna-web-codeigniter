@@ -134,4 +134,12 @@ class Model_profile extends CI_Model
         $this->db->join('t_profile', 't_profile.id_profile=t_penarikan.id_profile', 'left');
         return $this->db->get();
     }
+    public function get_log_money($id)
+    {
+        $this->db->where('log_money.id_profile', $id);
+        $this->db->select('*');
+        $this->db->from('log_money');
+        $this->db->join('t_profile', 't_profile.id_profile=log_money.id_profile', 'left');
+        return $this->db->get();
+    }
 }

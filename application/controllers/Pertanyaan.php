@@ -118,6 +118,16 @@ class Pertanyaan extends CI_Controller
 		$this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
 		$this->Model_pertanyaan->update_status_jawab($where, $data);
 		$this->Model_pertanyaan->set_status_jawab($prt, $data1);
+
+		$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+		$log_money = array(
+			'id_profile' => $idprofil,
+			'status_log' => 1,
+			'jumlah' => $getPrice,
+			'ket_log' => 'Menjawab Betul Pertanyaan'
+		);
+		$this->db->insert('log_money', $log_money);
+
 		// <script></script>
 		redirect(base_url('pertanyaan/detail/' . $prt));
 	}

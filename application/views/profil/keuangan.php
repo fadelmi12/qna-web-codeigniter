@@ -117,6 +117,38 @@
                     </div>
 
                 </div>
+                <h4 class="fw-bold mt-3">
+                    Riwayat Penarikan
+                </h4>
+                <hr class="m-0">
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Bank</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 0;
+                            foreach ($logmoney as $lg) : $no++; ?>
+
+                                <tr>
+                                    <th scope="row"><?= $no; ?></th>
+                                    <td><?= $lg['nama_lengkap'] ?></td>
+                                    <td><?= $lg['status_log'] ?></td>
+                                    <td><?= $lg['jumlah'] ?></td>
+                                    <td><?= $lg['ket_log'] ?></td>
+                                </tr>
+                            <?php
+                            endforeach; ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -83,6 +83,16 @@ class Dashboard extends CI_Controller
 			);
 			$act = $this->Model_activity->save_activity($data_log);
 
+			$data['datadiri'] = $this->Model_profile->getProfile($this->session->userdata('id_user'))->row();
+			$idprofil = $data['datadiri']->id_profile;
+			$log_money = array(
+				'id_profile' => $idprofil,
+				'status_log' => 0,
+				'jumlah' => $hargaquest,
+				'ket_log' => 'Membuat Pertanyaan'
+			);
+			$this->db->insert('log_money', $log_money);
+
 			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
 			$message = "Pertanyaan kamu sudah terupload, tunggu admin buat verifikasi pertanyaan kamu..";
 			$nohp = $detail_user[0]['no_hp'];
@@ -108,7 +118,8 @@ class Dashboard extends CI_Controller
 			$response = curl_exec($curl);
 
 			curl_close($curl);
-// 			echo $response;
+
+			// 			echo $response;
 			redirect('Dashboard');
 		}
 	}
