@@ -23,6 +23,7 @@ class Notification extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		date_default_timezone_set('Asia/Jakarta');
 		$params = array('server_key' => 'Mid-server-NHwVeuVMW19aFKRWb4aQ7oTB', 'production' => true);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
@@ -46,6 +47,8 @@ class Notification extends CI_Controller
 			$id_user = substr($result['order_id'], 13, 100);
 			$wallet = $this->Model_profile->getProfile($id_user)->row()->wallet;
 			$wallet_new = ($result['gross_amount'] - 1000) / 100;
+			$time = date('Y-m-d H:i:s');
+
 
 			$update = $this->db->update('t_transaksi', $data, array('id_topup' => $id));
 
@@ -55,6 +58,15 @@ class Notification extends CI_Controller
 				);
 
 				$this->db->update('t_profile', $dt, array('id_user' => $id_user));
+				$idprofil = $this->Model_profile->getProfile($id_user)->row()->id_profile;
+				$log_money = array(
+					'id_profile' => $idprofil,
+					'status_log' => 1,
+					'jumlah' => $wallet_new,
+					'ket_log' => 'Top Up Coin',
+					'tgl_log' => $time
+				);
+				$this->db->insert('log_money', $log_money);
 			}
 		}
 

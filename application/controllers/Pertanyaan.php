@@ -99,6 +99,7 @@ class Pertanyaan extends CI_Controller
 		$getPrice = $this->Model_pertanyaan->detail_tanya($prt)->row()->harga;
 		$getMoney =	$this->Model_profile->get_wallet($user)->row()->wallet;
 		$addMoney = $getMoney + $getPrice;
+		$time = date('Y-m-d H:i:s');
 		$data = array(
 			'jawaban_benar' => '1'
 		);
@@ -124,7 +125,8 @@ class Pertanyaan extends CI_Controller
 			'id_profile' => $idprofil,
 			'status_log' => 1,
 			'jumlah' => $getPrice,
-			'ket_log' => 'Menjawab Betul Pertanyaan'
+			'ket_log' => 'Menjawab Betul Pertanyaan',
+			'tgl_log' => $time
 		);
 		$this->db->insert('log_money', $log_money);
 

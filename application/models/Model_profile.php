@@ -140,6 +140,7 @@ class Model_profile extends CI_Model
         $this->db->select('*');
         $this->db->from('log_money');
         $this->db->join('t_profile', 't_profile.id_profile=log_money.id_profile', 'left');
+        $this->db->order_by('tgl_log', 'DESC');
         return $this->db->get();
     }
 }

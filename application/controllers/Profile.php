@@ -221,6 +221,7 @@ class Profile extends CI_Controller
 			$jumlah_uang = $coin * 100 - 5000;
 			$datawallet_xss = $this->security->xss_clean($datawallet);
 			$this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
+			$time = date('Y-m-d H:i:s');
 			$date = date('ymdHis');
 			$data_penarikan = array(
 				'id_profile' => $profil,
@@ -230,6 +231,15 @@ class Profile extends CI_Controller
 				'status_terkirim' => 0
 
 			);
+			$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+			$log_money = array(
+				'id_profile' => $idprofil,
+				'status_log' => 0,
+				'jumlah' => $coin,
+				'ket_log' => 'Penarikan Uang',
+				'tgl_log' => $time
+			);
+			$this->db->insert('log_money', $log_money);
 			$this->Model_profile->riwayat_penarikan('t_penarikan', $data_penarikan);
 			redirect('Profile/penarikan');
 		}

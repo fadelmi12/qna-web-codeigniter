@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Artikel extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		date_default_timezone_set('Asia/Jakarta');
+	}
 
 	public function index()
 	{
@@ -63,7 +68,7 @@ class Artikel extends CI_Controller
 		$user_article = $this->Model_profile->get_wallet($harga->id_user)->row()->wallet;
 
 		$harga_artikel = $harga->harga_artikel;
-
+		$time =	date('Y-m-d H:i:s');
 		$updateBuyer = $profile - $harga_artikel;
 		$updateSeller = $user_article + $harga_artikel;
 		$linkinto = base_url() . 'Artikel/detail' . $slug;
@@ -83,8 +88,29 @@ class Artikel extends CI_Controller
 				)
 			);
 			$this->db->update_batch('t_profile', $datawallet, 'id_user');
+			$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+			$log_money_buyer = array(
+				'id_profile' => $idprofil,
+				'status_log' => 0,
+				'jumlah' => $harga_artikel,
+				'ket_log' => 'Mendownload',
+				'tgl_log' => $time
+			);
+			$this->db->insert('log_money', $log_money_buyer);
+
+			$idprofil2 = $this->Model_profile->get_wallet($seller_id)->row()->id_profile;
+			$log_money_seller = array(
+				'id_profile' => $idprofil2,
+				'status_log' => 1,
+				'jumlah' => $harga_artikel,
+				'ket_log' => 'Artikel Di Download',
+				'tgl_log' => $time
+			);
+			$this->db->insert('log_money', $log_money_seller);
+
 			$this->load->helper('download');
 			force_download('assets/pdf/' . $url, NULL);
+
 			redirect('Artikel/detail/' . $slug);
 		} else {
 			echo "<script>
@@ -142,13 +168,14 @@ class Artikel extends CI_Controller
 		$this->load->view('artikel/upload_artikel', $data);
 		$this->load->view('templates/footer');
 	}
-	public function save_artikel() {
+	public function save_artikel()
+	{
 		$user = $this->session->userdata('id_user');
 		$judul = $this->input->post('judul');
 
 		$title = trim(strtolower($this->input->post('judul')));
-		$out = explode(" ",$title);
-		$slug = implode("-",$out);
+		$out = explode(" ", $title);
+		$slug = implode("-", $out);
 
 		$deskripsi = $this->input->post('deskripsi');
 		$jumlah_hal = $this->input->post('jumlah_hal');
@@ -160,7 +187,7 @@ class Artikel extends CI_Controller
 		$profile = $this->Model_profile->get_wallet($user)->row();
 		$wallet = $profile->wallet;
 		// echo $wallet; exit;
-		if($harga_artikel > $wallet) {
+		if ($harga_artikel > $wallet) {
 			$linkinto = base_url() . 'Artikel/upload';
 			echo "<script>
 				alert('Uang gak cukup');
@@ -168,7 +195,7 @@ class Artikel extends CI_Controller
 				</script>";
 		} else {
 			$harga = $wallet - $harga_artikel;
-		}		
+		}
 		date_default_timezone_set('Asia/Jakarta');
 		$time = date('Y-m-d H:i:s');
 		$upload_file = $_FILES['upload_file']['name'];
@@ -206,8 +233,8 @@ class Artikel extends CI_Controller
 		// echo "<pre>" ; print_r($tag);
 		// echo $id_artikel; exit;
 
-		
-		foreach ($tag as $tg){
+
+		foreach ($tag as $tg) {
 			$data1 = array(
 				'id_artikel' => $id_artikel,
 				'idTag' => $tg
@@ -229,6 +256,5 @@ class Artikel extends CI_Controller
 			alert('Berhasil Upload');
 			window.location.href = '" . $linkinto . "';// your redirect path here
 			</script>";
-		
 	}
 }

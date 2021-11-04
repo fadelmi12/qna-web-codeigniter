@@ -89,7 +89,8 @@ class Dashboard extends CI_Controller
 				'id_profile' => $idprofil,
 				'status_log' => 0,
 				'jumlah' => $hargaquest,
-				'ket_log' => 'Membuat Pertanyaan'
+				'ket_log' => 'Membuat Pertanyaan',
+				'tgl_log' => $time
 			);
 			$this->db->insert('log_money', $log_money);
 

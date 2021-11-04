@@ -126,10 +126,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Bank</th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Tanggal</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,9 +140,14 @@
                                 <tr>
                                     <th scope="row"><?= $no; ?></th>
                                     <td><?= $lg['nama_lengkap'] ?></td>
-                                    <td><?= $lg['status_log'] ?></td>
+                                    <td><?php if ($lg['status_log'] == 0) {
+                                            echo '<span class="badge bg-danger">Pengurangan Coin</span>';
+                                        } else {
+                                            echo '<span class="badge bg-success">Penambahan Coin</span>';
+                                        } ?></td>
                                     <td><?= $lg['jumlah'] ?></td>
                                     <td><?= $lg['ket_log'] ?></td>
+                                    <td><?= $lg['tgl_log'] ?></td>
                                 </tr>
                             <?php
                             endforeach; ?>
