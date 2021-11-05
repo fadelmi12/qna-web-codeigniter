@@ -189,7 +189,7 @@ class AdminPage extends CI_Controller
 				'aktivitas' 		=> "up_pertanyaan",
 				'waktu_aktivitas'	=> date("Y-m-d H:i:s")
 			);
-			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 			$phone = $user[0]['no_hp'];
 			$message = "Pertanyaan kamu, sudah konfrimasi oleh admin Siswa Rajin nihh.. Tunggu user lain untuk menjawab pertanyaan kamu yaaa.. ";
 			$curl = curl_init();
@@ -217,15 +217,16 @@ class AdminPage extends CI_Controller
 		}
 		$this->Model_activity->save_activity($data_log);
 	}
-	
-	public function log_login(){
+
+	public function log_login()
+	{
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['log'] = $this->Model_admin->log_login()->result_array();
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/log_login', $data);
 		$this->load->view('admin/template/footer');
 	}
-	
+
 	public function update_jawab()
 	{
 		$idpage = $this->input->post('id_pertanyaan');
