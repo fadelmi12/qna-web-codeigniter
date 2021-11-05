@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Nov 2021 pada 14.04
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 8.0.2
+-- Waktu pembuatan: 05 Nov 2021 pada 10.50
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siswarajin_new`
+-- Database: `siswarajin`
 --
 
 -- --------------------------------------------------------
@@ -143,7 +144,11 @@ INSERT INTO `log_login` (`id`, `device`, `ip`, `browser`, `email`, `date`) VALUE
 (75, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:47'),
 (76, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:48'),
 (77, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 19:52'),
-(78, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:53');
+(78, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:53'),
+(79, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 20:12'),
+(80, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:08'),
+(81, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:13'),
+(82, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-05 14:52');
 
 -- --------------------------------------------------------
 
@@ -550,6 +555,29 @@ INSERT INTO `t_message` (`id_message`, `id_pertanyaan`, `id_user`, `status_baca`
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_otp`
+--
+
+CREATE TABLE `t_otp` (
+  `id_otp` int(11) NOT NULL,
+  `no_wa` varchar(20) NOT NULL,
+  `kode_otp` int(11) NOT NULL,
+  `kadaluarsa` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `t_otp`
+--
+
+INSERT INTO `t_otp` (`id_otp`, `no_wa`, `kode_otp`, `kadaluarsa`) VALUES
+(1, '08632763276723', 798270, '2021-11-05 01:04:00'),
+(2, '081111111111111', 287925, '2021-11-05 02:15:38'),
+(3, '0822222222222', 854186, '2021-11-05 02:18:59'),
+(4, '0833333333333', 663041, '2021-11-05 14:59:58');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_penarikan`
 --
 
@@ -757,33 +785,47 @@ CREATE TABLE `t_user` (
   `password` varchar(100) NOT NULL,
   `view_password` varchar(50) NOT NULL,
   `foto_user` varchar(100) NOT NULL,
-  `role_id` int(11) NOT NULL DEFAULT 1
+  `role_id` int(11) NOT NULL DEFAULT 1,
+  `kode_afiliasi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `t_user`
 --
 
-INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_password`, `foto_user`, `role_id`) VALUES
-(1, 'deka', 'deka@gmail.com', 'deka', '', '', 2),
-(2, 'pramesta', '', '', '', '', 2),
-(3, 'alif', 'alif@gmail.com', 'alif5', '', '', 2),
-(4, 'udin', '', '', '', '', 1),
-(5, 'dimas', '', '', '', '', 1),
-(6, 'fadel', '', '', '', '', 1),
-(7, 'Mamad', 'mamad@gmail.com', 'mamad', '', '', 1),
-(8, 'alif5', 'alif5@gmail.com', 'alif5', '', '', 2),
-(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2),
-(10, 'alex', 'alex@gmail.com', '$2y$10$x8ePSS/TzlGJLnFpBr/gwettckhPZtMOl8q8x/lQz31ZuX0VnCJJ6', '', '', 2),
-(11, 'samid', 'samid@gmail.com', '$2y$10$zwJ4augJr.xqT2FCv7.wjuf/0CaPcnN0d7uaKmKNIkBzIzXxYcfDi', '', '', 2),
-(12, 'admin', 'admin@gmail.com', '$2y$10$hwGEZZg.k7DT3/xwiULKWudS7Rh7bbXwWjaVQV4w5vBwlRIxZA7fG', '', '', 77),
-(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2),
-(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2),
-(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2),
-(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2),
-(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2),
-(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2),
-(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2);
+INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_password`, `foto_user`, `role_id`, `kode_afiliasi`) VALUES
+(1, 'deka', 'deka@gmail.com', 'deka', '', '', 2, ''),
+(2, 'pramesta', '', '', '', '', 2, ''),
+(3, 'alif', 'alif@gmail.com', 'alif5', '', '', 2, ''),
+(4, 'udin', '', '', '', '', 1, ''),
+(5, 'dimas', '', '', '', '', 1, ''),
+(6, 'fadel', '', '', '', '', 1, ''),
+(7, 'Mamad', 'mamad@gmail.com', 'mamad', '', '', 1, ''),
+(8, 'alif5', 'alif5@gmail.com', 'alif5', '', '', 2, ''),
+(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2, ''),
+(10, 'alex', 'alex@gmail.com', '$2y$10$x8ePSS/TzlGJLnFpBr/gwettckhPZtMOl8q8x/lQz31ZuX0VnCJJ6', '', '', 2, ''),
+(11, 'samid', 'samid@gmail.com', '$2y$10$zwJ4augJr.xqT2FCv7.wjuf/0CaPcnN0d7uaKmKNIkBzIzXxYcfDi', '', '', 2, ''),
+(12, 'admin', 'admin@gmail.com', '$2y$10$hwGEZZg.k7DT3/xwiULKWudS7Rh7bbXwWjaVQV4w5vBwlRIxZA7fG', '', '', 77, ''),
+(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2, 'a0b892ddff0e3fd36e584e0ff1e4c1c6'),
+(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2, ''),
+(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2, ''),
+(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2, ''),
+(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2, ''),
+(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2, ''),
+(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_wa`
+--
+
+CREATE TABLE `t_wa` (
+  `id_wa` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `pesan` text NOT NULL,
+  `status_kirim` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1452,6 +1494,12 @@ ALTER TABLE `t_message`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indeks untuk tabel `t_otp`
+--
+ALTER TABLE `t_otp`
+  ADD PRIMARY KEY (`id_otp`);
+
+--
 -- Indeks untuk tabel `t_penarikan`
 --
 ALTER TABLE `t_penarikan`
@@ -1494,6 +1542,13 @@ ALTER TABLE `t_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- Indeks untuk tabel `t_wa`
+--
+ALTER TABLE `t_wa`
+  ADD PRIMARY KEY (`id_wa`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indeks untuk tabel `wilayah_kabupaten`
 --
 ALTER TABLE `wilayah_kabupaten`
@@ -1520,7 +1575,7 @@ ALTER TABLE `kategori_tag`
 -- AUTO_INCREMENT untuk tabel `log_login`
 --
 ALTER TABLE `log_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_money`
@@ -1583,6 +1638,12 @@ ALTER TABLE `t_message`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT untuk tabel `t_otp`
+--
+ALTER TABLE `t_otp`
+  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `t_penarikan`
 --
 ALTER TABLE `t_penarikan`
@@ -1617,6 +1678,12 @@ ALTER TABLE `t_transaksi`
 --
 ALTER TABLE `t_user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_wa`
+--
+ALTER TABLE `t_wa`
+  MODIFY `id_wa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -1713,6 +1780,12 @@ ALTER TABLE `t_tag`
 --
 ALTER TABLE `t_transaksi`
   ADD CONSTRAINT `t_transaksi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `t_wa`
+--
+ALTER TABLE `t_wa`
+  ADD CONSTRAINT `t_wa_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `wilayah_kabupaten`
