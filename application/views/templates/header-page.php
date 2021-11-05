@@ -76,6 +76,9 @@
                             <li><a href="<?php echo base_url("Profile/keuangan") ?>">Keuangan</a></li>
                             <li><a href="<?php echo base_url("Profile/daftar_pertanyaan") ?>">Pertanyaan Saya</a></li>
                             <li><a href="<?php echo base_url("Profile/daftar_artikel") ?>">Artikel Saya</a></li>
+                            <?php if($this->session->userdata('role_id') == '77' ) : ?>
+                                <li><a href="<?php echo base_url("AdminPage") ?>">Admin</a></li>
+                            <?php endif; ?>
                             <li><a href="<?php echo base_url("auth/Login/logout") ?>">Logout</a></li>
                         </ul>
                     </li>

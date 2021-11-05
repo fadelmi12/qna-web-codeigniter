@@ -184,18 +184,18 @@ class Artikel extends CI_Controller
 		$tag = $this->input->post('tag[]');
 		// echo print_r($tag); exit;
 		$harga_artikel = $this->input->post('harga');
-		$profile = $this->Model_profile->get_wallet($user)->row();
-		$wallet = $profile->wallet;
+		// $profile = $this->Model_profile->get_wallet($user)->row();
+		// $wallet = $profile->wallet;
 		// echo $wallet; exit;
-		if ($harga_artikel > $wallet) {
-			$linkinto = base_url() . 'Artikel/upload';
-			echo "<script>
-				alert('Uang gak cukup');
-				window.location.href = '" . $linkinto . "';// your redirect path here
-				</script>";
-		} else {
-			$harga = $wallet - $harga_artikel;
-		}
+		// if ($harga_artikel > $wallet) {
+		// 	$linkinto = base_url() . 'Artikel/upload';
+		// 	echo "<script>
+		// 		alert('Uang gak cukup');
+		// 		window.location.href = '" . $linkinto . "';// your redirect path here
+		// 		</script>";
+		// } else {
+		// 	$harga = $wallet - $harga_artikel;
+		// }
 		date_default_timezone_set('Asia/Jakarta');
 		$time = date('Y-m-d H:i:s');
 		$upload_file = $_FILES['upload_file']['name'];
@@ -242,14 +242,14 @@ class Artikel extends CI_Controller
 			// echo "<pre>" ; print_r($data1);
 			$this->db->insert('t_artikeltag', $data1);
 		}
-		$datawallet = array(
-			'wallet'				=> $harga
-		);
-		$wherewallet = array(
-			'id_user' => $user
-		);
-		$datawallet_xss = $this->security->xss_clean($datawallet);
-		$simpanwallet = $this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
+		// $datawallet = array(
+		// 	'wallet'				=> $harga
+		// );
+		// $wherewallet = array(
+		// 	'id_user' => $user
+		// );
+		// $datawallet_xss = $this->security->xss_clean($datawallet);
+		// $simpanwallet = $this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
 
 		$linkinto = base_url() . 'Artikel/';
 		echo "<script>
