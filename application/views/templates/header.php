@@ -6,11 +6,14 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBXQHXG55J"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-RBXQHXG55J');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RBXQHXG55J');
     </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -46,7 +49,7 @@
             scrollbar-color: #cecece #ffffff;
         }
 
-        
+
         *::-webkit-scrollbar {
             width: 10px;
         }
@@ -75,7 +78,7 @@
                     <ul>
                         <li><a href="<?php echo base_url("Artikel") ?>">Daftar Artikel</a></li>
 
-                        <li><a href="#">Upload Artikel</a></li>
+                        <li><a href="<?= base_url('Artikel/upload') ?>">Upload Artikel</a></li>
                     </ul>
                 </li>
                 <?php if ($this->session->userdata('id_user') != null) { ?>

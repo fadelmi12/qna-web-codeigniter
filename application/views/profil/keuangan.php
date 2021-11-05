@@ -118,43 +118,45 @@
 
                 </div>
                 <h4 class="fw-bold mt-3">
-                    Riwayat Penarikan
+                    Riwayat Keuangan
                 </h4>
                 <hr class="m-0">
-                <div class="table-responsive">
-                    <table class="table table-bordered mt-3">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Keterangan</th>
-                                <th scope="col">Tanggal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 0;
-                            foreach ($logmoney as $lg) : $no++; ?>
-
+                <?php if (($logmoney) != null) : ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered mt-3">
+                            <thead>
                                 <tr>
-                                    <th scope="row"><?= $no; ?></th>
-                                    <td><?= $lg['nama_lengkap'] ?></td>
-                                    <td><?php if ($lg['status_log'] == 0) {
-                                            echo '<span class="badge bg-danger">Pengurangan Coin</span>';
-                                        } else {
-                                            echo '<span class="badge bg-success">Penambahan Coin</span>';
-                                        } ?></td>
-                                    <td><?= $lg['jumlah'] ?></td>
-                                    <td><?= $lg['ket_log'] ?></td>
-                                    <td><?= $lg['tgl_log'] ?></td>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Tanggal</th>
                                 </tr>
-                            <?php
-                            endforeach; ?>
+                            </thead>
+                            <tbody>
+                                <?php $no = 0;
+                                foreach ($logmoney as $lg) : $no++; ?>
 
-                        </tbody>
-                    </table>
-                </div>
+                                    <tr>
+                                        <th scope="row"><?= $no; ?></th>
+                                        <td><?= $lg['nama_lengkap'] ?></td>
+                                        <td><?php if ($lg['status_log'] == 0) {
+                                                echo '<span class="badge bg-danger">Pengurangan Coin</span>';
+                                            } else {
+                                                echo '<span class="badge bg-success">Penambahan Coin</span>';
+                                            } ?></td>
+                                        <td><?= $lg['jumlah'] ?></td>
+                                        <td><?= $lg['ket_log'] ?></td>
+                                        <td><?= $lg['tgl_log'] ?></td>
+                                    </tr>
+                                <?php
+                                endforeach; ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

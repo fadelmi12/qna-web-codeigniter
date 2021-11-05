@@ -59,7 +59,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="<?= base_url('')?>"> <span class="logo-name">Siswa Rajin</span>
+                        <a href="<?= base_url('') ?>"> <span class="logo-name">Siswa Rajin</span>
                         </a>
                     </div>
                     <ul class="sidebar-menu">
@@ -71,7 +71,8 @@
                             <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
                             <a href="<?php echo base_url('Penarikan_saldo/index') ?>" class="nav-link"><i data-feather="dollar-sign"></i><span>Penarikan</span></a>
                             <a href="<?php echo base_url() ?>AdminPage/log_login" class="nav-link"><i data-feather="log-in"></i><span>Log Login</span></a>
-                            <a href="" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
+                            <a href="<?php echo base_url() ?>AdminPage/MessageBox" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
+                            <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><i data-feather="monitor"></i><span>Broadcast WA</span></a>
                         </li>
 
 

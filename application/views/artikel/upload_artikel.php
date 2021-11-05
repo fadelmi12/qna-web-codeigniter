@@ -44,7 +44,7 @@
                                 <h5>
                                     Penulis
                                 </h5>
-                                <input type="text" name="penulis" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Tanggal lahir belum diisi nih!')" oninput="setCustomValidity('')" placeholder="Masukkan Tahun Rilis" />
+                                <input type="text" name="penulis" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Nama Penulis belum diisi nih!')" oninput="setCustomValidity('')" placeholder="Masukkan Nama Penulis" />
                                 <span class="text-danger"><?= form_error('tgl_lahir') ?></span>
                             </div>
                             <div class="group mb-3">
@@ -62,19 +62,19 @@
                                 <h5>
                                     File
                                 </h5>
-                                <input type="file" name="upload_file" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Tanggal lahir belum diisi nih!')" oninput="setCustomValidity('')" />
+                                <input type="file" name="upload_file" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('File Artikel belum diisi nih!')" oninput="setCustomValidity('')" />
                                 <span class="text-danger"><?= form_error('tgl_lahir') ?></span>
                             </div>
                             <div class="group mb-3">
                                 <h5>
-                                    Harga
+                                    Koin
                                 </h5>
-                                <input type="number" name="harga" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Tanggal lahir belum diisi nih!')" oninput="setCustomValidity('')" />
+                                <input type="number" name="harga" id="" placeholder="Masukkan Koin" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Koin belum diisi nih!')" oninput="setCustomValidity('')" />
                                 <span class="text-danger"><?= form_error('tgl_lahir') ?></span>
                             </div>
                             <div class="w-100 text-center">
                                 <button class="btn btn-primary mt-2 fw-bold">
-                                    Upload Artikel 
+                                    Upload Artikel
                                 </button>
                             </div>
 

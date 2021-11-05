@@ -117,46 +117,48 @@
                         Transaksi Top Up
                     </h4>
                     <hr class="m-0">
-                    <table class="table table-bordered table-hover mt-3">
-                        <tr>
-                            <th>No</th>
-                            <th>Total Top Up</th>
-                            <th>Jenis Pembayaran</th>
-                            <th>Waktu Transaksi</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                        <?php $i = 1;
-                        foreach ($transaksi as $trans) : ?>
+                    <?php if ($transaksi != null) : ?>
+                        <table class="table table-bordered table-hover mt-3">
                             <tr>
-                                <td style="font-size: small;"><?php echo $i ?></td>
-                                <td style="font-size: small;">Rp. <?php echo number_format($trans['total_topup'], '0', ',', '.') ?></td>
-                                <td style="font-size: small;"><?php if ($trans['payment_type'] == "bank_transfer") {
-                                                                    echo "Transfer Bank";
-                                                                } elseif ($trans['payment_type'] == "gopay") {
-                                                                    echo "Gopay";
-                                                                }
-                                                                ?></td>
-                                <td style="font-size: small;"><?php echo date("d-m-Y H:i:s", strtotime($trans['transaction_time'])) ?> WIB</td>
-                                <td class="text-center" style="font-size: small;">
-                                    <?php if ($trans['status_code'] == 201) : ?>
-                                        <span class="badge bg-warning">Menunggu</span>
-                                    <?php elseif ($trans['status_code'] == 200) : ?>
-                                        <span class="badge bg-success">Sukses</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <?php if ($trans['pdf_url'] != null) :  ?>
-                                        <a class="btn btn-primary " style="font-size: small;" href="<?php echo $trans['pdf_url'] ?>" target="_blank">
-                                            Panduan
-                                        </a>
-                                    <?php endif; ?>
-                                </td>
+                                <th>No</th>
+                                <th>Total Top Up</th>
+                                <th>Jenis Pembayaran</th>
+                                <th>Waktu Transaksi</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
-                        <?php $i++;
-                        endforeach; ?>
-                    </table>
-                    <h5 style="color: red;"></h5>
+                            <?php $i = 1;
+                            foreach ($transaksi as $trans) : ?>
+                                <tr>
+                                    <td style="font-size: small;"><?php echo $i ?></td>
+                                    <td style="font-size: small;">Rp. <?php echo number_format($trans['total_topup'], '0', ',', '.') ?></td>
+                                    <td style="font-size: small;"><?php if ($trans['payment_type'] == "bank_transfer") {
+                                                                        echo "Transfer Bank";
+                                                                    } elseif ($trans['payment_type'] == "gopay") {
+                                                                        echo "Gopay";
+                                                                    }
+                                                                    ?></td>
+                                    <td style="font-size: small;"><?php echo date("d-m-Y H:i:s", strtotime($trans['transaction_time'])) ?> WIB</td>
+                                    <td class="text-center" style="font-size: small;">
+                                        <?php if ($trans['status_code'] == 201) : ?>
+                                            <span class="badge bg-warning">Menunggu</span>
+                                        <?php elseif ($trans['status_code'] == 200) : ?>
+                                            <span class="badge bg-success">Sukses</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($trans['pdf_url'] != null) :  ?>
+                                            <a class="btn btn-primary " style="font-size: small;" href="<?php echo $trans['pdf_url'] ?>" target="_blank">
+                                                Panduan
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php $i++;
+                            endforeach; ?>
+                        </table>
+                        <h5 style="color: red;"></h5>
+                    <?php endif; ?>
                 </div>
 
             </div>

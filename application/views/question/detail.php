@@ -133,8 +133,8 @@
                                                     </div>
                                                     <?php $jumlahbook = 0;
                                                     foreach ($bookmark as $book) :
-                                                        if($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
-                                                            $jumlahbook ++;
+                                                        if ($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
+                                                            $jumlahbook++;
                                                             $status = $book['status_bookmark'];
                                                         }
                                                     endforeach; ?>
@@ -294,13 +294,13 @@
                                                     <input id="id_user" type="text" name="id_user" value="<?php echo $this->session->userdata('id_user') ?>">
                                                 </div>
                                                 <?php $jumlahbook = 0;
-                                                    foreach ($bookmark as $book) :
-                                                        if($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
-                                                            $jumlahbook ++;
-                                                            $status = $book['status_bookmark'];
-                                                        }
-                                                    endforeach; ?>
-                                                <?php if ($jumlahbook == 0 ) : ?>
+                                                foreach ($bookmark as $book) :
+                                                    if ($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
+                                                        $jumlahbook++;
+                                                        $status = $book['status_bookmark'];
+                                                    }
+                                                endforeach; ?>
+                                                <?php if ($jumlahbook == 0) : ?>
                                                     <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
                                                 <?php elseif ($status == '0') : ?>
                                                     <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
@@ -310,7 +310,7 @@
 
 
                                             </div>
-                                            
+
                                         <?php else : ?>
                                             <?php $j = 0;
                                             foreach ($jawaban as $jw) {
@@ -878,7 +878,7 @@
 
 
                         <!-- <input type="text" name="user" value="<?= $sess ?>"> -->
-                        <button class="btn btn-primary" style="padding:5px 15px;border-radius:10px; border:none;background:#0073ff;font-size:1rem">Jawab</button>
+                        <button class="btn btn-primary" style="padding:5px 15px;border-radius:10px; border:none;background:#0073ff;font-size:1rem">Tanyakan</button>
                     </form>
                 <?php endforeach; ?>
             </div>

@@ -103,6 +103,15 @@ class Model_admin extends CI_Model
         return $this->db->get();
     }
 
+    public function kontak()
+    {
+        $this->db->select('*');
+        $this->db->from('t_user');
+        $this->db->join('t_profile', 't_profile.id_user=t_user.id_user', 'left');
+        $this->db->where('role_id=2');
+        return $this->db->get();
+    }
+
     public function data_user($id_user)
     {
         $this->db->select('*');
@@ -144,8 +153,9 @@ class Model_admin extends CI_Model
         $this->db->where('t_penarikan.status_terkirim', '0');
         return $this->db->get();
     }
-    
-    public function log_login(){
+
+    public function log_login()
+    {
         $this->db->select('*');
         $this->db->from('log_login');
         return $this->db->get();

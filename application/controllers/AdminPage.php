@@ -212,7 +212,24 @@ class AdminPage extends CI_Controller
 			));
 
 			$response = curl_exec($curl);
-
+			$result =  substr($response, 17, 5);
+			if ($result == "false") {
+				$data_wa = array(
+					'id_user' 		=> $id,
+					'pesan'			=> $message,
+					'status_kirim'	=> 0
+				);
+				$this->db->insert('t_wa', $data_wa);
+			} else {
+				$data_wa = array(
+					'id_user' 		=> $id,
+					'pesan'			=> $message,
+					'status_kirim'	=> 1
+				);
+				$this->db->insert('t_wa', $data_wa);
+			}
+			curl_close($curl);
+			redirect('auth/Login');
 			curl_close($curl);
 		}
 		$this->Model_activity->save_activity($data_log);
@@ -234,11 +251,6 @@ class AdminPage extends CI_Controller
 		$jawaban_benar      = $this->input->post('jawaban_benar');
 		$user =	$this->input->post('id_user');
 		$harga = $this->input->post('price');
-
-
-
-
-
 
 		$data = array(
 			'jawaban_benar' => $jawaban_benar
@@ -283,5 +295,68 @@ class AdminPage extends CI_Controller
 
 		$this->Model_admin->update_read($data, 't_message');
 		redirect('AdminPage/MessageBox');
+	}
+
+	public function wa()
+	{
+		$data['kontak'] = $this->Model_admin->kontak()->result_array();
+		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+
+		$this->load->view('admin/template/header');
+		$this->load->view('admin/wa', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function kirim_wa()
+	{
+		$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		$phone = ['081553572412', '087850256446'];
+		$phone = $this->input->post('no_wa');
+		$phone2 = explode(';', $phone);
+		$message = $this->input->post('pesan');
+		foreach ($phone2 as $key => $val) {
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+
+					'token' => $token, 'phone' => $phone2[$key], 'message' => $message
+
+				),
+
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$result =  substr($response, 17, 5);
+			if ($result == "false") {
+				$data_wa = array(
+					'id_user' 		=> $id,
+					'pesan'			=> $message,
+					'status_kirim'	=> 0
+				);
+				$this->db->insert('t_wa', $data_wa);
+			} else {
+				$data_wa = array(
+					'id_user' 		=> $id,
+					'pesan'			=> $message,
+					'status_kirim'	=> 1
+				);
+				$this->db->insert('t_wa', $data_wa);
+			}
+			curl_close($curl);
+			redirect('auth/Login');
+			echo $response;
+		}
+		redirect('AdminPage/wa');
 	}
 }

@@ -100,6 +100,24 @@ class Register extends CI_Controller
 						));
 
 						$response = curl_exec($curl);
+						$result =  substr($response, 17, 5);
+						if ($result == "false") {
+							$data_wa = array(
+								'id_user' 		=> $id,
+								'pesan'			=> $message,
+								'status_kirim'	=> 0
+							);
+							$this->db->insert('t_wa', $data_wa);
+						} else {
+							$data_wa = array(
+								'id_user' 		=> $id,
+								'pesan'			=> $message,
+								'status_kirim'	=> 1
+							);
+							$this->db->insert('t_wa', $data_wa);
+						}
+						curl_close($curl);
+						redirect('auth/Login');
 
 						curl_close($curl);
 						// 		echo $response;
