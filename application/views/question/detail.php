@@ -34,6 +34,10 @@
                             }
 
                         ?>
+                        <?php $jumlahjawab = 0;
+                        foreach ($jawaban as $jawab) :
+                            $jumlahjawab++;                                    
+                        endforeach; ?>
                             <div class="d-none d-md-flex">
                                 <?php if ($ques['foto_user'] == "") : ?>
                                     <div class="image-artikel" style="background-image: url('https://www.gravatar.com/avatar/10<?= $ques["id_user"] ?>b5695d974ac54d52c9b8f54ea8f86.jpg?s=115&d=monsterid')">
@@ -85,7 +89,7 @@
                                                     </h6>
                                                 </div>
                                             </a>
-                                        <?php else : ?>
+                                        <?php elseif($jumlahjawab = 0) : ?>
                                             <a onclick="editShow()">
                                                 <div class="jawab d-flex">
                                                     <i class="fas fa-pencil-alt my-auto"></i>
@@ -94,6 +98,8 @@
                                                     </h6>
                                                 </div>
                                             </a>
+                                        <?php else : ?>
+                                            <div class="d-flex"></div>
                                         <?php endif; ?>
                                         <script>
                                             function JawabShow() {
@@ -224,109 +230,113 @@
                                 <?php if ($ques['gambar_tanya'] !== '') : ?>
                                     <img src="<?php echo base_url() . 'assets/img/gambar_tanya/' . $ques['gambar_tanya']; ?>" style="width:50%">
                                 <?php endif; ?>
-                                <?php if ($ques['status_jawab'] == 1) : ?>
-                                    <div class="jawab d-flex justify-content-center">
-                                        <i class="iconify my-auto me-2" data-icon="fa-solid:check"></i>
-                                        <h6>
-                                            TERJAWAB
-                                        </h6>
-                                    </div>
-
-                                <?php elseif ($ques['id_user'] !== $sess) : ?>
-
-
-                                    <a onclick="JawabShow()">
+                                <div class="d-flex justify-content-between align-items-center position-relative mt-3">
+                                    <?php if ($ques['status_jawab'] == 1) : ?>
                                         <div class="jawab d-flex justify-content-center">
-                                            <i class="fas fa-pencil-alt my-auto"></i>
+                                            <i class="iconify my-auto me-2" data-icon="fa-solid:check"></i>
                                             <h6>
-                                                JAWAB
+                                                TERJAWAB
                                             </h6>
                                         </div>
-                                    </a>
+
+                                    <?php elseif ($ques['id_user'] !== $sess) : ?>
 
 
-                                <?php else : ?>
-                                    <a onclick="editShow()">
-                                        <div class="jawab d-flex justify-content-center">
-                                            <i class="fas fa-pencil-alt my-auto"></i>
-                                            <h6>
-                                                EDIT
-                                            </h6>
-                                        </div>
-                                    </a>
-                                <?php endif; ?>
-                                <script>
-                                    function JawabShow() {
-                                        var id_user = '<?= $sess ?>';
-                                        if (id_user != '') {
-                                            $('#tambahjawaban').modal('show');
-                                        } else {
-                                            $('#Konfirmasi_Like_Login').modal('show');
-                                        };
-
-                                    }
-
-                                    function editShow() {
-                                        $('#edittanya').modal('show');
-
-                                    }
-                                </script>
-
-                                <div class="d-flex justify-content-end align-items-center position-relative mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="me-3">
-                                            <button onclick="tampil_modal_share()" type="button" class="fas fa-share-square p-0 m-0" style="border: none; background: transparent;"></button>
-                                        </div>
-                                        <?php if ($ques['id_user'] !== $sess) : ?>
-                                            <a onclick="report_pertanyaan()">
-                                                <!-- <form id="input" enctype="multipart/form-data"> -->
-                                                <input type="hidden" id="id_user" name="text" value="<?php echo $this->session->userdata('id_user') ?>">
-                                                <div class="me-3">
-
-                                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-
-                                                </div>
-                                                <!-- </form> -->
-                                            </a>
-                                            <div class="">
-                                                <div hidden="">
-                                                    <input type="text" id="likedtl" name="id_pertanyaan" value="<?php echo $ques['id_pertanyaan'] ?>">
-                                                    <input id="id_user" type="text" name="id_user" value="<?php echo $this->session->userdata('id_user') ?>">
-                                                </div>
-                                                <?php $jumlahbook = 0;
-                                                foreach ($bookmark as $book) :
-                                                    if ($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
-                                                        $jumlahbook++;
-                                                        $status = $book['status_bookmark'];
-                                                    }
-                                                endforeach; ?>
-                                                <?php if ($jumlahbook == 0) : ?>
-                                                    <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
-                                                <?php elseif ($status == '0') : ?>
-                                                    <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
-                                                <?php elseif ($status == '1') : ?>
-                                                    <button id="btnunbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="unbookmark()" data2="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1 sudahbookmark" style="border: none; background: transparent;"></button>
-                                                <?php endif; ?>
-
-
+                                        <a onclick="JawabShow()">
+                                            <div class="jawab d-flex justify-content-center">
+                                                <i class="fas fa-pencil-alt my-auto"></i>
+                                                <h6>
+                                                    JAWAB
+                                                </h6>
                                             </div>
+                                        </a>
 
-                                        <?php else : ?>
-                                            <?php $j = 0;
-                                            foreach ($jawaban as $jw) {
-                                                $j++;
-                                            } ?>
-                                            <?php if ($j == 0) : ?>
-                                                <a onclick="hapus_pertanyaan()">
-                                                    <div class="">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                                    <?php elseif($jumlahjawab = 0) : ?>
+                                        <a onclick="editShow()">
+                                            <div class="jawab d-flex justify-content-center">
+                                                <i class="fas fa-pencil-alt my-auto"></i>
+                                                <h6>
+                                                    EDIT
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    <?php else : ?>
+                                    <div class="d-flex"></div>
+                                    <?php endif; ?>
+                                    <script>
+                                        function JawabShow() {
+                                            var id_user = '<?= $sess ?>';
+                                            if (id_user != '') {
+                                                $('#tambahjawaban').modal('show');
+                                            } else {
+                                                $('#Konfirmasi_Like_Login').modal('show');
+                                            };
+
+                                        }
+
+                                        function editShow() {
+                                            $('#edittanya').modal('show');
+
+                                        }
+                                    </script>
+
+                                    <div class="d-flex justify-content-end align-items-center position-relative mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <button onclick="tampil_modal_share()" type="button" class="fas fa-share-square p-0 m-0" style="border: none; background: transparent;"></button>
+                                            </div>
+                                            <?php if ($ques['id_user'] !== $sess) : ?>
+                                                <a onclick="report_pertanyaan()">
+                                                    <!-- <form id="input" enctype="multipart/form-data"> -->
+                                                    <input type="hidden" id="id_user" name="text" value="<?php echo $this->session->userdata('id_user') ?>">
+                                                    <div class="me-3">
+
+                                                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
                                                     </div>
+                                                    <!-- </form> -->
                                                 </a>
+                                                <div class="">
+                                                    <div hidden="">
+                                                        <input type="text" id="likedtl" name="id_pertanyaan" value="<?php echo $ques['id_pertanyaan'] ?>">
+                                                        <input id="id_user" type="text" name="id_user" value="<?php echo $this->session->userdata('id_user') ?>">
+                                                    </div>
+                                                    <?php $jumlahbook = 0;
+                                                    foreach ($bookmark as $book) :
+                                                        if ($sess == $book['id_user'] && $book['id_pertanyaan'] == $ques['id_pertanyaan']) {
+                                                            $jumlahbook++;
+                                                            $status = $book['status_bookmark'];
+                                                        }
+                                                    endforeach; ?>
+                                                    <?php if ($jumlahbook == 0) : ?>
+                                                        <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
+                                                    <?php elseif ($status == '0') : ?>
+                                                        <button id="btnbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="bookmark()" data="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1" style="border: none; background: transparent;"></button>
+                                                    <?php elseif ($status == '1') : ?>
+                                                        <button id="btnunbookmark_mobile<?php echo $ques['id_pertanyaan'] ?>" onclick="unbookmark()" data2="<?php echo $ques['id_pertanyaan'] ?>" type="button" class="fas fa-bookmark p-1 sudahbookmark" style="border: none; background: transparent;"></button>
+                                                    <?php endif; ?>
+
+
+                                                </div>
+
+                                            <?php else : ?>
+                                                <?php $j = 0;
+                                                foreach ($jawaban as $jw) {
+                                                    $j++;
+                                                } ?>
+                                                <?php if ($j == 0) : ?>
+                                                    <a onclick="hapus_pertanyaan()">
+                                                        <div class="">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </div>
+                                                    </a>
+                                                <?php endif; ?>
                                             <?php endif; ?>
-                                        <?php endif; ?>
+                                        </div>
+
+
                                     </div>
-
-
                                 </div>
                             </div>
                         <?php endforeach; ?>
