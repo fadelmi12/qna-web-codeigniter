@@ -389,4 +389,20 @@ class Profile extends CI_Controller
 			}
 		}
 	}
+
+	public function afiliasi()
+	{
+		if ($this->session->userdata('id_user') != null) {
+			$user = $this->session->userdata('id_user');
+			$duit = $this->Model_profile->get_wallet($user)->row()->wallet;
+			$data['money'] = json_encode($duit);
+		}
+		$nav['judul'] = "Buat Pertanyaan";
+		$nav['sidebar'] = "afiliasi";
+		$this->load->view('templates/header-page', $nav);
+		$id = $this->session->userdata('id_user');
+		$data['datadiri'] = $this->Model_profile->getProfile($id)->row();
+		$this->load->view('profil/afiliasi', $data);
+		$this->load->view('templates/footer');
+	}
 }

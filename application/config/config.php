@@ -25,10 +25,10 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/siswarajin/';
-// $http = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
-// $url = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
-// $config['base_url'] = "$http" . $_SERVER['SERVER_NAME'] . "" . $url;
+// $config['base_url'] = 'http://localhost/siswarajin/';
+$http = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
+$url = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
+$config['base_url'] = "$http" . $_SERVER['SERVER_NAME'] . "" . $url;
 
 
 /*
@@ -461,10 +461,10 @@ $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array();
 
-if (strpos($_SERVER["REQUEST_URI"],'/Likebookmark/like') && strpos($_SERVER["REQUEST_URI"],'/Likebookmark/bookmark') === FALSE) {
+if (strpos($_SERVER["REQUEST_URI"], '/Likebookmark/like') && strpos($_SERVER["REQUEST_URI"], '/Likebookmark/bookmark') === FALSE) {
 	$config['csrf_protection'] 	= TRUE;
-}else{ 
-	$config['csrf_protection'] 	= FALSE; 
+} else {
+	$config['csrf_protection'] 	= FALSE;
 }
 
 /*

@@ -71,6 +71,13 @@
                     </h6>
                 </li>
             </a>
+            <a href="<?= base_url() ?>profile/afiliasi">
+                <li class="p-2 px-4 <?= ($this->uri->segment(2) === 'afiliasi') ? 'active' : '' ?>">
+                    <h6 class="m-0 text-black">
+                        Afiliasi
+                    </h6>
+                </li>
+            </a>
             <a href="<?= base_url() ?>profile/pengaturan">
                 <li class="p-2 px-4 <?= ($this->uri->segment(2) === 'pengaturan') ? 'active' : '' ?>">
                     <h6 class="m-0 text-black">

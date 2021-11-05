@@ -13,6 +13,15 @@ class Model_profile extends CI_Model
         $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id=t_profile.kota', 'left');
         return $this->db->get();
     }
+
+    public function get_table_where($table, $where)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where);
+        return $this->db->get();
+    }
+
     public function QuestCount($id)
     {
         $this->db->where('t_user.id_user', $id);

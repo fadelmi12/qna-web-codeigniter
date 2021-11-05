@@ -15,17 +15,10 @@ class Send extends CI_Controller
         $this->load->view('templates/header-page', $nav);
         $this->load->view('wa/send');
         $this->load->view('templates/footer');
-
-        // $phone = "081553572412;087850256446";
-        // $phone2 = explode(';', $phone);
-        // echo json_encode($phone2);
     }
 
     public function kirim()
     {
-        // Pastikan phone menggunakan kode negara atau
-        // 62 di depannya untuk Indonesia atau
-        // bisa menggunakan 0 jika nomor tujuan Indonesia
 
         $token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
         $phone = $this->input->post('no_wa');
