@@ -78,7 +78,7 @@ class Register extends CI_Controller
 					);
 					$act = $this->Model_activity->save_activity($data_log);
 					if ($act) {
-						$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+						$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 						$message = "Terimakasih " . $namalengkap . ", Anda telah bergabung dengan Ssiswa Rajin";
 						$curl = curl_init();
 
@@ -139,7 +139,7 @@ class Register extends CI_Controller
 		$get_otp = $this->Model_profile->get_table_where('t_otp', array('no_wa' => $no_wa))->row();
 		if (isset($get_otp)) {
 			$this->db->update('t_otp', $data_otp, array('no_wa' => $no_wa));
-			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 			$message = "Kode OTP kamu : " . $kode_otp;
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
@@ -159,7 +159,7 @@ class Register extends CI_Controller
 			curl_close($curl);
 		} else {
 			$this->db->insert('t_otp', $data_otp);
-			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 			$message = "Kode OTP kamu : " . $kode_otp;
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
@@ -239,7 +239,7 @@ class Register extends CI_Controller
 							);
 							$act = $this->Model_activity->save_activity($data_log);
 							if ($act) {
-								$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+								$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 								$message = "Terimakasih " . $namalengkap . ", Anda telah bergabung dengan Ssiswa Rajin";
 								$curl = curl_init();
 								curl_setopt_array($curl, array(

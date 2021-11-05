@@ -150,7 +150,7 @@ class Daftar_artikel extends CI_Controller
 		$where = array('id_artikel' => $id_artikel);
 		$update = $this->db->update('t_artikel', $data, $where);
 		if ($update) {
-			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 			$message = "artikel kamu sudah di verifikasi admin Siswa Rajin.";
 			$nohp = $user[0]['no_hp'];
 			$curl = curl_init();
@@ -175,7 +175,7 @@ class Daftar_artikel extends CI_Controller
 			$response = curl_exec($curl);
 
 			curl_close($curl);
-// 			echo $response;
+			// 			echo $response;
 		}
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}

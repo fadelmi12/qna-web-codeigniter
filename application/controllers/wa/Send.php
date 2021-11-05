@@ -20,7 +20,7 @@ class Send extends CI_Controller
     public function kirim()
     {
 
-        $token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+        $token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
         $phone = $this->input->post('no_wa');
 
 
@@ -62,7 +62,7 @@ class Send extends CI_Controller
         // 62 di depannya untuk Indonesia atau
         // bisa menggunakan 0 jika nomor tujuan Indonesia
 
-        $token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+        $token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
         // $phone = $this->input->post('no_wa');
 
         $phone = ['081553572412', '087850256446'];

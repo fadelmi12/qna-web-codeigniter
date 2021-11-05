@@ -94,7 +94,7 @@ class Dashboard extends CI_Controller
 			);
 			$this->db->insert('log_money', $log_money);
 
-			$token = 'AYu6mII2aIJru9EZqpZ2ymRMkVUOryMdyKuaEXhnvZbxf38OYU';
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
 			$message = "Pertanyaan kamu sudah terupload, tunggu admin buat verifikasi pertanyaan kamu..";
 			$nohp = $detail_user[0]['no_hp'];
 			$curl = curl_init();
