@@ -1,8 +1,35 @@
 <?php
 class Model_dashboard extends CI_Model
 {
-    public function get_question_dashboard()
+    public function get_question_dashboard($price, $time)
     {
+        if ($price != null && $time == null) {
+            if ($price == 0) {
+                $this->db->order_by('harga', 'ASC');
+            } else {
+                $this->db->order_by('harga', 'DESC');
+            }
+        } elseif ($price == null && $time != null) {
+            if ($time == 0) {
+                $this->db->order_by('waktu_question', 'ASC');
+            } else {
+                $this->db->order_by('waktu_question', 'DESC');
+            }
+        } elseif ($price != null && $time != null) {
+            if ($price == 0 && $time == 0) {
+                $this->db->order_by('harga', 'ASC');
+                $this->db->order_by('waktu_question', 'ASC');
+            } elseif ($price == 1 && $time == 1) {
+                $this->db->order_by('harga', 'DESC');
+                $this->db->order_by('waktu_question', 'DESC');
+            } elseif ($price == 1 && $time == 0) {
+                $this->db->order_by('harga', 'DESC');
+                $this->db->order_by('waktu_question', 'ASC');
+            } elseif ($price == 0 && $time == 1) {
+                $this->db->order_by('harga', 'ASC');
+                $this->db->order_by('waktu_question', 'DESC');
+            }
+        }
         $this->db->select('*');
         $this->db->from('t_pertanyaan');
         $this->db->join('t_user', 't_user.id_user=t_pertanyaan.id_user', 'left');
@@ -71,7 +98,7 @@ class Model_dashboard extends CI_Model
         $this->db->from('t_aktivitas');
         $this->db->join('t_user', 't_user.id_user=t_aktivitas.id_user', 'left');
         $this->db->order_by('waktu_aktivitas', 'DESC');
-        
+
 
         return $this->db->get();
     }

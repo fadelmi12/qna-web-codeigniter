@@ -101,31 +101,19 @@
 						</div>
 					</div>
 					<div class="filter-pop">
-						<div class="mb-3 d-flex filter-menu justify-content-around justify-content-lg-between  py-3 px-3">
+						<div class="mb-3 d-flex filter-menu py-3 px-3">
 							<!-- <h6 class="m-0 me-3">Urut Berdasarkan</h6> -->
-							<select name="filter" id="filter" class="px-2">
-								<option value="">Harga : </option>
-								<option value="Terlama">Termurah</option>
-								<option value="Terbaru">Termahal</option>
+							<select name="filter" id="filterPrice" class="px-2" style=" display: inline-block;
+    width: 50%;">
+								<option value="" disabled selected hidden>Harga : </option>
+								<option value="0">Termurah</option>
+								<option value="1">Termahal</option>
 							</select>
-							<div class="d-none d-lg-flex">
-								<div class="filter-kategori p-1 me-2 px-3 ">
-									Matematika
-								</div>
-								<div class="filter-kategori p-1 me-2 px-3 ">
-									Sejarah
-								</div>
-								<div class="filter-kategori p-1 me-2 px-3 ">
-									Fisika
-								</div>
-								<div class="filter-kategori p-1 me-2 px-3 ">
-									Biologi
-								</div>
-							</div>
-							<select name="filter" id="filter" class="px-2">
-								<option value="">Waktu : </option>
-								<option value="Terlama">Terlama</option>
-								<option value="Terbaru">Terbaru</option>
+							<select name="filter" id="filterTime" class="px-2" style=" display: inline-block;
+    width: 50%;">
+								<option value="" disabled selected hidden>Waktu : </option>
+								<option value="0">Terlama</option>
+								<option value="1">Terbaru</option>
 							</select>
 
 
@@ -133,7 +121,7 @@
 
 					</div>
 
-					<div class="list-pertanyaan">
+					<div id="QuestPlace" class="list-pertanyaan">
 						<ul class="px-1 px-lg-2">
 
 							<?php foreach ($question as $qty) :
@@ -793,6 +781,96 @@
 		}, function(reason) {
 			// PDF loading error
 			console.error(reason);
+		});
+	</script>
+	<script type="text/javascript">
+		document.getElementById("filterPrice").addEventListener('change', function(e) {
+			e.preventDefault();
+			var rego = document.getElementById('filterPrice');
+			var asu = rego.options[rego.selectedIndex].value;
+			var harga = parseInt(asu);
+			var waktu = document.getElementById('filterTime');
+			var fTime = waktu.options[waktu.selectedIndex].value;
+			var fWaktu = parseInt(fTime);
+			// console.log(asu);
+			if (isNaN(fWaktu)) {
+
+
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						price: harga
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			} else {
+				console.log(harga);
+				console.log(fWaktu);
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						price: harga,
+						timeF: fWaktu
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			}
+
+
+		});
+
+
+		document.getElementById("filterTime").addEventListener('change', function(e) {
+			e.preventDefault();
+			var rego = document.getElementById('filterPrice');
+			var asu = rego.options[rego.selectedIndex].value;
+			var harga = parseInt(asu);
+			var waktu = document.getElementById('filterTime');
+			var fTime = waktu.options[waktu.selectedIndex].value;
+			var fWaktu = parseInt(fTime);
+
+			if (isNaN(harga)) {
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						timeF: fWaktu
+					},
+					dataType: "text",
+					success: function(data) {
+						console.log(harga);
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			} else {
+				console.log(harga);
+				console.log(fWaktu);
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						timeF: fWaktu,
+						price: harga
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			}
+
 		});
 	</script>
 	<!-- End Contact Section -->
