@@ -215,14 +215,14 @@ class AdminPage extends CI_Controller
 			$result =  substr($response, 17, 5);
 			if ($result == "false") {
 				$data_wa = array(
-					'id_user' 		=> $id,
+					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
 					'status_kirim'	=> 0
 				);
 				$this->db->insert('t_wa', $data_wa);
 			} else {
 				$data_wa = array(
-					'id_user' 		=> $id,
+					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
 					'status_kirim'	=> 1
 				);
@@ -340,14 +340,14 @@ class AdminPage extends CI_Controller
 			$result =  substr($response, 17, 5);
 			if ($result == "false") {
 				$data_wa = array(
-					'id_user' 		=> $id,
+					'id_user' 		=> null,
 					'pesan'			=> $message,
 					'status_kirim'	=> 0
 				);
 				$this->db->insert('t_wa', $data_wa);
 			} else {
 				$data_wa = array(
-					'id_user' 		=> $id,
+					'id_user' 		=> null,
 					'pesan'			=> $message,
 					'status_kirim'	=> 1
 				);
