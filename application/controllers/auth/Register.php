@@ -42,6 +42,7 @@ class Register extends CI_Controller
 			$pwd 			= $this->input->post('password');
 			$password 		= password_hash($pwd, PASSWORD_DEFAULT);
 			$roleid			= 2;
+			$status_user	= 1;
 			$wallet			= 20;
 
 			$data_user = array(
@@ -50,6 +51,7 @@ class Register extends CI_Controller
 				'password' 		=> $password,
 				'view_password' => $pwd,
 				'role_id' 		=> $roleid,
+				'status_user'	=> $status_user,
 				'kode_afiliasi'	=> md5($username)
 			);
 

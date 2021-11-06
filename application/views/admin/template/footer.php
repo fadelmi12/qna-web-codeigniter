@@ -204,6 +204,36 @@
   </div>
 <?php endforeach; ?>
 
+<script type="text/javascript">
+  function logout_admin()
+  {
+    $('#modal_logout_admin').appendTo('body').modal('show');
+  }
+</script>
+<!-- modal logout admin -->
+<div class="modal fade" style="" tabindex="-1" id="modal_logout_admin" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-center" style="background:skyblue; justify-content: center;" align="center">
+        <h4 class="modal-title text-white text-center" id="exampleModalLabel"><strong>Konfirmasi Log-out</strong></h4>
+      </div>
+        <div class="modal-body" >
+            <div class="mb-4">
+                <h5>Apakah Anda yakin ingin keluar ?</h5>
+            </div>
+            <div class="row">
+                <div class="col mr-5" align="right">
+                    <button type="button" class="btn btn-success col-5" onclick="window.location.href='<?php echo base_url('auth/Login/logout') ?>'">Iya</button>
+                </div>
+                <div class="col ml-5" align="left">
+                    <button type="button" data-dismiss="modal" class="btn btn-warning col-5">Tidak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
 <!-- datatables.html  21 Nov 2019 03:55:25 GMT -->
 
 </html>

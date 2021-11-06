@@ -526,52 +526,17 @@
 
 			<div class="faq-list">
 				<ul>
-					<li data-aos="fade-up" data-aos-delay="100">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Apa itu siswarajin.com ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
-							<p>
-								Siswarajin merupakan website untuk membantu menjawab soal dan pertanyaanmu. Kamu juga bisa mendapatkan
-								uang dengan menjawab pertanyaan.
-							</p>
-						</div>
-					</li>
-
+					<?php $list_faq = $this->db->get('t_faq')->result_array();
+					$no = 1; foreach($list_faq as $faq): ?>
 					<li data-aos="fade-up" data-aos-delay="200">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Apakah kita bisa mendapatkan uang di siswarajin.com ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-<?php echo $no ?>" class="collapsed"><?php echo $faq['question'] ?><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+						<div id="faq-list-<?php echo $no ?>" class="collapse" data-bs-parent=".faq-list">
 							<p>
-								Tentu saja, anda dapat menghasilkan uang di siswarajin.com dengan cara menjawab pertanyaan yang diajukan
+								<?php echo $faq['answer'] ?>
 							</p>
 						</div>
 					</li>
-
-					<li data-aos="fade-up" data-aos-delay="300">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Bagaimana cara mendapatkan uang di siswarajin.com ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
-							<p>
-								Anda dapat memperoleh coin dari menjawab pertanyaan yang nantinya akan dapat di tukarkan dengan uang
-							</p>
-						</div>
-					</li>
-
-					<li data-aos="fade-up" data-aos-delay="400">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Apa saja yang dapat kita tanyakan di siswarajin.com? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
-							<p>
-								Kita dapat bertanya seputar materi sekolah dan tugas yang diberikan guru
-							</p>
-						</div>
-					</li>
-
-					<li data-aos="fade-up" data-aos-delay="500">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Bagaimana cara mencairkan uang di siswarajin.com ?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
-							<p>
-								Untuk mencairkan uang, anda harus terlebih dahulu menghubungkan akun anda dengan rekening. Selanjutnya buat permintaan penarikan di menu keuangan.
-							</p>
-						</div>
-					</li>
-
+					<?php $no++; endforeach; ?>
 				</ul>
 			</div>
 
