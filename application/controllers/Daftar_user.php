@@ -25,8 +25,7 @@ class Daftar_user extends CI_Controller
 	{
 		$data['data_user'] = $this->Model_admin->data_user($id_user)->result_array();
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
-		// echo "<pre>"; print_r($data); exit;
-
+		
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/view_edit_user', $data);
 		$this->load->view('admin/template/footer');
@@ -75,11 +74,24 @@ class Daftar_user extends CI_Controller
 			'wallet' 		=> $e_wallet,
 		);
 
-		// echo "<pre>"; print_r($data2);exit;
-
 		$this->db->update('t_profile', $data2, $where);
 		redirect('Daftar_user/view_edit/'.$id_user);
 	}
 
+	public function banned_unbened($id_user)
+	{
+		$ambil = $this->db->get_where('t_user', array('id_user' => $id_user))->result_array();
+		foreach($ambil as $jupuk); $status_akun = $jupuk['status_user'];
 
+		if($status_akun == '0'){
+			$data 	= array('status_user' => ("1"));
+		}else{
+			$data 	= array('status_user' => ("0"));
+		}
+
+		$where 	= array('id_user' => $id_user);
+
+		$this->db->update('t_user', $data, $where);
+		redirect('Daftar_user/index/');
+	}
 }

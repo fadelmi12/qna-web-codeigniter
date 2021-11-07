@@ -17,17 +17,37 @@ class Dashboard extends CI_Controller
 			$data['money'] = json_encode($duit);
 		} else {
 		}
-		$data['question'] 	= $this->Model_dashboard->get_question_dashboard()->result_array();
+		$data['question'] 	= $this->Model_dashboard->get_question_dashboard(null, null)->result_array();
 		$data['article'] 	= $this->Model_dashboard->get_article_dashboard()->result_array();
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['like']		= $this->Model_dashboard->get_like_dasboard()->result_array();
 		$data['activity']	= $this->Model_dashboard->get_activity_dasboard()->result_array();
-		$data['suka'] = json_encode($data['like']);
-		$data['pertanyaan'] = json_encode($data['question']);
+		// $data['suka'] = json_encode($data['like']);
+		// $data['pertanyaan'] = json_encode($data['question']);
 
 		$this->load->view('templates/header');
 		$this->load->view('dashboard', $data);
 		$this->load->view('templates/footer');
+	}
+
+	public function ChangeByFilter()
+	{
+		$filterPrice = $this->input->post('price');
+		$filterTime = $this->input->post('timeF');
+		if ($filterPrice != null && $filterTime == null) {
+			$data['question'] 	= $this->Model_dashboard->get_question_dashboard($filterPrice, null)->result_array();
+		} elseif ($filterTime != null && $filterPrice == null) {
+			$data['question'] 	= $this->Model_dashboard->get_question_dashboard(null, $filterTime)->result_array();
+		} elseif ($filterTime != null && $filterPrice != null) {
+			$data['question'] 	= $this->Model_dashboard->get_question_dashboard($filterPrice, $filterTime)->result_array();
+		}
+		$data['article'] 	= $this->Model_dashboard->get_article_dashboard()->result_array();
+		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
+		$data['like']		= $this->Model_dashboard->get_like_dasboard()->result_array();
+		$data['activity']	= $this->Model_dashboard->get_activity_dasboard()->result_array();
+		// $this->load->view('templates/header');
+		$this->load->view('atraksi/filterDashboard', $data);
+		// $this->load->view('templates/footer');
 	}
 
 	public function save_pertanyaan()

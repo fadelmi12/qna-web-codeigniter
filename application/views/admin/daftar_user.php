@@ -19,7 +19,8 @@
                                             <th scope="col">Username</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">No. HP</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Keterangan</th>
+                                            <th scope="col">Status Akun</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -48,11 +49,24 @@
                                                     ?>
                                                 </td>
                                                 <td>
+                                                    <?php
+                                                    if ($user['status_user'] == '1') :
+                                                        echo 'Aktif';
+                                                    else :
+                                                        echo 'Nonaktif';
+                                                    endif;
+                                                    ?>
+                                                </td>
+                                                <td>
                                                     <div class="dropdown">
                                                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Options</a>
                                                         <div class="dropdown-menu">
                                                             <a href="<?php echo base_url('Daftar_user/view_edit/' . $user['id_user']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit & View</a>
-                                                            <div class="dropdown-divider"></div>
+                                                            <?php if ($user['status_user'] == '1'): ?>
+                                                                <a href="<?php echo base_url('Daftar_user/banned_unbened/'.$user['id_user']) ?>" class="dropdown-item has-icon text-danger"><i class="far fa-times-circle"></i> Banned Akun</a>
+                                                            <?php else: ?>
+                                                                <a href="<?php echo base_url('Daftar_user/banned_unbened/'.$user['id_user']) ?>" class="dropdown-item has-icon text-success"><i class="far fa-check-circle"></i> Un-Benned Akun</a>
+                                                            <?php endif; ?>
                                                             <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
                                                                 Delete</a>
                                                         </div>

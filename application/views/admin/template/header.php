@@ -73,6 +73,8 @@
                             <a href="<?php echo base_url() ?>AdminPage/log_login" class="nav-link"><i data-feather="log-in"></i><span>Log Login</span></a>
                             <a href="<?php echo base_url() ?>AdminPage/MessageBox" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
                             <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><i data-feather="monitor"></i><span>Broadcast WA</span></a>
+                            <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>
+                            <a href="#" onclick="logout_admin()" class="nav-link"><i data-feather="log-out"></i><span>LogOut</span></a>
                         </li>
 
 
