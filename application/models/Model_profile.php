@@ -14,6 +14,22 @@ class Model_profile extends CI_Model
         return $this->db->get();
     }
 
+    public function getAfiliate($afil)
+    {
+        $this->db->where('t_user.kode_afiliasi', $afil);
+        $this->db->select('*');
+        $this->db->from('t_user');
+        $this->db->join('t_profile', 't_profile.id_user=t_user.id_user', 'left');
+        return $this->db->get();
+    }
+
+    public function get_table_all($table)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        return $this->db->get();
+    }
+
     public function get_table_where($table, $where)
     {
         $this->db->select('*');
