@@ -135,14 +135,16 @@ class Register extends CI_Controller
 	}
 	public function afiliasi($otp)
 	{
-		$nav['judul'] = "Buat Pertanyaan";
-		$data['afiliasi'] = $this->Model_profile->get_table_where('t_user', array('kode_afiliasi' => $otp))->result_array();
+		$nav['judul']		= "Buat Pertanyaan";
+		$data['afiliasi']	= $this->Model_profile->get_table_where('t_user', array('kode_afiliasi' => $otp))->result_array();
+		$data['user']		= $this->Model_profile->get_table_all('t_profile')->result_array();
 		$this->load->view('templates/header-page', $nav);
 		$this->load->view('auth/register_afiliasi', $data);
 		$this->load->view('templates/footer');
 	}
 	public function kirim_otp()
 	{
+		$this->form_validation->set_rules('no_wa', 'No Whatsapp', 'required|is_unique[t_profile.no_hp]');
 		$no_wa		= $this->input->post('no_wa');
 		$kode_otp	= rand(100000, 999999);
 		$now 		= date('Y-m-d H:i:s');
@@ -202,7 +204,7 @@ class Register extends CI_Controller
 		$this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[t_user.nama_user]');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[t_user.email]');
-		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required|is_unique[t_profile.no_hp]');
+		$this->form_validation->set_rules('no_hp', 'No Whatsapp', 'required|is_unique[t_profile.no_hp]');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
 		$this->form_validation->set_rules('kode_otp', 'Kode OTP', 'required');
@@ -250,6 +252,26 @@ class Register extends CI_Controller
 						$data_xss2 = $this->security->xss_clean($data_profil);
 						$regis_profil = $this->Model_login->daftar_user($data_xss2, 't_profile');
 						if ($regis_profil) {
+							$kode_afiliasi 	= $this->input->post('afiliasi');
+							$afil_user		= $this->Model_profile->getAfiliate($kode_afiliasi)->result_array();
+							$id_user_afil	= $afil_user[0]['id_user'];
+							$koin			= $afil_user[0]['wallet'];
+							$koin_new		= $koin + 10;
+							$data_koin		= array(
+								'wallet'	=> $koin_new
+							);
+							$add_coin		= $this->db->update('t_profile', $data_koin, array('id_user' => $id_user_afil));
+							if ($add_coin) {
+								$id_profile = $afil_user[0]['id_profile'];
+								$log_money 	= array(
+									'id_profile'	=> $id_profile,
+									'status_log' 	=> 0,
+									'jumlah' 		=> 10,
+									'ket_log' 		=> 'Membuat Pertanyaan',
+									'tgl_log' 		=> date("Y-m-d H:i:s")
+								);
+								$this->db->insert('log_money', $log_money);
+							}
 							$data_log = array(
 								'id_user' 			=> $id,
 								'aktivitas' 		=> "registrasi",
