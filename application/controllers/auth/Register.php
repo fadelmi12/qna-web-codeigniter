@@ -139,7 +139,7 @@ class Register extends CI_Controller
 	{
 		$nav['judul']		= "Buat Pertanyaan";
 		$data['afiliasi']	= $this->Model_profile->get_table_where('t_user', array('kode_afiliasi' => $otp))->result_array();
-		$data['user']		= $this->Model_profile->get_table_all('t_profile')->result_array();
+		$data['user']		= $this->Model_profile->get_no_wa()->result_array();
 		$this->load->view('templates/header-page', $nav);
 		$this->load->view('auth/register_afiliasi', $data);
 		$this->load->view('templates/footer');

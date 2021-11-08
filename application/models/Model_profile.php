@@ -23,10 +23,10 @@ class Model_profile extends CI_Model
         return $this->db->get();
     }
 
-    public function get_table_all($table)
+    public function get_no_wa()
     {
-        $this->db->select('*');
-        $this->db->from($table);
+        $this->db->select('no_hp');
+        $this->db->from('t_profile');
         return $this->db->get();
     }
 

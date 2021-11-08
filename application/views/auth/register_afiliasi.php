@@ -87,8 +87,13 @@
                             <input type="number" name="kode_otp" id="" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Kode OTP belum sesuai')" oninput="setCustomValidity('')" placeholder="Masukkan Kode OTP" />
                             <span class="text-danger"><?= form_error('kode_otp') ?></span>
                         </div>
-                        <div class="group mb-3 text-justify">
-                            <span><strong><a aria-disabled="true" target="_blank" href="https://wa.me/6281331255143?text=Hai%20Admin%20Siswa%20Rajin.%20Saya%20ingin%20request%20kode%20otp,%20untuk%20bergabung%20bersama%20Siswa%20Rajin." onclick="setTimeout(request_otp(),5000)">Klik disini</a></strong> untuk mendapatkan kode OTP. Kode OTP akan dikirim melalui nomor WA dan hanya berlaku 5 menit.<br></span>
+                        <div class="group mb-3">
+                            <h5 class="text-center" id="time"></h5>
+                            <input type="button" class="button" id="kirim_ulang" style="border: none;background-color:transparent;color:deepskyblue;" onclick="request_otp()" value="Klik disini" />
+                            <!-- <button type="button" id="req_otp" style="border: none;background-color:transparent;" onclick="jancuk()"><strong style="color:deepskyblue">Klik disini</strong></button> -->
+                            <!-- <h6 onclick="request_otp()" style="color:deepskyblue">Klik disini</h6> -->
+                            <!-- <span><strong><a aria-disabled="true" target="_blank" href="https://wa.me/6281331255143?text=Hai%20Admin%20Siswa%20Rajin.%20Saya%20ingin%20request%20kode%20otp,%20untuk%20bergabung%20bersama%20Siswa%20Rajin." onclick="request_otp()">Klik disini</a></strong> untuk mendapatkan kode OTP. Kode OTP akan dikirim melalui nomor WA dan hanya berlaku 5 menit.<br></span> -->
+                            <span> untuk mendapatkan kode OTP. Kode OTP akan dikirim melalui nomor WA dan hanya berlaku 5 menit.<br></span>
                         </div>
                         <hr>
                         <div class="group mb-4 text-center">
@@ -105,31 +110,25 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 
 <script>
-    $(".toggle-password").click(function() {
-
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-            input.attr("type", "text");
-        } else {
-            input.attr("type", "password");
-        }
-    });
-
     function request_otp() {
         var no_wa = document.getElementById("no_wa").value;
+        var all_wa = '<?php echo json_encode($user) ?>';
         if (no_wa == "") {
             alert("Nomor Whatsapp belum diinputkan!");
+        } else if (all_wa.includes(no_wa)) {
+            alert("Nomor Whatsapp sudah digunakan!");
         } else {
+            window.open(
+                'https://wa.me/6281331255143?text=Hai%20Admin%20Siswa%20Rajin.%20Saya%20ingin%20request%20kode%20otp,%20untuk%20bergabung%20bersama%20Siswa%20Rajin."',
+                '_blank'
+            );
             setTimeout(() => {
                 $.ajax({
                     method: 'POST',
@@ -146,12 +145,64 @@
                         }
                     }
                 })
-            }, 5000);
+            }, 30000);
+            var hitung = new Date(Date.now() + (4 * 60 * 1000));
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = hitung - now;
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("time").innerHTML = minutes + " : " + seconds;
+                document.getElementById("kirim_ulang").disabled = true;
+                document.getElementById("kirim_ulang").value = "Kirim ulang";
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("time").innerHTML = "";
+                    document.getElementById("kirim_ulang").disabled = false;
+                }
+            }, 1000);
         }
     }
+</script>
+<script>
+    $(".toggle-password").click(function() {
 
-    function check_otp() {
-        var no_wa = document.getElementById("no_wa").value;
-        document.getElementById("form_afiliasi").submit();
-    }
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
+    // function request_otp() {
+    //     var no_wa = document.getElementById("no_wa").value;
+    //     if (no_wa == "") {
+    //         alert("Nomor Whatsapp belum diinputkan!");
+    //     } else {
+    //         setTimeout(() => {
+    //             $.ajax({
+    //                 method: 'POST',
+    //                 dataType: 'json',
+    //                 url: '<?php echo base_url() ?>auth/Register/kirim_otp',
+    //                 data: {
+    //                     no_wa: no_wa
+    //                 },
+    //                 success: function(result) {
+    //                     if (result == '') {
+    //                         console.log("false");
+    //                     } else {
+    //                         console.log("true");
+    //                     }
+    //                 }
+    //             })
+    //         }, 5000);
+    //     }
+    // }
+
+    // function check_otp() {
+    //     var no_wa = document.getElementById("no_wa").value;
+    //     document.getElementById("form_afiliasi").submit();
+    // }
 </script>
