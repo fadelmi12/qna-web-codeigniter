@@ -1,8 +1,5 @@
 <div class="artikel pb-5" id="artikel">
     <div class="py-4">
-        <div class="container route">
-            Home / Jurnal / Semua Kategori
-        </div>
 
     </div>
 

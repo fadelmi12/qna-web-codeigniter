@@ -30,7 +30,7 @@
                                                 <?php foreach ($tag as $tg) :
                                                     if ($ktg['id_kategori_tag'] == $tg['id_kategori_tag']) : ?>
                                                         <li class="py-1">
-                                                            <a href='<?= base_url('Artikel/tag/'.$tg['namaTag']) ?>'>
+                                                            <a href='<?= base_url('Artikel/tag/' . $tg['namaTag']) ?>'>
                                                                 <div class="d-flex">
                                                                     <div class="d-flex align-items-center"><i class="iconify me-2" data-icon="eos-icons:science-outlined" style="opacity:0;"></i></div>
                                                                     <div class="d-flex justify-content-between w-100 pe-3">
@@ -78,7 +78,9 @@
                                                 <?= $arti['nama_user'] ?>
                                             </div>
                                         </div>
-
+                                        <h6 class="fw-normal my-2">
+                                            <?= $arti['deskripsi_artikel'] ?>
+                                        </h6>
                                         <div class="d-flex justify-content-between align-items-end">
                                             <div class="d-block">
                                                 <div class="d-flex mb-1">

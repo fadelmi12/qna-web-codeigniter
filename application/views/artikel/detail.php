@@ -21,8 +21,12 @@
                                 <div class="image-artikel" style="background-image: url('https://www.gravatar.com/avatar/10<?= $article->id_user ?>?>b5695d974ac54d52c9b8f54ea8f86.jpg?s=115&d=monsterid')">
                                 </div>
                                 <div class="fw-bold">
-                                    <strong> <h6 class="m-0 fw-bold"><?php echo  ($article->nama_user) ?></h6> </strong>
-                                    <strong><h6 class="m-0 fw-bold">Author : <?php echo  strtoupper($article->author) ?> </h6></strong>
+                                    <strong>
+                                        <h6 class="m-0 fw-bold"><?php echo ($article->nama_user) ?></h6>
+                                    </strong>
+                                    <strong>
+                                        <h6 class="m-0 fw-bold">Author : <?php echo  strtoupper($article->author) ?> </h6>
+                                    </strong>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-end mb-1">
@@ -60,11 +64,9 @@
                                 </div>
 
                             </div>
-                            <div class="text-overflow">
+                            <div class="my-2">
                                 <?php echo $article->deskripsi_artikel ?>
                             </div>
-                            <a class="btn-overflow mb-2" href="#">Show more</a>
-
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="d-flex  align-items-start">
                                     <div class="d-flex preview align-items-center me-2 me-lg-3 px-3 py-2 pb-3">
@@ -81,7 +83,7 @@
                                     <a onclick="check_download()">
                                         <div class="download-button d-flex align-items-center px-3 py-2">
                                             <span class="iconify me-2 text-black" data-icon="bx:bxs-download"></span>
-                                            
+
                                             <h6 class="m-0 text-black">
                                                 Download
                                             </h6>
@@ -130,7 +132,7 @@
                                 </style>
                                 <div class="download-button d-flex align-items-center px-2 py-1">
                                     <div class="dropdown">
-                                        <button role="button" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:none;padding:0;background:transparent"> 
+                                        <button role="button" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:none;padding:0;background:transparent">
                                             <span class="iconify p-0 m-0" data-icon="cil:options"></span>
                                         </button>
                                         <!--<a style="cursor: pointer;" class="dropdown-toggle text-black" data-bs-toggle="dropdown" aria-expanded="false"><strong>Menu</strong></a>-->
@@ -140,15 +142,15 @@
                                             <?php foreach ($artikel_save as $artikel) ?>
                                             <?php if (empty($artikel_save)) : ?>
                                                 <li>
-                                                    <button class="dropdown-item fw-bold d-flex" id="btnsave<?php echo $article->id_artikel ?>" onclick="save()" data1="<?php echo $article->id_artikel ?>" type="button" style="font-family:inherit"> 
+                                                    <button class="dropdown-item fw-bold d-flex" id="btnsave<?php echo $article->id_artikel ?>" onclick="save()" data1="<?php echo $article->id_artikel ?>" type="button" style="font-family:inherit">
                                                         <span class="iconify my-auto me-2" data-icon="fluent:save-24-filled"></span>
                                                         Simpan Artikel
                                                     </button>
                                                 </li>
                                             <?php elseif ($artikel['status_save'] == '0') : ?>
                                                 <li>
-                                                    <button class="dropdown-item fw-bold d-flex" id="btnsave<?php echo $article->id_artikel ?>" onclick="save()" data1="<?php echo $article->id_artikel ?>" type="button" style="font-family:inherit"> 
-                                                    <span class="iconify my-auto me-2" data-icon="fluent:save-24-filled"></span>
+                                                    <button class="dropdown-item fw-bold d-flex" id="btnsave<?php echo $article->id_artikel ?>" onclick="save()" data1="<?php echo $article->id_artikel ?>" type="button" style="font-family:inherit">
+                                                        <span class="iconify my-auto me-2" data-icon="fluent:save-24-filled"></span>
                                                         Simpan Artikel
                                                     </button>
                                                 </li>
@@ -160,9 +162,9 @@
                                                     </button>
                                                 </li>
                                             <?php endif; ?>
-                                            <li><button class="dropdown-item fas fw-bold" onclick="share_artikel()" style="font-family:inherit"> 
-                                                <span class="iconify my-auto me-2" data-icon="fa-solid:share-alt"></span>
-                                                Share Artikel
+                                            <li><button class="dropdown-item fas fw-bold" onclick="share_artikel()" style="font-family:inherit">
+                                                    <span class="iconify my-auto me-2" data-icon="fa-solid:share-alt"></span>
+                                                    Share Artikel
                                                 </button></li>
                                         </ul>
                                     </div>
@@ -205,67 +207,23 @@
                     <h6 class="fw-bold">
                         ARTIKEL LAIN DARI <?php echo strtoupper($article->author) ?>
                     </h6>
-                    <hr class="m-0 p-0 mb-3">
+                    <hr class="m-0 p-0 mb-2">
                     <ul class="m-0 p-0">
                         <?php foreach ($article_all as $all) : ?>
                             <?php if ($article->author == $all->author) : ?>
-                                <input type="hidden" id="pdf" name="text" value="<?php echo $all->file_pdf ?>">
-                                <li class="text-center">
-                                    <div class="col-7 text-center mx-auto">
-                                        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMXloWBEqMGFEIYfixCol8iDBIpQQ99R-LQQ&usqp=CAU" alt="" style="max-width:100%;max-height:100%;display:block" class="mb-2"> -->
-                                        <canvas id="the-canvas" style="max-width:100%;max-height:100%;display:block" class="mb-2"></canvas>
+
+                                <li class="p-1 px-2 row">
+                                    <div class="col-1 ">
+                                        <i class="iconify" data-icon="dashicons:book-alt"></i>
                                     </div>
-                                    <h6 class="judul-lain">
-                                        <?php echo $all->judul_artikel ?>
-                                    </h6>
+                                    <div class="col-11 d-flex align-items-center">
+                                        <h6 class="fw-bold mb-0">
+                                            <?php echo $all->judul_artikel ?>
+                                        </h6>
+                                    </div>
+
                                 </li>
-                                <script type="text/javascript">
-                                    var pdf_file = document.getElementById("pdf").value;
-                                    var url = '<?php echo base_url() . 'assets/pdf/' ?>' + pdf_file;
 
-
-                                    // Loaded via <script> tag, create shortcut to access PDF.js exports.
-                                    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-                                    // The workerSrc property shall be specified.
-                                    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-                                    // Asynchronous download of PDF
-                                    var loadingTask = pdfjsLib.getDocument(url);
-                                    loadingTask.promise.then(function(pdf) {
-                                        console.log('PDF loaded');
-
-                                        // Fetch the first page
-                                        var pageNumber = 1;
-                                        pdf.getPage(pageNumber).then(function(page) {
-                                            console.log('Page loaded');
-
-                                            var scale = 1.5;
-                                            var viewport = page.getViewport({
-                                                scale: scale
-                                            });
-
-                                            // Prepare canvas using PDF page dimensions
-                                            var canvas = document.getElementById('the-canvas');
-                                            var context = canvas.getContext('2d');
-                                            canvas.height = viewport.height;
-                                            canvas.width = viewport.width;
-
-                                            // Render PDF page into canvas context
-                                            var renderContext = {
-                                                canvasContext: context,
-                                                viewport: viewport
-                                            };
-                                            var renderTask = page.render(renderContext);
-                                            renderTask.promise.then(function() {
-                                                console.log('Page rendered');
-                                            });
-                                        });
-                                    }, function(reason) {
-                                        // PDF loading error
-                                        console.error(reason);
-                                    });
-                                </script>
                             <?php endif; ?>
                         <?php endforeach; ?>
 
@@ -278,48 +236,6 @@
 
     </div>
 </div>
-<!-- <script>
-        $(function() {
-            function renderPDF(url, canvasContainer, options) {
-
-                options = options || {
-                    scale: 1
-                };
-
-                function renderPage(page) {
-                    var viewport = page.getViewport(options.scale);
-                    var wrapper = document.createElement("div");
-                    wrapper.className = "canvas-wrapper";
-                    var canvas = document.createElement('canvas');
-                    var ctx = canvas.getContext('2d');
-                    var renderContext = {
-                        canvasContext: ctx,
-                        viewport: viewport
-                    };
-
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    wrapper.appendChild(canvas)
-                    canvasContainer.appendChild(wrapper);
-
-                    page.render(renderContext);
-                }
-
-                function renderPages(pdfDoc) {
-                    for (var num = 1; num <= pdfDoc.numPages; num++)
-                        pdfDoc.getPage(num).then(renderPage);
-                }
-
-                PDFJS.disableWorker = true;
-                PDFJS.getDocument(url).then(renderPages);
-
-            }
-
-            const url = $('#holder').data("file");
-            renderPDF(url, document.getElementById('holder'));
-        });
-    </script> -->
-
 <script>
     var text = $('.text-overflow'),
         btn = $('.btn-overflow'),

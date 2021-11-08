@@ -899,6 +899,14 @@ section {
   border-radius: 20px;
 }
 
+.contact .journal .list-jurnal h6{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .contact .journal h4{
   background-color: white;
   font-weight: bold;
@@ -954,11 +962,7 @@ section {
 
 .contact .journal .list-jurnal .btn-download:hover{
   cursor: pointer;
-  border: solid 2px #1d9bf0;
-  background-color:#1d9bf0;
-  font-weight: bold;
-  color: white;
-  border-radius: 20px;
+
 } 
 .contact .journal h6{
   font-weight:bold;
@@ -970,7 +974,7 @@ section {
   overflow: hidden;
 }
 
-.contact .journal h6:hover{
+.contact .journal h5:hover{
   cursor: pointer;
   text-decoration: underline;
 }

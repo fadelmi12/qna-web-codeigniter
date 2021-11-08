@@ -101,16 +101,14 @@
 						</div>
 					</div>
 					<div class="filter-pop">
-						<div class="mb-3 d-flex filter-menu py-3 px-3">
+						<div class="mb-3 d-flex filter-menu py-3 px-3 justify-content-end">
 							<!-- <h6 class="m-0 me-3">Urut Berdasarkan</h6> -->
-							<select name="filter" id="filterPrice" class="px-2" style=" display: inline-block;
-    width: 50%;">
+							<select name="filter" id="filterPrice" class="px-2 me-3" >
 								<option value="" disabled selected hidden>Harga : </option>
 								<option value="0">Termurah</option>
 								<option value="1">Termahal</option>
 							</select>
-							<select name="filter" id="filterTime" class="px-2" style=" display: inline-block;
-    width: 50%;">
+							<select name="filter" id="filterTime" class="px-2" >
 								<option value="" disabled selected hidden>Waktu : </option>
 								<option value="0">Terlama</option>
 								<option value="1">Terbaru</option>
@@ -372,10 +370,10 @@
 			</div>
 
 			<div class="row journal-box py-3">
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<div class="col-md-12 journal p-3 h-100">
 						<h4 class="m-0 mb-3 text-center text-sm-start">
-							Jurnal
+							Jurnal Terbaru
 						</h4>
 						<ul style="list-style: none; padding:0px">
 							<?php foreach ($article as $arc) : ?>
@@ -391,7 +389,10 @@
 												<?= $arc['nama_user'] ?>
 											</div>
 										</div>
-										<div class="d-flex justify-content-between">
+										<h6 class="fw-normal my-2">
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus.
+										</h6>
+										<div class="d-flex justify-content-between align-items-end">
 											<div class="d-block">
 												<div class="d-flex mb-1">
 													<?php
@@ -424,7 +425,7 @@
 											<a href="<?php echo base_url('Artikel/detail/' . $arc['slug']) ?>">
 												<div class="d-sm-flex btn-download align-items-center d-none">
 													<i class="fas fa-eye text-black mr-4 "></i>
-													<h6 class="m-0 text-black">
+													<h6 class="m-0">
 														Lihat Artikel
 													</h6>
 												</div>
@@ -436,77 +437,70 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<div class="col-md-12 journal p-3 h-100">
 						<h4 class="m-0 mb-3 text-center text-sm-start">
-							Modul ajar
+							Jurnal Terpopuler
 						</h4>
-						<ul class="m-0 p-0 row" style="list-style: none;">
-
-							<li class="col-6">
-								<div class="col-9 text-center mx-auto">
-									<canvas id="the-canvas" style="max-width:100%;max-height:100%;display:block" data-value="tanam.pdf"></canvas>
-
-
-								</div>
-								<a href="<?php echo base_url(); ?>artikel/detail/panduan-bercocok-tanam">
-									<div class="text-center px-2">
-										<h6 class="mt-2 mb-0">
-											Asyiknya Bercocok Tanam
+						<ul style="list-style: none; padding:0px">
+							<?php foreach ($article as $arc) : ?>
+								<li>
+									<div class="list-jurnal p-3 mb-3">
+										<h5>
+											<?= $arc['judul_artikel'] ?>
+										</h5>
+										<div class="d-flex mb-2">
+											<div class="image-activity w-100" style="background-image: url('https://www.gravatar.com/avatar/103?>b5695d974ac54d52c9b8f54ea8f86.jpg?s=115&d=monsterid')">
+											</div>
+											<div class="author">
+												<?= $arc['nama_user'] ?>
+											</div>
+										</div>
+										<h6 class="fw-normal my-2">
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus.
 										</h6>
+										<div class="d-flex justify-content-between align-items-end">
+											<div class="d-block">
+												<div class="d-flex mb-1">
+													<?php
+													$article_tag = $this->Model_dashboard->get_tag_article($arc['id_artikel'])->result_array();
+													$i = 0;
+													if ($article_tag != null) : ?>
+														<i class="fa fa-tag my-auto"></i>
+													<?php endif; ?>
+													<div class="tag">
+
+														<?php foreach ($article_tag as $arg) :
+															if ($i == 0) :
+																echo $arg['namaTag'];
+															else :
+																echo ", " . $arg['namaTag'];
+															endif;
+															$i++;
+														endforeach;
+														?>
+													</div>
+												</div>
+												<div class="d-flex">
+													<i class="fas fa-file-pdf my-auto"></i>
+													<div class="tag">
+														<?= $arc['jumlah_halaman'] ?> Halaman, <?= $arc['tahun_rilis'] ?>
+													</div>
+												</div>
+											</div>
+											<!-- khusus desktop -->
+											<a href="<?php echo base_url('Artikel/detail/' . $arc['slug']) ?>">
+												<div class="d-sm-flex btn-download align-items-center d-none">
+													<i class="fas fa-eye text-black mr-4 "></i>
+													<h6 class="m-0">
+														Lihat Artikel
+													</h6>
+												</div>
+											</a>
+										</div>
 									</div>
-								</a>
-
-
-							</li>
-							<li class="col-6">
-								<div class="col-9 mx-auto text-center">
-									<canvas id="the-canvas2" style="max-width:100%;max-height:100%;display:block" data-value="kesmas.pdf"></canvas>
-
-								</div>
-								<a href="<?php echo base_url(); ?>artikel/detail/kesehatan-masyarakat">
-									<div class="text-center px-4">
-										<h6 class="mt-2 mb-0">
-											Kesehatan Masyarakat
-										</h6>
-									</div>
-								</a>
-
-
-							</li>
-							<li class="col-6 mt-3">
-								<div class="col-9 text-center mx-auto ">
-									<canvas id="the-canvas3" style="max-width:100%;max-height:100%;display:block" data-value="olahraga.pdf"></canvas>
-
-								</div>
-
-								<a href="<?php echo base_url(); ?>artikel/detail/sehat-berolahraga">
-									<div class="text-center px-4">
-										<h6 class="mt-2 mb-0">
-											Sehat Berolahraga
-										</h6>
-									</div>
-
-								</a>
-
-							</li>
-							<li class="col-6 mt-3">
-								<div class="col-9 mx-auto  text-center ">
-									<canvas id="the-canvas4" style="max-width:100%;max-height:100%;display:block" data-value="budaya.pdf"></canvas>
-
-								</div>
-								<a href="<?php echo base_url(); ?>artikel/detail/ragam-budaya">
-									<div class="text-center px-4">
-										<h6 class="mt-2 mb-0">
-											Ragam Budaya
-										</h6>
-									</div>
-
-								</a>
-
-
-							</li>
-
+								</li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>
@@ -558,286 +552,6 @@
 
 		</div>
 	</section>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-	<script type="text/javascript">
-		var pdf_file = document.getElementById("the-canvas").getAttribute('data-value');
-		console.log(pdf_file);
-		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
-
-
-		// Loaded via <script> tag, create shortcut to access PDF.js exports.
-		var pdfjsLib = window['pdfjs-dist/build/pdf'];
-		// The workerSrc property shall be specified.
-		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-		// Asynchronous download of PDF
-		var loadingTask = pdfjsLib.getDocument(url);
-		loadingTask.promise.then(function(pdf) {
-			console.log('PDF loaded');
-
-			// Fetch the first page
-			var pageNumber = 2;
-			pdf.getPage(pageNumber).then(function(page) {
-				console.log('Page loaded');
-
-				var scale = 1.5;
-				var viewport = page.getViewport({
-					scale: scale
-				});
-
-				// Prepare canvas using PDF page dimensions
-				var canvas = document.getElementById('the-canvas');
-				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
-				canvas.width = viewport.width;
-
-				// Render PDF page into canvas context
-				var renderContext = {
-					canvasContext: context,
-					viewport: viewport
-				};
-				var renderTask = page.render(renderContext);
-				renderTask.promise.then(function() {
-					console.log('Page rendered');
-				});
-			});
-		}, function(reason) {
-			// PDF loading error
-			console.error(reason);
-		});
-	</script>
-	<script type="text/javascript">
-		var pdf_file = document.getElementById("the-canvas2").getAttribute('data-value');
-		console.log(pdf_file);
-		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
-
-
-		// Loaded via <script> tag, create shortcut to access PDF.js exports.
-		var pdfjsLib = window['pdfjs-dist/build/pdf'];
-		// The workerSrc property shall be specified.
-		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-		// Asynchronous download of PDF
-		var loadingTask = pdfjsLib.getDocument(url);
-		loadingTask.promise.then(function(pdf) {
-			console.log('PDF loaded');
-
-			// Fetch the first page
-			var pageNumber = 2;
-			pdf.getPage(pageNumber).then(function(page) {
-				console.log('Page loaded');
-
-				var scale = 1.5;
-				var viewport = page.getViewport({
-					scale: scale
-				});
-
-				// Prepare canvas using PDF page dimensions
-				var canvas = document.getElementById('the-canvas2');
-				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
-				canvas.width = viewport.width;
-
-				// Render PDF page into canvas context
-				var renderContext = {
-					canvasContext: context,
-					viewport: viewport
-				};
-				var renderTask = page.render(renderContext);
-				renderTask.promise.then(function() {
-					console.log('Page rendered');
-				});
-			});
-		}, function(reason) {
-			// PDF loading error
-			console.error(reason);
-		});
-	</script>
-	<script type="text/javascript">
-		var pdf_file = document.getElementById("the-canvas3").getAttribute('data-value');
-		console.log(pdf_file);
-		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
-
-
-		// Loaded via <script> tag, create shortcut to access PDF.js exports.
-		var pdfjsLib = window['pdfjs-dist/build/pdf'];
-		// The workerSrc property shall be specified.
-		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-		// Asynchronous download of PDF
-		var loadingTask = pdfjsLib.getDocument(url);
-		loadingTask.promise.then(function(pdf) {
-			console.log('PDF loaded');
-
-			// Fetch the first page
-			var pageNumber = 2;
-			pdf.getPage(pageNumber).then(function(page) {
-				console.log('Page loaded');
-
-				var scale = 1.5;
-				var viewport = page.getViewport({
-					scale: scale
-				});
-
-				// Prepare canvas using PDF page dimensions
-				var canvas = document.getElementById('the-canvas3');
-				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
-				canvas.width = viewport.width;
-
-				// Render PDF page into canvas context
-				var renderContext = {
-					canvasContext: context,
-					viewport: viewport
-				};
-				var renderTask = page.render(renderContext);
-				renderTask.promise.then(function() {
-					console.log('Page rendered');
-				});
-			});
-		}, function(reason) {
-			// PDF loading error
-			console.error(reason);
-		});
-	</script>
-	<script type="text/javascript">
-		var pdf_file = document.getElementById("the-canvas4").getAttribute('data-value');
-		console.log(pdf_file);
-		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
-
-
-		// Loaded via <script> tag, create shortcut to access PDF.js exports.
-		var pdfjsLib = window['pdfjs-dist/build/pdf'];
-		// The workerSrc property shall be specified.
-		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-		// Asynchronous download of PDF
-		var loadingTask = pdfjsLib.getDocument(url);
-		loadingTask.promise.then(function(pdf) {
-			console.log('PDF loaded');
-
-			// Fetch the first page
-			var pageNumber = 2;
-			pdf.getPage(pageNumber).then(function(page) {
-				console.log('Page loaded');
-
-				var scale = 1.5;
-				var viewport = page.getViewport({
-					scale: scale
-				});
-
-				// Prepare canvas using PDF page dimensions
-				var canvas = document.getElementById('the-canvas4');
-				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
-				canvas.width = viewport.width;
-
-				// Render PDF page into canvas context
-				var renderContext = {
-					canvasContext: context,
-					viewport: viewport
-				};
-				var renderTask = page.render(renderContext);
-				renderTask.promise.then(function() {
-					console.log('Page rendered');
-				});
-			});
-		}, function(reason) {
-			// PDF loading error
-			console.error(reason);
-		});
-	</script>
-	<script type="text/javascript">
-		document.getElementById("filterPrice").addEventListener('change', function(e) {
-			e.preventDefault();
-			var rego = document.getElementById('filterPrice');
-			var asu = rego.options[rego.selectedIndex].value;
-			var harga = parseInt(asu);
-			var waktu = document.getElementById('filterTime');
-			var fTime = waktu.options[waktu.selectedIndex].value;
-			var fWaktu = parseInt(fTime);
-			// console.log(asu);
-			if (isNaN(fWaktu)) {
-
-
-				$.ajax({
-					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
-					type: "POST",
-					data: {
-						price: harga
-					},
-					dataType: "text",
-					success: function(data) {
-						$("#QuestPlace").html(data);
-
-					}
-				});
-			} else {
-				console.log(harga);
-				console.log(fWaktu);
-				$.ajax({
-					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
-					type: "POST",
-					data: {
-						price: harga,
-						timeF: fWaktu
-					},
-					dataType: "text",
-					success: function(data) {
-						$("#QuestPlace").html(data);
-
-					}
-				});
-			}
-
-
-		});
-
-
-		document.getElementById("filterTime").addEventListener('change', function(e) {
-			e.preventDefault();
-			var rego = document.getElementById('filterPrice');
-			var asu = rego.options[rego.selectedIndex].value;
-			var harga = parseInt(asu);
-			var waktu = document.getElementById('filterTime');
-			var fTime = waktu.options[waktu.selectedIndex].value;
-			var fWaktu = parseInt(fTime);
-
-			if (isNaN(harga)) {
-				$.ajax({
-					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
-					type: "POST",
-					data: {
-						timeF: fWaktu
-					},
-					dataType: "text",
-					success: function(data) {
-						console.log(harga);
-						$("#QuestPlace").html(data);
-
-					}
-				});
-			} else {
-				console.log(harga);
-				console.log(fWaktu);
-				$.ajax({
-					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
-					type: "POST",
-					data: {
-						timeF: fWaktu,
-						price: harga
-					},
-					dataType: "text",
-					success: function(data) {
-						$("#QuestPlace").html(data);
-
-					}
-				});
-			}
-
-		});
-	</script>
 	<!-- End Contact Section -->
 
 </main><!-- End #main -->

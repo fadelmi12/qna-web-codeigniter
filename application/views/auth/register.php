@@ -1,9 +1,9 @@
-<div class="py-4">
-    <div class="container">
-        Home / Gabung Anggota
-    </div>
-</div>
 <div id="register" class="register">
+    <div class="py-4">
+        <div class="container">
+            Home / Gabung Anggota
+        </div>
+    </div>
     <div class="container mb-5 text-center">
         <h2>
             Register
