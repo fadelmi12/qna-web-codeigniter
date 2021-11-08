@@ -1,3 +1,4 @@
+<?php echo $this->session->flashdata('pesan'); ?>
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
@@ -67,7 +68,7 @@
                                                             <?php else: ?>
                                                                 <a href="<?php echo base_url('Daftar_user/banned_unbened/'.$user['id_user']) ?>" class="dropdown-item has-icon text-success"><i class="far fa-check-circle"></i> Un-Benned Akun</a>
                                                             <?php endif; ?>
-                                                            <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
+                                                            <a href="#" type="button" data='<?php echo $user['id_user'] ?>' onclick="HapusAkunUser()" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
                                                                 Delete</a>
                                                         </div>
                                                     </div>
@@ -84,3 +85,37 @@
             </div>
         </div>
     </section>
+
+<script type="text/javascript">
+    function HapusAkunUser()
+    {
+        var id_user = event.target.getAttribute('data');
+        $('#HapusAkunUser'+id_user).appendTo('body').modal('show');
+    }
+</script>
+
+<!-- modal hapus akun -->
+<?php foreach ($daftar_user as $user) : ?>
+<div class="modal fade" style="" tabindex="-1" id="HapusAkunUser<?php echo $user['id_user'] ?>" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-center" style="background:skyblue; justify-content: center;" align="center">
+        <h4 class="modal-title text-white text-center" id="exampleModalLabel"><strong>Hapus Akun</strong></h4>
+      </div>
+        <div class="modal-body" >
+            <div class="mb-4">
+                <h5>Apakah Anda yakin ingin menghapus akun ini ?</h5>
+            </div>
+            <div class="row">
+                <div class="col mr-5" align="right">
+                    <button type="button" class="btn btn-success col-5" onclick="window.location.href='<?php echo base_url('Daftar_user/hapus_user/'.$user['id_user']) ?>'">Iya</button>
+                </div>
+                <div class="col ml-5" align="left">
+                    <button type="button" data-dismiss="modal" class="btn btn-warning col-5">Tidak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
