@@ -213,15 +213,19 @@
                             <?php if ($article->author == $all->author) : ?>
 
                                 <li class="p-1 px-2 row">
-                                    <div class="col-1 ">
+                                    <div class="col-1">
                                         <i class="iconify" data-icon="dashicons:book-alt"></i>
                                     </div>
-                                    <div class="col-11 d-flex align-items-center">
-                                        <h6 class="fw-bold mb-0">
+                                    <div class="col-11">
+                                        <h6 class="judul fw-bold mb-0">
                                             <?php echo $all->judul_artikel ?>
                                         </h6>
+                                        <h6 class="desc mb-0">
+                                            <?php echo $all->deskripsi_artikel ?>
+                                        </h6>
+                                        <hr class="mt-1 mb-0">
                                     </div>
-
+                                    
                                 </li>
 
                             <?php endif; ?>

@@ -835,16 +835,24 @@ body {
 .detail-artikel .author ul {
 	list-style: none;
 }
-.detail-artikel .author ul li h6{
+.detail-artikel .author ul li .judul{
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.detail-artikel .author ul li h6:hover{
+.detail-artikel .author ul li .judul:hover{
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.detail-artikel .author ul li .desc{
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .profile-atas .image-artikel {
