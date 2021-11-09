@@ -315,7 +315,7 @@ class Register extends CI_Controller
 									$this->db->insert('t_wa', $data_wa);
 								}
 								curl_close($curl);
-								// redirect('auth/Login');
+								redirect('auth/Login');
 							}
 						}
 					}
