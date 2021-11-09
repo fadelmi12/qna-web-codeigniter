@@ -255,6 +255,8 @@ class Register extends CI_Controller
 						$regis_profil = $this->Model_login->daftar_user($data_xss2, 't_profile');
 						if ($regis_profil) {
 							$kode_afiliasi 	= $this->input->post('afiliasi');
+							echo $kode_afiliasi;
+							die;
 							$afil_user		= $this->Model_profile->getAfiliate($kode_afiliasi)->result_array();
 							$id_user_afil	= $afil_user[0]['id_user'];
 							$koin			= $afil_user[0]['wallet'];
@@ -315,7 +317,7 @@ class Register extends CI_Controller
 									$this->db->insert('t_wa', $data_wa);
 								}
 								curl_close($curl);
-								redirect('auth/Login');
+								// redirect('auth/Login');
 							}
 						}
 					}

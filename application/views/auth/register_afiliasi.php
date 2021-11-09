@@ -89,16 +89,14 @@
                         </div>
                         <div class="group mb-3">
                             <h5 class="text-center" id="time"></h5>
-                            <input type="button" class="button" id="kirim_ulang" style="border: none;background-color:transparent;color:deepskyblue;" onclick="request_otp()" value="Klik disini" />
-                            <!-- <button type="button" id="req_otp" style="border: none;background-color:transparent;" onclick="jancuk()"><strong style="color:deepskyblue">Klik disini</strong></button> -->
-                            <!-- <h6 onclick="request_otp()" style="color:deepskyblue">Klik disini</h6> -->
-                            <!-- <span><strong><a aria-disabled="true" target="_blank" href="https://wa.me/6281331255143?text=Hai%20Admin%20Siswa%20Rajin.%20Saya%20ingin%20request%20kode%20otp,%20untuk%20bergabung%20bersama%20Siswa%20Rajin." onclick="request_otp()">Klik disini</a></strong> untuk mendapatkan kode OTP. Kode OTP akan dikirim melalui nomor WA dan hanya berlaku 5 menit.<br></span> -->
+                            <input type="button" class="button" id="req_otp" style="border: none;background-color:transparent;color:deepskyblue;" onclick="request_otp()" value="Klik disini" />
                             <span> untuk mendapatkan kode OTP. Kode OTP akan dikirim melalui nomor WA dan hanya berlaku 5 menit.<br></span>
                         </div>
                         <hr>
                         <div class="group mb-4 text-center">
                             Saya setuju dengan <strong><a href="<?php echo base_url(); ?>">Aturan dan Kebijkan</a></strong> dari siswarajin.com
                         </div>
+                        <input type="hidden" name="afiliasi" value="<?php echo $this->uri->segment(4) ?>">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <div class="text-center">
                             <button type="submit" style="background: transparent; border: 0px;">
@@ -117,6 +115,10 @@
 </div>
 
 <script>
+    function jancuk() {
+        alert("jancuk");
+    }
+
     function request_otp() {
         var no_wa = document.getElementById("no_wa").value;
         var all_wa = '<?php echo json_encode($user) ?>';
@@ -145,7 +147,7 @@
                         }
                     }
                 })
-            }, 30000);
+            }, 3000);
             var hitung = new Date(Date.now() + (4 * 60 * 1000));
             var x = setInterval(function() {
                 var now = new Date().getTime();
