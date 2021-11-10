@@ -103,12 +103,12 @@
 					<div class="filter-pop">
 						<div class="mb-3 d-flex filter-menu py-3 px-3 justify-content-end">
 							<!-- <h6 class="m-0 me-3">Urut Berdasarkan</h6> -->
-							<select name="filter" id="filterPrice" class="px-2 me-3" >
+							<select name="filter" id="filterPrice" class="px-2 me-3">
 								<option value="" disabled selected hidden>Harga : </option>
 								<option value="0">Termurah</option>
 								<option value="1">Termahal</option>
 							</select>
-							<select name="filter" id="filterTime" class="px-2" >
+							<select name="filter" id="filterTime" class="px-2">
 								<option value="" disabled selected hidden>Waktu : </option>
 								<option value="0">Terlama</option>
 								<option value="1">Terbaru</option>
@@ -443,17 +443,17 @@
 							Jurnal Terpopuler
 						</h4>
 						<ul style="list-style: none; padding:0px">
-							<?php foreach ($article as $arc) : ?>
+							<?php foreach ($populer as $ppl) : ?>
 								<li>
 									<div class="list-jurnal p-3 mb-3">
 										<h5>
-											<?= $arc['judul_artikel'] ?>
+											<?= $ppl['judul_artikel'] ?>
 										</h5>
 										<div class="d-flex mb-2">
 											<div class="image-activity w-100" style="background-image: url('https://www.gravatar.com/avatar/103?>b5695d974ac54d52c9b8f54ea8f86.jpg?s=115&d=monsterid')">
 											</div>
 											<div class="author">
-												<?= $arc['nama_user'] ?>
+												<?= $ppl['nama_user'] ?>
 											</div>
 										</div>
 										<h6 class="fw-normal my-2">
@@ -463,7 +463,7 @@
 											<div class="d-block">
 												<div class="d-flex mb-1">
 													<?php
-													$article_tag = $this->Model_dashboard->get_tag_article($arc['id_artikel'])->result_array();
+													$article_tag = $this->Model_dashboard->get_tag_article($ppl['id_artikel'])->result_array();
 													$i = 0;
 													if ($article_tag != null) : ?>
 														<i class="fa fa-tag my-auto"></i>
@@ -484,12 +484,12 @@
 												<div class="d-flex">
 													<i class="fas fa-file-pdf my-auto"></i>
 													<div class="tag">
-														<?= $arc['jumlah_halaman'] ?> Halaman, <?= $arc['tahun_rilis'] ?>
+														<?= $arc['jumlah_halaman'] ?> Halaman, <?= $ppl['tahun_rilis'] ?>
 													</div>
 												</div>
 											</div>
 											<!-- khusus desktop -->
-											<a href="<?php echo base_url('Artikel/detail/' . $arc['slug']) ?>">
+											<a href="<?php echo base_url('Artikel/detail/' . $ppl['slug']) ?>">
 												<div class="d-sm-flex btn-download align-items-center d-none">
 													<i class="fas fa-eye text-black mr-4 "></i>
 													<h6 class="m-0">
@@ -521,16 +521,18 @@
 			<div class="faq-list">
 				<ul>
 					<?php $list_faq = $this->db->get('t_faq')->result_array();
-					$no = 1; foreach($list_faq as $faq): ?>
-					<li data-aos="fade-up" data-aos-delay="200">
-						<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-<?php echo $no ?>" class="collapsed"><?php echo $faq['question'] ?><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-						<div id="faq-list-<?php echo $no ?>" class="collapse" data-bs-parent=".faq-list">
-							<p>
-								<?php echo $faq['answer'] ?>
-							</p>
-						</div>
-					</li>
-					<?php $no++; endforeach; ?>
+					$no = 1;
+					foreach ($list_faq as $faq) : ?>
+						<li data-aos="fade-up" data-aos-delay="200">
+							<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-<?php echo $no ?>" class="collapsed"><?php echo $faq['question'] ?><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+							<div id="faq-list-<?php echo $no ?>" class="collapse" data-bs-parent=".faq-list">
+								<p>
+									<?php echo $faq['answer'] ?>
+								</p>
+							</div>
+						</li>
+					<?php $no++;
+					endforeach; ?>
 				</ul>
 			</div>
 
@@ -552,6 +554,286 @@
 
 		</div>
 	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+	<script type="text/javascript">
+		var pdf_file = document.getElementById("the-canvas").getAttribute('data-value');
+		console.log(pdf_file);
+		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
+
+
+		// Loaded via <script> tag, create shortcut to access PDF.js exports.
+		var pdfjsLib = window['pdfjs-dist/build/pdf'];
+		// The workerSrc property shall be specified.
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+		// Asynchronous download of PDF
+		var loadingTask = pdfjsLib.getDocument(url);
+		loadingTask.promise.then(function(pdf) {
+			console.log('PDF loaded');
+
+			// Fetch the first page
+			var pageNumber = 2;
+			pdf.getPage(pageNumber).then(function(page) {
+				console.log('Page loaded');
+
+				var scale = 1.5;
+				var viewport = page.getViewport({
+					scale: scale
+				});
+
+				// Prepare canvas using PDF page dimensions
+				var canvas = document.getElementById('the-canvas');
+				var context = canvas.getContext('2d');
+				canvas.height = viewport.height;
+				canvas.width = viewport.width;
+
+				// Render PDF page into canvas context
+				var renderContext = {
+					canvasContext: context,
+					viewport: viewport
+				};
+				var renderTask = page.render(renderContext);
+				renderTask.promise.then(function() {
+					console.log('Page rendered');
+				});
+			});
+		}, function(reason) {
+			// PDF loading error
+			console.error(reason);
+		});
+	</script>
+	<script type="text/javascript">
+		var pdf_file = document.getElementById("the-canvas2").getAttribute('data-value');
+		console.log(pdf_file);
+		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
+
+
+		// Loaded via <script> tag, create shortcut to access PDF.js exports.
+		var pdfjsLib = window['pdfjs-dist/build/pdf'];
+		// The workerSrc property shall be specified.
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+		// Asynchronous download of PDF
+		var loadingTask = pdfjsLib.getDocument(url);
+		loadingTask.promise.then(function(pdf) {
+			console.log('PDF loaded');
+
+			// Fetch the first page
+			var pageNumber = 2;
+			pdf.getPage(pageNumber).then(function(page) {
+				console.log('Page loaded');
+
+				var scale = 1.5;
+				var viewport = page.getViewport({
+					scale: scale
+				});
+
+				// Prepare canvas using PDF page dimensions
+				var canvas = document.getElementById('the-canvas2');
+				var context = canvas.getContext('2d');
+				canvas.height = viewport.height;
+				canvas.width = viewport.width;
+
+				// Render PDF page into canvas context
+				var renderContext = {
+					canvasContext: context,
+					viewport: viewport
+				};
+				var renderTask = page.render(renderContext);
+				renderTask.promise.then(function() {
+					console.log('Page rendered');
+				});
+			});
+		}, function(reason) {
+			// PDF loading error
+			console.error(reason);
+		});
+	</script>
+	<script type="text/javascript">
+		var pdf_file = document.getElementById("the-canvas3").getAttribute('data-value');
+		console.log(pdf_file);
+		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
+
+
+		// Loaded via <script> tag, create shortcut to access PDF.js exports.
+		var pdfjsLib = window['pdfjs-dist/build/pdf'];
+		// The workerSrc property shall be specified.
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+		// Asynchronous download of PDF
+		var loadingTask = pdfjsLib.getDocument(url);
+		loadingTask.promise.then(function(pdf) {
+			console.log('PDF loaded');
+
+			// Fetch the first page
+			var pageNumber = 2;
+			pdf.getPage(pageNumber).then(function(page) {
+				console.log('Page loaded');
+
+				var scale = 1.5;
+				var viewport = page.getViewport({
+					scale: scale
+				});
+
+				// Prepare canvas using PDF page dimensions
+				var canvas = document.getElementById('the-canvas3');
+				var context = canvas.getContext('2d');
+				canvas.height = viewport.height;
+				canvas.width = viewport.width;
+
+				// Render PDF page into canvas context
+				var renderContext = {
+					canvasContext: context,
+					viewport: viewport
+				};
+				var renderTask = page.render(renderContext);
+				renderTask.promise.then(function() {
+					console.log('Page rendered');
+				});
+			});
+		}, function(reason) {
+			// PDF loading error
+			console.error(reason);
+		});
+	</script>
+	<script type="text/javascript">
+		var pdf_file = document.getElementById("the-canvas4").getAttribute('data-value');
+		console.log(pdf_file);
+		var url = '<?php echo base_url() ?>assets/pdf/' + pdf_file;
+
+
+		// Loaded via <script> tag, create shortcut to access PDF.js exports.
+		var pdfjsLib = window['pdfjs-dist/build/pdf'];
+		// The workerSrc property shall be specified.
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+		// Asynchronous download of PDF
+		var loadingTask = pdfjsLib.getDocument(url);
+		loadingTask.promise.then(function(pdf) {
+			console.log('PDF loaded');
+
+			// Fetch the first page
+			var pageNumber = 2;
+			pdf.getPage(pageNumber).then(function(page) {
+				console.log('Page loaded');
+
+				var scale = 1.5;
+				var viewport = page.getViewport({
+					scale: scale
+				});
+
+				// Prepare canvas using PDF page dimensions
+				var canvas = document.getElementById('the-canvas4');
+				var context = canvas.getContext('2d');
+				canvas.height = viewport.height;
+				canvas.width = viewport.width;
+
+				// Render PDF page into canvas context
+				var renderContext = {
+					canvasContext: context,
+					viewport: viewport
+				};
+				var renderTask = page.render(renderContext);
+				renderTask.promise.then(function() {
+					console.log('Page rendered');
+				});
+			});
+		}, function(reason) {
+			// PDF loading error
+			console.error(reason);
+		});
+	</script>
+	<script type="text/javascript">
+		document.getElementById("filterPrice").addEventListener('change', function(e) {
+			e.preventDefault();
+			var rego = document.getElementById('filterPrice');
+			var asu = rego.options[rego.selectedIndex].value;
+			var harga = parseInt(asu);
+			var waktu = document.getElementById('filterTime');
+			var fTime = waktu.options[waktu.selectedIndex].value;
+			var fWaktu = parseInt(fTime);
+			// console.log(asu);
+			if (isNaN(fWaktu)) {
+
+
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						price: harga
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			} else {
+				console.log(harga);
+				console.log(fWaktu);
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						price: harga,
+						timeF: fWaktu
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			}
+
+
+		});
+
+
+		document.getElementById("filterTime").addEventListener('change', function(e) {
+			e.preventDefault();
+			var rego = document.getElementById('filterPrice');
+			var asu = rego.options[rego.selectedIndex].value;
+			var harga = parseInt(asu);
+			var waktu = document.getElementById('filterTime');
+			var fTime = waktu.options[waktu.selectedIndex].value;
+			var fWaktu = parseInt(fTime);
+
+			if (isNaN(harga)) {
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						timeF: fWaktu
+					},
+					dataType: "text",
+					success: function(data) {
+						console.log(harga);
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			} else {
+				console.log(harga);
+				console.log(fWaktu);
+				$.ajax({
+					url: "<?php echo base_url('Dashboard/ChangeByFilter/') ?>",
+					type: "POST",
+					data: {
+						timeF: fWaktu,
+						price: harga
+					},
+					dataType: "text",
+					success: function(data) {
+						$("#QuestPlace").html(data);
+
+					}
+				});
+			}
+
+		});
+	</script>
 	<!-- End Contact Section -->
 
 </main><!-- End #main -->

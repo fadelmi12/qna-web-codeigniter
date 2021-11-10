@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
 		}
 		$data['question'] 	= $this->Model_dashboard->get_question_dashboard(null, null)->result_array();
 		$data['article'] 	= $this->Model_dashboard->get_article_dashboard()->result_array();
+		$data['populer'] 	= $this->Model_dashboard->get_article_populer()->result_array();
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['like']		= $this->Model_dashboard->get_like_dasboard()->result_array();
 		$data['activity']	= $this->Model_dashboard->get_activity_dasboard()->result_array();

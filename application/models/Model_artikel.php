@@ -146,4 +146,10 @@ class Model_artikel extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+    public function update_artikel($table, $data, $where)
+    {
+        $this->db->where($where);
+        $query = $this->db->update($table, $data);
+        return $query;
+    }
 }

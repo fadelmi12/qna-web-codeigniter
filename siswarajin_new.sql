@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Nov 2021 pada 10.50
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.1.32
+-- Waktu pembuatan: 10 Nov 2021 pada 07.01
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siswarajin`
+-- Database: `siswarajin_new`
 --
 
 -- --------------------------------------------------------
@@ -148,7 +147,28 @@ INSERT INTO `log_login` (`id`, `device`, `ip`, `browser`, `email`, `date`) VALUE
 (79, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 20:12'),
 (80, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:08'),
 (81, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:13'),
-(82, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-05 14:52');
+(82, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-05 14:52'),
+(83, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-05 17:11'),
+(84, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:24'),
+(85, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-07 12:26'),
+(86, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:26'),
+(87, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:27'),
+(88, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-07 12:30'),
+(89, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 17:39'),
+(90, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-07 17:40'),
+(91, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 18:58'),
+(92, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:52'),
+(93, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-08 21:17'),
+(94, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 19:45'),
+(95, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 19:46'),
+(96, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:47'),
+(97, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:47'),
+(98, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:49'),
+(99, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:54'),
+(100, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:56'),
+(101, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:57'),
+(102, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 20:00'),
+(103, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 21:57');
 
 -- --------------------------------------------------------
 
@@ -182,7 +202,8 @@ INSERT INTO `log_money` (`id_logMoney`, `id_profile`, `status_log`, `jumlah`, `k
 (13, 1, 1, 0, 'Artikel Di Download', '2021-11-04 12:50:55'),
 (14, 3, 0, 70, 'Mendownload', '2021-11-04 12:51:44'),
 (15, 1, 1, 70, 'Artikel Di Download', '2021-11-04 12:51:44'),
-(16, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 12:52:55');
+(16, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 12:52:55'),
+(17, 10, 0, 10, 'Membuat Pertanyaan', '2021-11-09 12:59:37');
 
 -- --------------------------------------------------------
 
@@ -264,7 +285,9 @@ INSERT INTO `t_aktivitas` (`id_aktivitas`, `id_user`, `aktivitas`, `waktu_aktivi
 (65, 19, 'registrasi', '2021-11-02 14:59:19'),
 (66, 10, 'up_pertanyaan', '2021-11-03 22:03:27'),
 (67, 14, 'up_pertanyaan', '2021-11-03 23:04:39'),
-(68, 10, 'up_pertanyaan', '2021-11-04 19:47:23');
+(68, 10, 'up_pertanyaan', '2021-11-04 19:47:23'),
+(69, 20, 'registrasi', '2021-11-07 12:29:43'),
+(70, 23, 'registrasi', '2021-11-09 19:59:37');
 
 -- --------------------------------------------------------
 
@@ -284,23 +307,24 @@ CREATE TABLE `t_artikel` (
   `file_pdf` varchar(250) NOT NULL,
   `tanggal_upload` datetime NOT NULL,
   `status_tampil` tinyint(1) NOT NULL,
-  `harga_artikel` int(11) NOT NULL
+  `harga_artikel` int(11) NOT NULL,
+  `jumlah_view` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `t_artikel`
 --
 
-INSERT INTO `t_artikel` (`id_artikel`, `judul_artikel`, `id_user`, `tahun_rilis`, `deskripsi_artikel`, `jumlah_halaman`, `author`, `slug`, `file_pdf`, `tanggal_upload`, `status_tampil`, `harga_artikel`) VALUES
-(1, 'GGWP', 10, '1999', 'Abstrak Warna yang diterima oleh mata dari sebuah objek ditentukan oleh warna sinar yang dipantulkan oleh objek tersebut. Digitalisasi yaitu gambar yang diolah dengan komputer digital, direpresentasikan secara numerik dengan nilai-nilai diskrit. Deteksi tepi merupakan langkah untuk melengkapi informasi di dalam citra, tepi mencirikan batas-batas objek berguna untuk proses segmentasi dan identifikasi objek. Deteksi tepi citra bertujuan meningkatkan penampakan garis batas daerah atau objek. Proses segmentasi mengidentifikasi objek dalam beberapa potongan gambar yang bertujuan untuk mempermudah membaca informasi citra. Metode segmentasi mengasumsikan setiap objek cenderung memiliki warna yang homogen dan terletak pada kisaran keabuan tertentu. Setiap komponen warna menggunakan 8 bit (nilainya berkisar antara 0 sampai dengan 255). Proses thresholding mengkonversi citra warna menjadi hitam dan putih sehingga mempermudah mendeteksi objek.', 10, 'samid', 'implementasi-teknik-threshoding-pada-segmentasi-citra-digital', 'GGWP232726.pdf', '2021-09-24 23:27:26', 1, 0),
-(2, 'Perbandingan Metode Peningkatan Kualitas Citra dan Deteksi Tepi pada Citra Kutu Kebul', 10, '2020', 'Abstrak-Citra digital dapat dijadikan sebagai sumber untuk memperoleh informasi yang dapat digunakan untuk menentukan suatu keputusan. Sebagai informasi, pengolahan citra digital perlu dilakukan dengan beberapa metode dan operasi. Pre-processing menjadi tahapan awal dalam pengolahan citra untuk meningkatkan kualitas citra digital. Terdapat beberapa metode pre-processing yang dapat digunakan untuk melakukan pengolahan citra digital. Operasi pre-processing yang dapat digunakan diantaranya histogram equalization, operasi titik, intensity adjustment, thresholding, median averaging, median filtering, dan fast fouring transform. Setiap metode dari pre-processing memiliki algoritma yang berbeda dengan tujuan yang sama yaitu untuk meningkatkan kualitas citra. Penggunaan metode pre-processing dapat dilakukan dengan mengambil salah satu metode terbaik sebelum melakukan proses pengolahan citra. Dari hasil pre-processing kemudian diolah kembali dengan metode deteksi tepi sobel, isotropic, canny, dan gradient untuk mendeteksi kutu kebul pada daun. Dari deteksi tepi yang dilakukan, operasi canny paling tidak sesuai untuk mendeteksi kutu kebul pada daun.', 1, 'wadkawd', 'perbandingan-metode-peningkatan-kualitas-citra-dan-deteksi-tepi-pada-citra-kutu-kebul', 'wadwd.pdf\r\n', '0000-00-00 00:00:00', 1, 70),
-(3, 'Analisa Tekstur Kulit Wajah', 10, '2019', 'The problem in determining the selection of soybean seeds for replanting, especially in East Nusa Tenggara is still an important issue. The thing that affects the quality of soybean seeds is found broken seeds, dull seeds, dirty seeds, and broken seeds due to the process of drying and shelling. Determination of soy bean quality is usually done manually by visual observation. The manual system takes a long time and produces products with inconsistent quality due to visual limitations, fatigue, and different perceptions of each observer. This research was conducted using comparison of image texture extraction with statistical methods of order I (color moment) and order II statistics (GLCM) for soy bean selection. Order I statistics (color moment) show the probability of the appearance of the value of the gray degree of pixels in an image, while the order II statistics (GLCM) show the probability of a neighborhood relationship between two pixels that form a cohesion matrix from the image data. This research is expected to help the classification process in determining soybean seeds. The k-Nearest Neighbor (k-NN) algorithm used in previous studies to classify the image objects to be examined. The results of this study were successfully conducted using k-Nearest Neighbor (k-NN) with euclidean distance and k = 1 with the results of color moment extracts getting the highest accuracy of 88% and the results of GLCM feature extraction for homogeneity characteristics of 75.5%, correlations of 78.67% , contrast is 65.75% and energy is 63.83% with an average accuracy of 70.93%.', 25, 'Fadel M', 'analisa-tekstur-kulit-wajah', 'jawaban-telo.pdf', '0000-00-00 00:00:00', 0, 0),
-(27, 'Asyiknya Bercocok Tanam', 1, '2020', 'Buku Modul Bercocok Tanam', 24, 'Kemendikbud', 'panduan-bercocok-tanam', 'tanam.pdf', '2021-10-30 09:53:07', 1, 0),
-(28, 'Kesehatan Masyarakat', 12, '2020', 'Buku Modul Kesehatan Masyarakat', 24, 'Kemendikbud', 'kesehatan-masyarakat', 'kesmas.pdf', '2021-10-30 10:06:14', 1, 0),
-(29, 'Sehat Berolahraga', 12, '2020', 'Buku Modul Sehat Berolahraga', 24, 'Kemendikbud', 'sehat-berolahraga', 'olahraga.pdf', '2021-10-30 10:07:47', 1, 0),
-(30, 'Ragam Budaya', 12, '2020', 'Buku Modul Keragaman Budaya Indonesia', 24, 'Kemendikbud', 'ragam-budaya', 'budaya.pdf', '2021-10-30 10:09:55', 1, 0),
-(31, 'tips dan trik tembus hibah penelitian dan pengabdian nasional', 16, '2021', 'tips dan trik gimana cara lolos hibah', 90, 'Poltek Fak-Fak', 'tips-dan-trik-tembus-hibah-penelitian-dan-pengabdian-nasional', 'MARKETING_CLASSICS_MARKETING_CLASSICS_MA.pdf', '2021-10-30 20:00:42', 1, 900),
-(32, 'kalimat lomba', 10, '2021', 'ahjha', 11, 'deka', 'kalimat-lomba', 'Akta_lahir_tosan.pdf', '2021-10-30 20:11:47', 1, 100);
+INSERT INTO `t_artikel` (`id_artikel`, `judul_artikel`, `id_user`, `tahun_rilis`, `deskripsi_artikel`, `jumlah_halaman`, `author`, `slug`, `file_pdf`, `tanggal_upload`, `status_tampil`, `harga_artikel`, `jumlah_view`) VALUES
+(1, 'GGWP', 10, '1999', 'Abstrak Warna yang diterima oleh mata dari sebuah objek ditentukan oleh warna sinar yang dipantulkan oleh objek tersebut. Digitalisasi yaitu gambar yang diolah dengan komputer digital, direpresentasikan secara numerik dengan nilai-nilai diskrit. Deteksi tepi merupakan langkah untuk melengkapi informasi di dalam citra, tepi mencirikan batas-batas objek berguna untuk proses segmentasi dan identifikasi objek. Deteksi tepi citra bertujuan meningkatkan penampakan garis batas daerah atau objek. Proses segmentasi mengidentifikasi objek dalam beberapa potongan gambar yang bertujuan untuk mempermudah membaca informasi citra. Metode segmentasi mengasumsikan setiap objek cenderung memiliki warna yang homogen dan terletak pada kisaran keabuan tertentu. Setiap komponen warna menggunakan 8 bit (nilainya berkisar antara 0 sampai dengan 255). Proses thresholding mengkonversi citra warna menjadi hitam dan putih sehingga mempermudah mendeteksi objek.', 10, 'samid', 'implementasi-teknik-threshoding-pada-segmentasi-citra-digital', 'GGWP232726.pdf', '2021-09-24 23:27:26', 1, 0, 2),
+(2, 'Perbandingan Metode Peningkatan Kualitas Citra dan Deteksi Tepi pada Citra Kutu Kebul', 10, '2020', 'Abstrak-Citra digital dapat dijadikan sebagai sumber untuk memperoleh informasi yang dapat digunakan untuk menentukan suatu keputusan. Sebagai informasi, pengolahan citra digital perlu dilakukan dengan beberapa metode dan operasi. Pre-processing menjadi tahapan awal dalam pengolahan citra untuk meningkatkan kualitas citra digital. Terdapat beberapa metode pre-processing yang dapat digunakan untuk melakukan pengolahan citra digital. Operasi pre-processing yang dapat digunakan diantaranya histogram equalization, operasi titik, intensity adjustment, thresholding, median averaging, median filtering, dan fast fouring transform. Setiap metode dari pre-processing memiliki algoritma yang berbeda dengan tujuan yang sama yaitu untuk meningkatkan kualitas citra. Penggunaan metode pre-processing dapat dilakukan dengan mengambil salah satu metode terbaik sebelum melakukan proses pengolahan citra. Dari hasil pre-processing kemudian diolah kembali dengan metode deteksi tepi sobel, isotropic, canny, dan gradient untuk mendeteksi kutu kebul pada daun. Dari deteksi tepi yang dilakukan, operasi canny paling tidak sesuai untuk mendeteksi kutu kebul pada daun.', 1, 'wadkawd', 'perbandingan-metode-peningkatan-kualitas-citra-dan-deteksi-tepi-pada-citra-kutu-kebul', 'wadwd.pdf\r\n', '0000-00-00 00:00:00', 1, 70, 3),
+(3, 'Analisa Tekstur Kulit Wajah', 10, '2019', 'The problem in determining the selection of soybean seeds for replanting, especially in East Nusa Tenggara is still an important issue. The thing that affects the quality of soybean seeds is found broken seeds, dull seeds, dirty seeds, and broken seeds due to the process of drying and shelling. Determination of soy bean quality is usually done manually by visual observation. The manual system takes a long time and produces products with inconsistent quality due to visual limitations, fatigue, and different perceptions of each observer. This research was conducted using comparison of image texture extraction with statistical methods of order I (color moment) and order II statistics (GLCM) for soy bean selection. Order I statistics (color moment) show the probability of the appearance of the value of the gray degree of pixels in an image, while the order II statistics (GLCM) show the probability of a neighborhood relationship between two pixels that form a cohesion matrix from the image data. This research is expected to help the classification process in determining soybean seeds. The k-Nearest Neighbor (k-NN) algorithm used in previous studies to classify the image objects to be examined. The results of this study were successfully conducted using k-Nearest Neighbor (k-NN) with euclidean distance and k = 1 with the results of color moment extracts getting the highest accuracy of 88% and the results of GLCM feature extraction for homogeneity characteristics of 75.5%, correlations of 78.67% , contrast is 65.75% and energy is 63.83% with an average accuracy of 70.93%.', 25, 'Fadel M', 'analisa-tekstur-kulit-wajah', 'jawaban-telo.pdf', '0000-00-00 00:00:00', 0, 0, 0),
+(27, 'Asyiknya Bercocok Tanam', 1, '2020', 'Buku Modul Bercocok Tanam', 24, 'Kemendikbud', 'panduan-bercocok-tanam', 'tanam.pdf', '2021-10-30 09:53:07', 1, 0, 0),
+(28, 'Kesehatan Masyarakat', 12, '2020', 'Buku Modul Kesehatan Masyarakat', 24, 'Kemendikbud', 'kesehatan-masyarakat', 'kesmas.pdf', '2021-10-30 10:06:14', 1, 0, 0),
+(29, 'Sehat Berolahraga', 12, '2020', 'Buku Modul Sehat Berolahraga', 24, 'Kemendikbud', 'sehat-berolahraga', 'olahraga.pdf', '2021-10-30 10:07:47', 1, 0, 0),
+(30, 'Ragam Budaya', 12, '2020', 'Buku Modul Keragaman Budaya Indonesia', 24, 'Kemendikbud', 'ragam-budaya', 'budaya.pdf', '2021-10-30 10:09:55', 1, 0, 0),
+(31, 'tips dan trik tembus hibah penelitian dan pengabdian nasional', 16, '2021', 'tips dan trik gimana cara lolos hibah', 90, 'Poltek Fak-Fak', 'tips-dan-trik-tembus-hibah-penelitian-dan-pengabdian-nasional', 'MARKETING_CLASSICS_MARKETING_CLASSICS_MA.pdf', '2021-10-30 20:00:42', 1, 900, 0),
+(32, 'kalimat lomba', 10, '2021', 'ahjha', 11, 'deka', 'kalimat-lomba', 'Akta_lahir_tosan.pdf', '2021-10-30 20:11:47', 1, 100, 0);
 
 -- --------------------------------------------------------
 
@@ -373,6 +397,29 @@ INSERT INTO `t_bookmark` (`id`, `id_user`, `id_pertanyaan`, `status_bookmark`) V
 (99, 18, 62, 1),
 (100, 18, 59, 0),
 (101, 18, 60, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_faq`
+--
+
+CREATE TABLE `t_faq` (
+  `id_faq` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_faq`
+--
+
+INSERT INTO `t_faq` (`id_faq`, `question`, `answer`) VALUES
+(1, 'Apa itu siswarajin.com ?', 'Siswarajin merupakan website untuk membantu menjawab soal dan pertanyaanmu. Kamu juga bisa mendapatkan uang dengan menjawab pertanyaan.'),
+(2, 'Apakah kita bisa mendapatkan uang di siswarajin.com ?', 'Tentu saja, anda dapat menghasilkan uang di siswarajin.com dengan cara menjawab pertanyaan yang diajukan.'),
+(3, 'Bagaimana cara mendapatkan uang di siswarajin.com ?', 'Anda dapat memperoleh coin dari menjawab pertanyaan yang nantinya akan dapat di tukarkan dengan uang.'),
+(4, 'Apa saja yang dapat kita tanyakan di siswarajin.com?', 'Kita dapat bertanya seputar materi sekolah dan tugas yang diberikan guru.'),
+(5, 'Bagaimana cara mencairkan uang di siswarajin.com ?', 'Untuk mencairkan uang, anda harus terlebih dahulu menghubungkan akun anda dengan rekening. Selanjutnya buat permintaan penarikan di menu keuangan.');
 
 -- --------------------------------------------------------
 
@@ -501,7 +548,10 @@ INSERT INTO `t_like` (`id`, `id_user`, `id_pertanyaan`, `status_like`) VALUES
 (290, 10, 21, 1),
 (291, 10, 22, 1),
 (292, 10, 23, 1),
-(293, 17, 61, 1);
+(293, 17, 61, 1),
+(294, 10, 62, 0),
+(295, 10, 41, 1),
+(296, 10, 39, 1);
 
 -- --------------------------------------------------------
 
@@ -573,7 +623,8 @@ INSERT INTO `t_otp` (`id_otp`, `no_wa`, `kode_otp`, `kadaluarsa`) VALUES
 (1, '08632763276723', 798270, '2021-11-05 01:04:00'),
 (2, '081111111111111', 287925, '2021-11-05 02:15:38'),
 (3, '0822222222222', 854186, '2021-11-05 02:18:59'),
-(4, '0833333333333', 663041, '2021-11-05 14:59:58');
+(4, '0833333333333', 663041, '2021-11-05 14:59:58'),
+(5, '0895710605100', 971715, '2021-11-09 20:03:49');
 
 -- --------------------------------------------------------
 
@@ -715,7 +766,7 @@ CREATE TABLE `t_profile` (
 --
 
 INSERT INTO `t_profile` (`id_profile`, `id_user`, `nama_lengkap`, `no_hp`, `tgl_lahir`, `alamat`, `kota`, `provinsi`, `gender`, `wallet`, `nama_bank`, `no_rek`, `nama_rek`) VALUES
-(1, 10, 'alex pramesta', '0895377941531', '0000-00-00', 'Dagangan, Madiun', 3519, 35, 'laki', 3850, 'bri', '6518218982181', 'Alex Pramesta'),
+(1, 10, 'alex pramesta', '08953779415', '0000-00-00', 'Dagangan, Madiun', 3519, 35, 'laki', 3850, 'bri', '6518218982181', 'Alex Pramesta'),
 (2, 13, 'Bambang Pamungkas', '085192820111', '1999-02-19', 'Ds. Bringharjo RT 10 RW 3 Kec. Sukorejo', 3510, 35, 'laki', 983355, 'bri', '6856126941862174820', 'Bambang Pamungkas'),
 (3, 14, 'dhanter', '089666536', '0000-00-00', '', 0, 0, '', 5130, '', '', ''),
 (4, 15, 'Dimas Afrilliyan Purnama', '085607011503', '2021-10-12', '', 0, 0, 'laki', 199999945, '', '', ''),
@@ -723,7 +774,9 @@ INSERT INTO `t_profile` (`id_profile`, `id_user`, `nama_lengkap`, `no_hp`, `tgl_
 (6, 12, 'Admin Siswa Rajin', '089111111', '2021-10-07', 'Jl.kenagan', 3577, 35, 'Pria', 99999999, 'bri', '651821898276676', 'SiswaRajin'),
 (7, 17, 'Depri Tri', '088228356410', '1995-03-22', '', 0, 0, 'perempuan', 15, '', '', ''),
 (8, 18, 'Muhammad Alifuddin', '085806773034', '2016-01-14', '', 0, 0, 'laki', 20, '', '', ''),
-(9, 19, 'dede aja ', '089601650778', '2000-07-20', '', 0, 0, 'laki', 20, '', '', '');
+(9, 19, 'dede aja ', '089601650778', '2000-07-20', '', 0, 0, 'laki', 20, '', '', ''),
+(10, 20, 'dekapramesta', '0895377941531', '2021-11-07', '', 0, 0, 'laki', 30, '', '', ''),
+(13, 23, 'mama deka', '0895710605100', '2021-11-09', '', 0, 0, 'laki', 20, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -786,33 +839,36 @@ CREATE TABLE `t_user` (
   `view_password` varchar(50) NOT NULL,
   `foto_user` varchar(100) NOT NULL,
   `role_id` int(11) NOT NULL DEFAULT 1,
-  `kode_afiliasi` text NOT NULL
+  `kode_afiliasi` text NOT NULL,
+  `status_user` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `t_user`
 --
 
-INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_password`, `foto_user`, `role_id`, `kode_afiliasi`) VALUES
-(1, 'deka', 'deka@gmail.com', 'deka', '', '', 2, ''),
-(2, 'pramesta', '', '', '', '', 2, ''),
-(3, 'alif', 'alif@gmail.com', 'alif5', '', '', 2, ''),
-(4, 'udin', '', '', '', '', 1, ''),
-(5, 'dimas', '', '', '', '', 1, ''),
-(6, 'fadel', '', '', '', '', 1, ''),
-(7, 'Mamad', 'mamad@gmail.com', 'mamad', '', '', 1, ''),
-(8, 'alif5', 'alif5@gmail.com', 'alif5', '', '', 2, ''),
-(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2, ''),
-(10, 'alex', 'alex@gmail.com', '$2y$10$x8ePSS/TzlGJLnFpBr/gwettckhPZtMOl8q8x/lQz31ZuX0VnCJJ6', '', '', 2, ''),
-(11, 'samid', 'samid@gmail.com', '$2y$10$zwJ4augJr.xqT2FCv7.wjuf/0CaPcnN0d7uaKmKNIkBzIzXxYcfDi', '', '', 2, ''),
-(12, 'admin', 'admin@gmail.com', '$2y$10$hwGEZZg.k7DT3/xwiULKWudS7Rh7bbXwWjaVQV4w5vBwlRIxZA7fG', '', '', 77, ''),
-(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2, 'a0b892ddff0e3fd36e584e0ff1e4c1c6'),
-(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2, ''),
-(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2, ''),
-(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2, ''),
-(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2, ''),
-(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2, ''),
-(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2, '');
+INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_password`, `foto_user`, `role_id`, `kode_afiliasi`, `status_user`) VALUES
+(1, 'deka', 'deka@gmail.com', 'deka', '', '', 2, '', 0),
+(2, 'pramesta', '', '', '', '', 2, '', 0),
+(3, 'alif', 'alif@gmail.com', 'alif5', '', '', 2, '', 0),
+(4, 'udin', '', '', '', '', 1, '', 0),
+(5, 'dimas', '', '', '', '', 1, '', 0),
+(6, 'fadel', '', '', '', '', 1, '', 0),
+(7, 'Mamad', 'mamad@gmail.com', 'mamad', '', '', 1, '', 0),
+(8, 'alif5', 'alif5@gmail.com', 'alif5', '', '', 2, '', 0),
+(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2, '', 0),
+(10, 'alex', 'alex@gmail.com', '$2y$10$x8ePSS/TzlGJLnFpBr/gwettckhPZtMOl8q8x/lQz31ZuX0VnCJJ6', '', '', 2, '', 1),
+(11, 'samid', 'samid@gmail.com', '$2y$10$zwJ4augJr.xqT2FCv7.wjuf/0CaPcnN0d7uaKmKNIkBzIzXxYcfDi', '', '', 2, '', 0),
+(12, 'admin', 'admin@gmail.com', '$2y$10$hwGEZZg.k7DT3/xwiULKWudS7Rh7bbXwWjaVQV4w5vBwlRIxZA7fG', '', '', 77, '', 1),
+(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2, 'a0b892ddff0e3fd36e584e0ff1e4c1c6', 0),
+(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2, '', 0),
+(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2, '', 0),
+(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2, '', 0),
+(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2, '', 0),
+(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2, '', 0),
+(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2, '', 0),
+(20, 'dekapra', 'dekapra@gmail.com', '$2y$10$thlEjQ7QtcOMJtz9vBoCgunwDwWKEwq4JCyUK68hBVnv8tA3gYlh.', 'Dekapra12', '', 2, 'f7e8c772b9bbfa49c15da77dcf82e69c', 1),
+(23, 'mamadeka', 'mamadeka@gmail.com', '$2y$10$sl1dpN.rJvh8q0ZnwEGqT.fSY8HC391mXqrqiI5HHd7AFTwzY4kzS', 'Mamadeka12', '', 2, 'acbee65019b59bc94a301fee375c3915', 0);
 
 -- --------------------------------------------------------
 
@@ -826,6 +882,14 @@ CREATE TABLE `t_wa` (
   `pesan` text NOT NULL,
   `status_kirim` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `t_wa`
+--
+
+INSERT INTO `t_wa` (`id_wa`, `id_user`, `pesan`, `status_kirim`) VALUES
+(1, 20, 'Terimakasih dekapramesta, Anda telah bergabung dengan Ssiswa Rajin', 1),
+(2, 23, 'Terimakasih mama deka, Anda telah bergabung dengan Ssiswa Rajin', 1);
 
 -- --------------------------------------------------------
 
@@ -1456,6 +1520,12 @@ ALTER TABLE `t_bookmark`
   ADD KEY `t_bookmark_fk1` (`id_pertanyaan`);
 
 --
+-- Indeks untuk tabel `t_faq`
+--
+ALTER TABLE `t_faq`
+  ADD PRIMARY KEY (`id_faq`);
+
+--
 -- Indeks untuk tabel `t_jawaban`
 --
 ALTER TABLE `t_jawaban`
@@ -1575,19 +1645,19 @@ ALTER TABLE `kategori_tag`
 -- AUTO_INCREMENT untuk tabel `log_login`
 --
 ALTER TABLE `log_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_money`
 --
 ALTER TABLE `log_money`
-  MODIFY `id_logMoney` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_logMoney` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_aktivitas`
 --
 ALTER TABLE `t_aktivitas`
-  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_artikel`
@@ -1608,6 +1678,12 @@ ALTER TABLE `t_bookmark`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
+-- AUTO_INCREMENT untuk tabel `t_faq`
+--
+ALTER TABLE `t_faq`
+  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT untuk tabel `t_jawaban`
 --
 ALTER TABLE `t_jawaban`
@@ -1623,7 +1699,7 @@ ALTER TABLE `t_kategori`
 -- AUTO_INCREMENT untuk tabel `t_like`
 --
 ALTER TABLE `t_like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_love`
@@ -1641,7 +1717,7 @@ ALTER TABLE `t_message`
 -- AUTO_INCREMENT untuk tabel `t_otp`
 --
 ALTER TABLE `t_otp`
-  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_penarikan`
@@ -1659,7 +1735,7 @@ ALTER TABLE `t_pertanyaan`
 -- AUTO_INCREMENT untuk tabel `t_profile`
 --
 ALTER TABLE `t_profile`
-  MODIFY `id_profile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_profile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_tag`
@@ -1677,13 +1753,13 @@ ALTER TABLE `t_transaksi`
 -- AUTO_INCREMENT untuk tabel `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_wa`
 --
 ALTER TABLE `t_wa`
-  MODIFY `id_wa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_wa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

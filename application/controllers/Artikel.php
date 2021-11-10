@@ -50,6 +50,14 @@ class Artikel extends CI_Controller
 		$data['artikel_save'] = $this->Model_artikel->artikel_save($slug)->result_array();
 		// echo "<pre>"; print_r($data12);exit;
 		$data['article'] = $this->Model_artikel->detail_artikel($slug)->row();
+		$viewcount = (int) $data['article']->jumlah_view + 1;
+		$updatecount = array(
+			'jumlah_view' => $viewcount
+		);
+		$wherecount = array(
+			'slug' => $slug
+		);
+		$this->Model_artikel->update_artikel('t_artikel', $updatecount, $wherecount);
 		$data['tagg'] = $this->Model_artikel->detail_artikel($slug)->result();
 		$data['article_all'] 	= $this->Model_artikel->get_article_dashboard()->result();
 		$nav['judul'] = "Upload Artikel";
