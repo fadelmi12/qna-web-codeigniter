@@ -17,6 +17,12 @@
                     </h3>
                     <?php echo $this->session->flashdata('pesan') ?>
                     <span id="show"></span>
+                    <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
+                        <div class="fw-bold">
+                            Pertanyaan Lainnya
+                        </div>
+
+                    </div>
                 </div>
                 <div class="col-md-4  d-none d-sm-block">
                     <h3 class="mb-3 ">
@@ -44,6 +50,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

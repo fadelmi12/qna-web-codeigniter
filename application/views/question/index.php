@@ -9,7 +9,7 @@
     <div class="list-pertanyaan-index mt-3">
         <div class="container">
 
-            <div class="row justify-content-center px-md-5">
+            <div class="row justify-content-center px-lg-5">
                 <div class="col-md-8">
 
                     <h3 class="mb-3 text-center text-sm-start">
@@ -18,7 +18,12 @@
                     <span id="results">
 
                     </span>
+                    <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
+                        <div class="fw-bold">
+                            Pertanyaan Lainnya
+                        </div>
 
+                    </div>
                 </div>
                 <div class="col-md-4  d-none d-sm-block">
                     <h3 class="mb-3 ">
@@ -45,7 +50,9 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>

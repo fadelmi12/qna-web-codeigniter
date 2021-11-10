@@ -556,14 +556,14 @@ section {
 }
 
 .about .list-pertanyaan ul{
-  max-height: 120vh;
-  overflow-y: scroll;
+  /* max-height: 120vh;
+  overflow-y: scroll; */
 }
 
 .about .list-pertanyaan {
-  /* height:100%; */
-  max-height: 120vh;
-  overflow: hidden;
+  height:100%;
+  /* max-height: 120vh;
+  overflow: hidden; */
 }
 
 .about .list-pertanyaan li .nama h5{

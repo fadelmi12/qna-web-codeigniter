@@ -108,6 +108,20 @@ body {
 	font-weight: bold;
 }
 
+.list-pertanyaan-index .btn-lainnya{
+	width: max-content;
+	background-color: #e7ffec;
+	border-radius:10px;
+	cursor:pointer;
+	transition: 0.2s linear;
+}
+.list-pertanyaan-index .btn-lainnya:hover{
+	cursor: pointer;
+	/* color: b; */
+	/* border:solid 1px #47b2e4; */
+	background-color: #a1f4c0;
+}
+
 .list-pertanyaan-index .daftar ul {
 	list-style: none;
 	margin: 0px;

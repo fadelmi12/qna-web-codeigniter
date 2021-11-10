@@ -79,7 +79,7 @@
 		<div class="container  px-sm-5">
 			<div class="row">
 				<div class="col-12 col-lg-8">
-					<div class="d-flex mb-3 mb-lg-2 justify-content-center justify-content-lg-between align-items-center">
+					<div class="d-flex mb-3 justify-content-center justify-content-lg-between align-items-center">
 
 						<h3 class="mb-0 text-center text-sm-start " style="font-weight: bold;">
 							Pertanyaan Terbaru
@@ -320,8 +320,8 @@
 					<h3 class="mb-3 " style="font-weight: bold;">
 						User Activity
 					</h3>
-					<div class="user-activity" style="overflow:hidden;height:120vh">
-						<ul class="p-3" style="height:120vh; overflow-y: scroll;">
+					<div class="user-activity" style="overflow:hidden;height:125vh">
+						<ul class="p-3" style="height:125vh; overflow-y: scroll;">
 
 							<?php foreach ($activity as $act) : ?>
 								<li class="mb-3">

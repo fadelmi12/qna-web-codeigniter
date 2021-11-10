@@ -402,9 +402,9 @@
             <input class="form-control text-center justify-content-center" type="text" value="<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>">
           </div>
 
-          <div class="container text-center mt-3">
+          <!-- <div class="container text-center mt-3">
             <button class="btn btn-danger ml-3" onclick="close_modal_afiliasi()">Close</button>
-          </div>
+          </div> -->
         </div>
         <script type="text/javascript">
           function close_modal_afiliasi() {
