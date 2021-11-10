@@ -77,7 +77,7 @@
                                 Konfirmasi Password
                             </h5>
                             <input type="password" name="confirm_password" id="password-field2" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('Konfirmasi Password masih kosong')" oninput="setCustomValidity('')" placeholder="Masukkan Konfirmasi Password" />
-                            <span style="position: absolute;margin-left:-30px;margin-top:13px;" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            <span style="position: absolute;margin-left:-30px;margin-top:13px;" toggle="#password-field2" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             <span class="text-danger"><?= form_error('confirm_password') ?></span>
                         </div>
                         <div class="group mb-3">
