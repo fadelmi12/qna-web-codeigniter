@@ -390,7 +390,9 @@
 											</div>
 										</div>
 										<h6 class="fw-normal my-2">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus.
+											<?= $arc['deskripsi_artikel'] ?>
+
+											<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus. -->
 										</h6>
 										<div class="d-flex justify-content-between align-items-end">
 											<div class="d-block">
@@ -457,7 +459,8 @@
 											</div>
 										</div>
 										<h6 class="fw-normal my-2">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus.
+											<?= $ppl['deskripsi_artikel'] ?>
+											<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia atque facere dolore voluptas laboriosam reiciendis dignissimos magnam perferendis quaerat natus. -->
 										</h6>
 										<div class="d-flex justify-content-between align-items-end">
 											<div class="d-block">
