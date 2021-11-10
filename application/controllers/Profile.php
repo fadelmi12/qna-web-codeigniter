@@ -405,4 +405,18 @@ class Profile extends CI_Controller
 		$this->load->view('profil/afiliasi', $data);
 		$this->load->view('templates/footer');
 	}
+
+	public function random_afiliasi()
+	{
+		$id_user	= $this->session->userdata('id_user');
+		$user 		= $this->session->userdata('nama_user');
+		$kode		= $user + rand(10, 99);
+		$data 		= array(
+			'kode_afiliasi' => md5($kode)
+		);
+		$random = $this->db->update('t_user', $data, array('id_user' => $id_user));
+		if ($random) {
+			redirect('Profile/afiliasi');
+		}
+	}
 }

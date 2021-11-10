@@ -356,66 +356,6 @@
   </div>
 </div>
 
-<!-- MODAL Share  Afiliasi-->
-<div class="modal fade" id="modal_share_afiliasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-    <div class="modal-content">
-      <div class="modal-header text-center form-group" style="background: aquamarine; justify-content:center; height: 4rem;" align="center">
-        <h2 class="modal-title text-black" id="exampleModalLabel"><strong>Bagikan</strong></h2>
-      </div>
-      <div class="modal-body">
-        <div class="text-center row ">
-
-          <!-- Untuk Email -->
-          <div class="col-3">
-            <a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>">
-              <img style="width: 60%; height: auto;" class="img-fluid" src="<?php echo base_url(); ?>assets/img/share/mail.png">
-              <h6 class="text-black"><strong>Email</strong></h6>
-            </a>
-          </div>
-
-          <!-- Untuk FB -->
-          <div class="col-3">
-            <a href="http://www.facebook.com/sharer.php?u=<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>" target="_blank">
-              <img style="width: 60%; height: auto;" class="img-fluid" src="<?php echo base_url(); ?>assets/img/share/facebook.png" alt="Facebook" />
-              <h6 class="text-black"><strong>Facebook</strong></h6>
-            </a>
-          </div>
-
-          <!-- Untuk WA -->
-          <div class="col-3">
-            <a href="https://web.whatsapp.com/send/?phone&text=<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>" target="_blank">
-              <img style="width: 59%; height: auto;" class="img-fluid" src="<?php echo base_url(); ?>assets/img/share/whatsapp.png" alt="Google" />
-              <h6 class="text-black"><strong>Whatsapp</strong></h6>
-            </a>
-          </div>
-
-          <!-- Untuk Twitter -->
-          <div class="col-3">
-            <a href="https://twitter.com/intent/tweet?url=<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>" target="_blank">
-              <img style="width: 61%; height: auto;" class="img-fluid" src="<?php echo base_url(); ?>assets/img/share/twitter.png" alt="Twitter" />
-              <h6 class="text-black"><strong>Twitter</strong></h6>
-            </a>
-          </div>
-
-          <div class="container text-center mt-3">
-            <input class="form-control text-center justify-content-center" type="text" value="<?php echo base_url() ?>auth/Register/afiliasi/<?php echo $datadiri->kode_afiliasi ?>">
-          </div>
-
-          <!-- <div class="container text-center mt-3">
-            <button class="btn btn-danger ml-3" onclick="close_modal_afiliasi()">Close</button>
-          </div> -->
-        </div>
-        <script type="text/javascript">
-          function close_modal_afiliasi() {
-            $('#modal_share_afiliasi').modal('hide');
-          }
-        </script>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
   const realFileBtn = document.getElementById("real-file");
   const customBtn = document.getElementById("custom-button");
