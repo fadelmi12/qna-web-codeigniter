@@ -6,9 +6,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>List pesan yang sudah terbaca</h4>
-                            <!-- <a href="<?= base_url('AdminPage/all_read') ?>" class="btn btn-primary ml-auto"><i class="fas fa-check"></i> Mark All as Read</a> -->
-                            <a href="<?= base_url('AdminPage/pesan_blm_terbaca') ?>" class="btn btn-primary ml-auto">Tampil pesan belum terbaca</a>
+                            <h4>List pesan yang belum terbaca</h4>
+                            <div class="row ml-auto">
+                                <a href="<?= base_url('AdminPage/all_read') ?>" class="btn btn-primary"><i class="fas fa-check"></i> Mark All as Read</a>
+                                <a href="<?= base_url('AdminPage/MessageBox') ?>" class="btn btn-success ml-2">Tampil pesan sudah terbaca</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,7 +49,7 @@
                                                     <div class="dropdown">
                                                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Options</a>
                                                         <div class="dropdown-menu">
-                                                            <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> View & Edit</a>
+                                                            <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon" onclick="ubah_status_baca(<?php echo $ktg['id_message']?>)"><i class="far fa-edit"></i> View message & Edit</a>
                                                             <div class="dropdown-divider"></div>
                                                         </div>
                                                     </div>
@@ -67,36 +69,17 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function delete_quest(id_prt) {
-
-
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover Question!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: "<?php echo base_url('AdminPage/hapus_question/') ?>",
-                        type: "POST",
-                        data: {
-                            id_pertanyaan: id_prt
-                        },
-                        dataType: "JSON",
-                        success: function(data) {
-                            // console.log(data);
-
-
-                        }
-                    });
-                    window.location.reload();
-
-                } else {
-                    swal("Delete Gagal");
-                }
-            });
-
+        function ubah_status_baca(id_message){
+            $.ajax({
+                    url: "<?php echo base_url('AdminPage/ubah_status_baca/') ?>",
+                    type: "POST",
+                    data: {
+                        id_pesan: id_message
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+                        // console.log(data);
+                    }
+                });
         }
     </script>

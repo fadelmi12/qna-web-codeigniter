@@ -287,14 +287,35 @@ class AdminPage extends CI_Controller
 		$this->load->view('admin/message_page', $data);
 		$this->load->view('admin/template/footer', $foot);
 	}
-	public function all_read()
+
+	public function pesan_blm_terbaca()
 	{
+		$foot['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+		$data['pesan'] = $this->Model_admin->tampil_pesan_blm_trbca()->result_array();
+
+		$this->load->view('admin/template/header');
+		$this->load->view('admin/message_belum_page', $data);
+		$this->load->view('admin/template/footer', $foot);
+	}
+
+	public function ubah_status_baca()
+	{
+		$data = array('status_baca' => ("1"));
+
+		$id_message = $this->input->post('id_pesan');
+		$where = array('id_message' => $id_message);
+
+		$this->db->update('t_message', $data, $where);
+	}
+
+	public function all_read()
+	{ 
 		$data = array(
 			'status_baca' => 1
 		);
 
 		$this->Model_admin->update_read($data, 't_message');
-		redirect('AdminPage/MessageBox');
+		redirect('AdminPage/pesan_blm_terbaca');
 	}
 
 	public function wa()

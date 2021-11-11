@@ -122,15 +122,27 @@ class Model_admin extends CI_Model
         $this->db->where('t_user.id_user', $id_user);
         return $this->db->get();
     }
+
     public function tampil_pesan()
     {
-
         $this->db->select('*');
         $this->db->from('t_message');
         $this->db->join('t_user', 't_user.id_user=t_message.id_user', 'left');
         $this->db->join('t_pertanyaan', 't_pertanyaan.id_pertanyaan=t_message.id_pertanyaan', 'left');
+        $this->db->where('t_message.status_baca','1');
         return $this->db->get();
     }
+
+    public function tampil_pesan_blm_trbca()
+    {
+        $this->db->select('*');
+        $this->db->from('t_message');
+        $this->db->join('t_user', 't_user.id_user=t_message.id_user', 'left');
+        $this->db->join('t_pertanyaan', 't_pertanyaan.id_pertanyaan=t_message.id_pertanyaan', 'left');
+        $this->db->where('t_message.status_baca','0');
+        return $this->db->get();
+    }
+
     public function update_read($data, $table)
     {
         $this->db->update($table, $data);
