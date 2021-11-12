@@ -129,7 +129,8 @@ class Model_admin extends CI_Model
         $this->db->from('t_message');
         $this->db->join('t_user', 't_user.id_user=t_message.id_user', 'left');
         $this->db->join('t_pertanyaan', 't_pertanyaan.id_pertanyaan=t_message.id_pertanyaan', 'left');
-        $this->db->where('t_message.status_baca','1');
+        $this->db->join('t_artikel', 't_artikel.id_artikel=t_message.id_artikel', 'left');
+        $this->db->where('t_message.status_baca', '1');
         return $this->db->get();
     }
 
@@ -139,7 +140,9 @@ class Model_admin extends CI_Model
         $this->db->from('t_message');
         $this->db->join('t_user', 't_user.id_user=t_message.id_user', 'left');
         $this->db->join('t_pertanyaan', 't_pertanyaan.id_pertanyaan=t_message.id_pertanyaan', 'left');
-        $this->db->where('t_message.status_baca','0');
+        $this->db->join('t_artikel', 't_artikel.id_artikel=t_message.id_artikel', 'left');
+
+        $this->db->where('t_message.status_baca', '0');
         return $this->db->get();
     }
 

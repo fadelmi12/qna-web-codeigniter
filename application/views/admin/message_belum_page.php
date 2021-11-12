@@ -21,7 +21,7 @@
                                                 #
                                             </th>
                                             <th>User</th>
-                                            <th>Pertanyaan</th>
+                                            <th>Jenis Pesan</th>
                                             <th>Pesan</th>
                                             <th>Tanggal/Jam</th>
                                             <th>Action</th>
@@ -37,7 +37,11 @@
                                                 <td><?php echo $ktg['nama_user'] ?></td>
 
                                                 <td>
-                                                    <?php echo $ktg['pertanyaan'] ?>
+                                                    <?php if ($ktg['id_pertanyaan'] != null) {
+                                                        echo "Pertanyaan";
+                                                    } else {
+                                                        echo "Artikel";
+                                                    } ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $ktg['pesan'] ?>
@@ -49,8 +53,14 @@
                                                     <div class="dropdown">
                                                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Options</a>
                                                         <div class="dropdown-menu">
-                                                            <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon" onclick="ubah_status_baca(<?php echo $ktg['id_message']?>)"><i class="far fa-edit"></i> View message & Edit</a>
-                                                            <div class="dropdown-divider"></div>
+                                                            <?php if ($ktg['id_pertanyaan'] != null) : ?>
+                                                                <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon" onclick="ubah_status_baca(<?php echo $ktg['id_message'] ?>)"><i class="far fa-edit"></i> View message & Edit</a>
+                                                            <?php else : ?>
+                                                                <a onclick="tampilembed(<?php echo $ktg['id_artikel'] ?>)" href="#" class="dropdown-item has-icon"><i class="fas fa-search"></i> View & Detail</a>
+                                                                <a href="<?= base_url('AdminPage/ubah_status_baca_single/' . $ktg['id_message']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> Terbaca </a>
+
+                                                                <div class="dropdown-divider"></div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -69,17 +79,41 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function ubah_status_baca(id_message){
+        function ubah_status_baca(id_message) {
             $.ajax({
-                    url: "<?php echo base_url('AdminPage/ubah_status_baca/') ?>",
-                    type: "POST",
-                    data: {
-                        id_pesan: id_message
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                        // console.log(data);
-                    }
-                });
+                url: "<?php echo base_url('AdminPage/ubah_status_baca/') ?>",
+                type: "POST",
+                data: {
+                    id_pesan: id_message
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    // console.log(data);
+                }
+            });
         }
     </script>
+    <script type="text/javascript">
+        function tampilembed(id) {
+            $('#tampil_embed' + id).appendTo("body").modal('show');
+        }
+    </script>
+
+    <!-- modal tampil artikel -->
+    <?php foreach ($pesan as $list) : ?>
+        <div class="modal fade bd-example-modal-xl" style="" tabindex="-1" id="tampil_embed<?php echo $list['id_artikel'] ?>" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header text-center form-group" style="background:skyblue; justify-content:center; position: static;" align="center">
+                        <h4 class="modal-title text-white" id="exampleModalLabel"><strong>ARTIKEL</strong></h4>
+                        <button type="button" data-dismiss="modal" class="fas fa-times btn-lg" style="margin-left:95%;margin-top:-5px;position:absolute;background: transparent;border:none;color:white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-21by9">
+                            <embed src="<?php echo base_url() . '/assets/pdf/' . $list['file_pdf'] ?>" frameborder="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>

@@ -33,7 +33,7 @@
                             <div class="d-flex justify-content-between align-items-end mb-1">
                                 <div class="d-block">
                                     <div class="d-flex mb-1 nb">
-                                    <?php
+                                        <?php
                                         $i = 0;
                                         foreach ($tag_artikel as $tga) :
                                             if ($article->id_artikel == $tga->id_artikel) {
@@ -81,18 +81,18 @@
                                         </span>
 
                                     </div>
-                                    <?php 
+                                    <?php
                                     $jum = 0;
                                     foreach ($pembelian as $beli) {
-                                        if($this->session->userdata('id_user') == $beli->id_user && $article->id_artikel == $beli->id_artikel) {
-                                            
+                                        if ($this->session->userdata('id_user') == $beli->id_user && $article->id_artikel == $beli->id_artikel) {
+
                                             $jum++;
                                         }
                                     } ?>
-                                    <?php if($jum == 0): ?>
+                                    <?php if ($jum == 0) : ?>
                                         <a onclick="check_download()">
                                             <div class="download-button d-flex align-items-center px-3 py-2">
-                                                <span class="iconify me-2 text-black" data-icon="bi:cart-check"></span>                                            
+                                                <span class="iconify me-2 text-black" data-icon="bi:cart-check"></span>
                                                 <h6 class="m-0 text-black">
                                                     Beli
                                                 </h6>
@@ -100,9 +100,9 @@
                                         </a>
                                     <?php else : ?>
 
-                                        <a href="<?= base_url("Artikel/download/".$article->file_pdf."/".$article->slug) ?>">
+                                        <a href="<?= base_url("Artikel/download/" . $article->file_pdf . "/" . $article->slug) ?>">
                                             <div class="download-button d-flex align-items-center px-3 py-2">
-                                                <span class="iconify me-2 text-black" data-icon="bx:bxs-download"></span>                                            
+                                                <span class="iconify me-2 text-black" data-icon="bx:bxs-download"></span>
                                                 <h6 class="m-0 text-black">
                                                     Download
                                                 </h6>
@@ -111,7 +111,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <form id="input" enctype="multipart/form-data">
-                                                
+
                                     <input type="hidden" id="slug" name="text" value="<?php echo $article->slug ?>">
                                     <input type="hidden" id="pdf_file" name="text" value="<?php echo $article->file_pdf ?>">
                                     <input type="hidden" id="harga" name="text" value="<?php echo $article->harga_artikel ?>">
@@ -192,6 +192,25 @@
                                                     <span class="iconify my-auto me-2" data-icon="fa-solid:share-alt"></span>
                                                     Share Artikel
                                                 </button></li>
+                                            <li><button class="dropdown-item fas fw-bold" onclick="report_artikel()" style="font-family:inherit">
+                                                    <span class="iconify my-auto me-2" data-icon="codicon:report"></span>
+                                                    report Artikel
+                                                </button></li>
+                                            <?php if ($this->session->userdata('id_user') != null) {
+                                                $idses = json_encode($this->session->userdata('id_user'));
+                                            } ?>
+                                            <script>
+                                                function report_artikel() {
+                                                    var id = <?= $idses ?>;
+
+                                                    if (id != null) {
+                                                        $('#reportartikel').modal('show');
+                                                    } else {
+                                                        $('#Konfirmasi_Like_Login').modal('show');
+                                                    }
+
+                                                }
+                                            </script>
                                         </ul>
                                     </div>
                                 </div>
@@ -469,7 +488,7 @@
                     <h5>Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
                 </div>
                 <div class="container text-center mt-3">
-                    
+
                     <form action="<?php echo base_url('Artikel/beli_artikel') ?>" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="slug" value="<?php echo $article->slug ?>">
                         <input type="hidden" name="url" value="<?php echo $article->file_pdf ?>">
@@ -477,12 +496,49 @@
                         <button class="btn btn-primary mr-4" type="submit">Ya</button>
                         <a class="btn btn-danger ml-3" onclick="close_modal()">Tidak</a>
                     </form>
-                    
+
                 </div>
             </div>
             <script type="text/javascript">
                 function close_modal() {
                     $('#beli').modal('hide');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reportartikel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header text-center form-group" style="background: aquamarine; justify-content:center; height: 4rem;" align="center">
+                <h2 class="modal-title text-black" id="exampleModalLabel"><strong>Informasi</strong></h2>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center justify-content-center">
+                    <h5>Report Artikel !</h5>
+                </div>
+                <div class="container text-center mt-3">
+                    <form action="<?php echo base_url('Artikel/report_artikel') ?>" method="POST" enctype="multipart/form-data">
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="p-0 m-0 me-3">Report</h6>
+                            <div class="select-wrapper w-100">
+                                <select class="form-control" name="pesan" id="kategori" required oninvalid="this.setCustomValidity('Jenis Report Belum Dipilih')" oninput="setCustomValidity('')">
+                                    <option value="Artikel Tidak Pantas">Artikel Tidak Pantas</option>
+                                    <!-- <option value="Jawaban Perlu di Verifikasi">Jawaban Perlu di Verifikasi</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" name="slug" value="<?= $article->slug ?>">
+                        <input type="hidden" name="id_artikel" value="<?= $article->id_artikel ?>">
+                        <input type="hidden" name="id_user" value="<?= $this->session->userdata('id_user') ?>">
+                        <button class="btn btn-primary mr-4" type="submit">Kirim</button>
+                        <a class="btn btn-danger ml-3" onclick="close_report()">Batal</a>
+                    </form>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function close_report() {
+                    $('#reportartikel').modal('hide');
                 }
             </script>
         </div>

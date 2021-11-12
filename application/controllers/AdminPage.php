@@ -274,7 +274,7 @@ class AdminPage extends CI_Controller
 				'id_user' => $user
 			);
 			$this->Model_profile->edit_wallet($datawallet, $wherewallet);
-		}elseif($jawaban_benar == 0){
+		} elseif ($jawaban_benar == 0) {
 			$getMoney =	$this->Model_profile->get_wallet($user)->row()->wallet;
 			$addMoney = $getMoney - $harga;
 			$datawallet = array(
@@ -317,9 +317,19 @@ class AdminPage extends CI_Controller
 
 		$this->db->update('t_message', $data, $where);
 	}
+	public function ubah_status_baca_single($id_message)
+	{
+		$data = array('status_baca' => ("1"));
+
+		// $id_message = $this->input->post('id_pesan');
+		$where = array('id_message' => $id_message);
+
+		$this->db->update('t_message', $data, $where);
+		redirect('AdminPage/pesan_blm_terbaca');
+	}
 
 	public function all_read()
-	{ 
+	{
 		$data = array(
 			'status_baca' => 1
 		);

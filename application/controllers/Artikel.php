@@ -88,6 +88,25 @@ class Artikel extends CI_Controller
 		$this->load->view('artikel/detail', $data);
 		$this->load->view('templates/footer');
 	}
+	public function report_artikel()
+	{
+		$slug = $this->input->post('slug');
+		$id_artikel = $this->input->post('id_artikel');
+		$pesan = $this->input->post('pesan');
+		$id_user = $this->session->userdata('id_user');
+
+		$data = array(
+			'id_artikel' => $id_artikel,
+			'id_user'		=> $id_user,
+			'status_baca'	=> '0',
+			'pesan'			=> $pesan
+		);
+
+		$data_xss = $this->security->xss_clean($data);
+
+		$this->Model_pertanyaan->insert_report('t_message', $data_xss);
+		redirect('Artikel/detail/' . $slug);
+	}
 
 	public function beli_artikel()
 	{
@@ -159,7 +178,8 @@ class Artikel extends CI_Controller
 				</script>";
 		}
 	}
-	public function download($url, $slug) {
+	public function download($url, $slug)
+	{
 		$this->load->helper('download');
 		force_download('assets/pdf/' . $url, NULL);
 

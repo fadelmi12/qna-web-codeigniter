@@ -111,6 +111,7 @@ class Model_dashboard extends CI_Model
         $this->db->from('t_aktivitas');
         $this->db->join('t_user', 't_user.id_user=t_aktivitas.id_user', 'left');
         $this->db->order_by('waktu_aktivitas', 'DESC');
+        $this->db->limit(10);
 
 
         return $this->db->get();
