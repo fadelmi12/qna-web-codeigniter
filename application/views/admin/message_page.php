@@ -8,7 +8,8 @@
                         <div class="card-header">
                             <h4>List pesan yang sudah terbaca</h4>
                             <!-- <a href="<?= base_url('AdminPage/all_read') ?>" class="btn btn-primary ml-auto"><i class="fas fa-check"></i> Mark All as Read</a> -->
-                            <a href="<?= base_url('AdminPage/pesan_blm_terbaca') ?>" class="btn btn-primary ml-auto">Tampil pesan belum terbaca</a>
+                            <?php $psn_blm = $this->db->query("SELECT * FROM t_message WHERE status_baca='0'")->result_array();?>
+                            <a href="<?= base_url('AdminPage/pesan_blm_terbaca') ?>" class="btn btn-primary ml-auto">Tampil pesan belum terbaca <span class="badge" style="background:white; color: black;"><strong><?php echo count($psn_blm)?></strong></span></a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

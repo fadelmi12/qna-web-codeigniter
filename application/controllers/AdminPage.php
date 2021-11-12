@@ -274,6 +274,16 @@ class AdminPage extends CI_Controller
 				'id_user' => $user
 			);
 			$this->Model_profile->edit_wallet($datawallet, $wherewallet);
+		}elseif($jawaban_benar == 0){
+			$getMoney =	$this->Model_profile->get_wallet($user)->row()->wallet;
+			$addMoney = $getMoney - $harga;
+			$datawallet = array(
+				'wallet'		=> $addMoney
+			);
+			$wherewallet = array(
+				'id_user' => $user
+			);
+			$this->Model_profile->edit_wallet($datawallet, $wherewallet);
 		}
 		redirect('AdminPage/detail_question/' . $idpage);
 	}

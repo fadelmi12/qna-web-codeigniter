@@ -118,13 +118,14 @@
                                                     </form>
                                                 </td>
                                                 <td colspan="2">
-                                                    <form action="<?php echo base_url() . 'AdminPage/update_jawab'; ?>" method="post" enctype="multipart/form-data">
+                                                    <form id="form_konfrim<?php echo $ans['id_jawaban'] ?>" action="<?php echo base_url() . 'AdminPage/update_jawab'; ?>" method="post" enctype="multipart/form-data">
                                                         <input type="hidden" name="id_jawaban" class="form-control" value="<?php echo $ans['id_jawaban'] ?>">
                                                         <input type="hidden" name="id_user" class="form-control" value="<?php echo $ans['id_user'] ?>">
                                                         <input type="hidden" name="id_pertanyaan" class="form-control" value="<?php echo $ans['id_pertanyaan'] ?>">
                                                         <input type="hidden" name="price" class="form-control" value="<?php echo $ktg['harga'] ?>">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="jawaban_benar" onchange="this.form.submit()">
+                                                            <!-- onchange="this.form.submit()" -->
+                                                            <select class="form-control" name="jawaban_benar" data='<?php echo $ans['id_jawaban'] ?>' onchange="modal_konfrim()">
                                                                 <option value="0" <?php echo ($ans['jawaban_benar'] == 0 ? 'selected="selected"' : ''); ?>>Salah</option>
                                                                 <option value="1" <?php echo ($ans['jawaban_benar'] == 1 ? 'selected="selected"' : ''); ?>>Benar</option>
                                                             </select>
@@ -147,3 +148,42 @@
 
         </div>
     </section>
+
+<script type="text/javascript">
+    function modal_konfrim(){
+        var data = event.target.getAttribute("data");
+        $('#confrim_benar_salah'+data).appendTo('body').modal('show');
+    }
+
+    function submit_benar_salah(){
+        var data = event.target.getAttribute("data");
+        $('#form_konfrim'+data).submit();
+        $('#confrim_benar_salah'+data).appendTo('body').modal('hide');
+    }
+</script>
+
+<!-- modal benar salah -->
+<?php foreach ($answer as $ans) : ?>
+<div class="modal fade" style="" tabindex="-1" id="confrim_benar_salah<?php echo $ans['id_jawaban'] ?>" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-center" style="background:skyblue; justify-content: center;" align="center">
+        <h4 class="modal-title text-white text-center" id="exampleModalLabel"><strong>Konfirmasi Jawaban</strong></h4>
+      </div>
+        <div class="modal-body" >
+            <div class="mb-4">
+                <h5>Apakah Anda yakin ingin mengubah status jawab ini ?</h5>
+            </div>
+            <div class="row">
+                <div class="col mr-5" align="right">
+                    <button type="button" class="btn btn-success col-5" data='<?php echo $ans['id_jawaban'] ?>' onclick="submit_benar_salah()">Iya</button>
+                </div>
+                <div class="col ml-5" align="left">
+                    <button type="button" data-dismiss="modal" class="btn btn-warning col-5">Tidak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
