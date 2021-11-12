@@ -12,8 +12,22 @@ class Model_artikel extends CI_Model
         // $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
         // $this->db->where('status_hidden=0');
         $this->db->order_by('t_artikel.id_artikel', 'ASC');
-        $this->db->limit(3);
+        $this->db->group_by('judul_artikel');
+        // $this->db->limit(3);
 
+        return $this->db->get();
+    }
+    public function get_more_article($limit, $offset)
+    {
+        $this->db->select('*');
+        $this->db->from('t_artikel');
+        $this->db->join('t_user', 't_user.id_user=t_artikel.id_user', 'left');
+        // $this->db->join('t_artikeltag', 't_artikeltag.id_artikel=t_artikel.id_artikel', 'left');
+        // $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
+        // $this->db->where('status_hidden=0');
+        $this->db->order_by('t_artikel.id_artikel', 'ASC');
+        $this->db->limit($limit, $offset);
+        $this->db->group_by('judul_artikel');
         return $this->db->get();
     }
 
@@ -27,8 +41,23 @@ class Model_artikel extends CI_Model
         // $this->db->where('t_artikel.status_hidden=0');
         $this->db->order_by('t_artikel.id_artikel', 'ASC');
         $this->db->where('t_artikeltag.idTag=' . $id_Tag);
-        $this->db->limit(3);
+        $this->db->group_by('judul_artikel');
+        // $this->db->limit(3);
 
+        return $this->db->get();
+    }
+    public function get_more_tag($id_Tag, $limit, $offset)
+    {
+        $this->db->select('*');
+        $this->db->from('t_artikeltag');
+        $this->db->join('t_artikel', 't_artikel.id_artikel=t_artikeltag.id_artikel', 'left');
+        $this->db->join('t_user', 't_user.id_user=t_artikel.id_user', 'left');
+        $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
+        // $this->db->where('t_artikel.status_hidden=0');
+        $this->db->order_by('t_artikel.id_artikel', 'ASC');
+        $this->db->where('t_artikeltag.idTag=' . $id_Tag);
+        $this->db->limit($limit, $offset);
+        $this->db->group_by('judul_artikel');
         return $this->db->get();
     }
 

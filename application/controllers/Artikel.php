@@ -11,8 +11,9 @@ class Artikel extends CI_Controller
 
 	public function index()
 	{
-
-		$data['article'] 	= $this->Model_artikel->get_article_dashboard()->result_array();
+		$total_data = $this->Model_artikel->get_article_dashboard()->num_rows();
+		$data['total_data'] = ceil($total_data / 4);
+		// $data['article'] 	= $this->Model_artikel->get_article_dashboard(true)->result_array();
 		$data['tag'] 	= $this->Model_artikel->get_tag_dashboard()->result_array();
 		$data['kategori_tag'] 	= $this->Model_artikel->get_tag_kategori()->result_array();
 		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result_array();
@@ -22,23 +23,40 @@ class Artikel extends CI_Controller
 		$this->load->view('artikel/index', $data);
 		$this->load->view('templates/footer');
 	}
+	public function load_index()
+	{
+		$offset = ceil($this->input->post('offset') * 4);
+		$data['article'] 	= $this->Model_artikel->get_more_article(4, $offset)->result_array();
+		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result_array();
+		$this->load->view('artikel/load_index', $data);
+	}
 	public function tag($namaTag)
 	{
 		$where = array(
 			'namaTag' => $namaTag
 		);
 		$cek = $this->Model_artikel->get_tag($where);
-		$id = $cek->row();
-
-		$data['article'] 	= $this->Model_artikel->get_article($id->idTag)->result_array();
+		$id = $cek->row()->idTag;
+		$total_data = $this->Model_artikel->get_article($id)->num_rows();
+		$data['total_data'] = ceil($total_data / 3);
+		$data['idTag'] = json_encode($id);
+		$data['article'] 	= $this->Model_artikel->get_article($id)->result_array();
 		$data['tag'] 	= $this->Model_artikel->get_tag_dashboard()->result_array();
 		$data['kategori_tag'] 	= $this->Model_artikel->get_tag_kategori()->result_array();
 		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result_array();
 		$nav['judul'] = "Upload Artikel";
 		$this->load->view('templates/header-page', $nav);
 
-		$this->load->view('artikel/index', $data);
+		$this->load->view('artikel/per_tag', $data);
 		$this->load->view('templates/footer');
+	}
+	public function load_pertag()
+	{
+		$offset = ceil($this->input->post('offset') * 3);
+		$idTag = $this->input->post('tag');
+		$data['article'] 	= $this->Model_artikel->get_more_tag($idTag, 3, $offset)->result_array();
+		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result_array();
+		$this->load->view('artikel/load_pertag', $data);
 	}
 
 	public function detail($slug)

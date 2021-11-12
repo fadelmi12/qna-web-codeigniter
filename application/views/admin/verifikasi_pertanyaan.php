@@ -74,21 +74,22 @@
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    $.ajax({
-                        url: "<?php echo base_url('AdminPage/verif_quest/') ?>",
-                        type: "POST",
-                        data: {
-                            id_pertanyaan: id_prt,
-                            id_user: id_user
-                        },
-                        dataType: "JSON",
-                        success: function(data) {
-                            // console.log(data);
+                    setTimeout(
+                        $.ajax({
+                            url: "<?php echo base_url('AdminPage/verif_quest/') ?>",
+                            type: "POST",
+                            data: {
+                                id_pertanyaan: id_prt,
+                                id_user: id_user
+                            },
+                            dataType: "JSON",
+                            success: function(data) {
+                                // console.log(data);
 
 
-                        }
-                    });
-                    window.location.reload();
+                            }
+                        }) &&
+                        window.location.reload(), 2000);
 
                 } else {
                     swal("Verifikasi Gagal");

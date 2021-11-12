@@ -225,7 +225,7 @@
                                         </h6>
                                         <hr class="mt-1 mb-0">
                                     </div>
-                                    
+
                                 </li>
 
                             <?php endif; ?>
