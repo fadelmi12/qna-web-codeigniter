@@ -1,5 +1,8 @@
 <div class="artikel pb-5" id="artikel">
     <div class="py-4">
+    <div class="container route">
+        Home / Jurnal / <?= $namaTag ?>
+    </div>
 
     </div>
 
@@ -27,7 +30,7 @@
                                                 <?php foreach ($tag as $tg) :
                                                     if ($ktg['id_kategori_tag'] == $tg['id_kategori_tag']) : ?>
                                                         <li class="py-1">
-                                                            <a href='#settings'>
+                                                            <a href='<?= base_url('Artikel/tag/' . $tg['namaTag']) ?>'>
                                                                 <div class="d-flex">
                                                                     <div class="d-flex align-items-center"><i class="iconify me-2" data-icon="eos-icons:science-outlined" style="opacity:0;"></i></div>
                                                                     <div class="d-flex justify-content-between w-100 pe-3">

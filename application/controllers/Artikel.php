@@ -45,6 +45,7 @@ class Artikel extends CI_Controller
 		$data['kategori_tag'] 	= $this->Model_artikel->get_tag_kategori()->result_array();
 		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result_array();
 		$nav['judul'] = "Upload Artikel";
+		$data['namaTag'] = $namaTag;
 		$this->load->view('templates/header-page', $nav);
 
 		$this->load->view('artikel/per_tag', $data);
@@ -78,6 +79,8 @@ class Artikel extends CI_Controller
 		$this->Model_artikel->update_artikel('t_artikel', $updatecount, $wherecount);
 		$data['tagg'] = $this->Model_artikel->detail_artikel($slug)->result();
 		$data['article_all'] 	= $this->Model_artikel->get_article_dashboard()->result();
+		$data['pembelian'] 	= $this->Model_artikel->pembelian()->result();
+		// echo print_r($data['article_all']);
 		$nav['judul'] = "Upload Artikel";
 		$this->load->view('templates/header-page', $nav);
 
@@ -85,8 +88,12 @@ class Artikel extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function download_artikel($url, $slug)
+	public function beli_artikel()
 	{
+		$url 			= $this->input->post('url');
+		$slug 			= $this->input->post('slug');
+		$id_artikel 	= $this->input->post('id_artikel');
+
 		$user = $this->session->userdata('id_user');
 		$harga = $this->Model_artikel->detail_artikel($slug)->row();
 		$seller_id = $harga->id_user;
@@ -119,7 +126,7 @@ class Artikel extends CI_Controller
 				'id_profile' => $idprofil,
 				'status_log' => 0,
 				'jumlah' => $harga_artikel,
-				'ket_log' => 'Mendownload',
+				'ket_log' => 'Pembelian Artikel',
 				'tgl_log' => $time
 			);
 			$this->db->insert('log_money', $log_money_buyer);
@@ -129,13 +136,19 @@ class Artikel extends CI_Controller
 				'id_profile' => $idprofil2,
 				'status_log' => 1,
 				'jumlah' => $harga_artikel,
-				'ket_log' => 'Artikel Di Download',
+				'ket_log' => 'Artikel Terjual',
 				'tgl_log' => $time
 			);
 			$this->db->insert('log_money', $log_money_seller);
 
-			$this->load->helper('download');
-			force_download('assets/pdf/' . $url, NULL);
+			$data_beli = array(
+				'id_user' 		=> $user,
+				'id_artikel' 	=> $id_artikel
+			);
+			$this->db->insert('t_beliartikel', $data_beli);
+
+			// $this->load->helper('download');
+			// force_download('assets/pdf/' . $url, NULL);
 
 			redirect('Artikel/detail/' . $slug);
 		} else {
@@ -144,6 +157,12 @@ class Artikel extends CI_Controller
 				window.location.href = '" . $linkinto . "';// your redirect path here
 				</script>";
 		}
+	}
+	public function download($url, $slug) {
+		$this->load->helper('download');
+		force_download('assets/pdf/' . $url, NULL);
+
+		redirect('Artikel/detail/' . $slug);
 	}
 
 	public function save()

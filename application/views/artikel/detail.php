@@ -24,6 +24,7 @@
                                     <strong>
                                         <h6 class="m-0 fw-bold"><?php echo ($article->nama_user) ?></h6>
                                     </strong>
+
                                     <strong>
                                         <h6 class="m-0 fw-bold">Author : <?php echo  strtoupper($article->author) ?> </h6>
                                     </strong>
@@ -80,38 +81,62 @@
                                         </span>
 
                                     </div>
-                                    <a onclick="check_download()">
-                                        <div class="download-button d-flex align-items-center px-3 py-2">
-                                            <span class="iconify me-2 text-black" data-icon="bx:bxs-download"></span>
+                                    <?php 
+                                    $jum = 0;
+                                    foreach ($pembelian as $beli) {
+                                        if($this->session->userdata('id_user') == $beli->id_user && $article->id_artikel == $beli->id_artikel) {
+                                            $jum++;
+                                        }
+                                    } ?>
+                                    <?php if($jum == 0): ?>
+                                        <a onclick="check_download()">
+                                            <div class="download-button d-flex align-items-center px-3 py-2">
+                                                <span class="iconify me-2 text-black" data-icon="bi:cart-check"></span>                                            
+                                                <h6 class="m-0 text-black">
+                                                    Beli
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    <?php else : ?>
 
-                                            <h6 class="m-0 text-black">
-                                                Download
-                                            </h6>
-                                        </div>
-                                    </a>
+                                        <a href="<?= base_url("Artikel/download/".$article->file_pdf."/".$article->slug) ?>">
+                                            <div class="download-button d-flex align-items-center px-3 py-2">
+                                                <span class="iconify me-2 text-black" data-icon="bx:bxs-download"></span>                                            
+                                                <h6 class="m-0 text-black">
+                                                    Download
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
-                                <?php $asuu =  json_encode($article->file_pdf); ?>
-                                <?php $asuneh =  json_encode($article->slug);
-                                $cok = json_encode($article->harga_artikel);
-                                ?>
+                                <form id="input" enctype="multipart/form-data">
+                                                
+                                    <input type="hidden" id="slug" name="text" value="<?php echo $article->slug ?>">
+                                    <input type="hidden" id="pdf_file" name="text" value="<?php echo $article->file_pdf ?>">
+                                    <input type="hidden" id="harga" name="text" value="<?php echo $article->harga_artikel ?>">
+                                    <input type="hidden" id="id_user" name="text" value="<?php echo $this->session->userdata('id_user') ?>">
+                                    <?php if ($this->session->userdata('id_user') != null) : ?>
+                                        <input type="hidden" id="dompet" name="text" value="<?php echo $user_wallet ?>">
+                                    <?php endif; ?>
+                                </form>
                                 <script type="text/javascript">
                                     function check_download() {
-
-                                        var slug = <?php echo $asuneh ?>;
-                                        var url = <?php echo $asuu ?>;
+                                        var slug = document.getElementById("slug").value;
+                                        var url = document.getElementById("pdf_file").value;
                                         console.log(url);
-                                        var id_user = '<?php echo $this->session->userdata('id_user') ?>';
-                                        if (id_user != '') {
-                                            var bgst = parseInt(<?php echo $user_wallet ?>);
-                                            var price = parseInt(<?php echo $cok ?>);
-                                            if (bgst < price) {
-                                                swal('Forbiden', 'Saldo anda kurang', 'error');
+                                        var id_user = document.getElementById("id_user").value;
+                                        if (id_user !== '') {
+                                            var dompet = parseInt(document.getElementById("dompet").value);
+                                            var price = parseInt(document.getElementById("harga").value);
+                                            if (dompet <= price) {
+                                                // swal('Forbiden', 'Saldo anda kurang', 'error');
+                                                alert("saldo kurang ");
                                                 // document.forms["my_form"]["tes"].focus();
                                             } else {
-
-                                                $(location).attr('href', '<?= base_url("Artikel/download_artikel/") ?>' + url + '/' + slug);
+                                                $('#beli').modal('show');
                                             }
                                         } else {
+                                            alert("login dulu");
                                             $('#Konfirmasi_Like_Login').modal('show');
                                         };
                                     };
@@ -217,9 +242,11 @@
                                         <i class="iconify" data-icon="dashicons:book-alt"></i>
                                     </div>
                                     <div class="col-11">
-                                        <h6 class="judul fw-bold mb-0">
-                                            <?php echo $all->judul_artikel ?>
-                                        </h6>
+                                        <a style="color:black;" href="<?php echo base_url('Artikel/detail/' . $all->slug) ?>">
+                                            <h6 class="judul fw-bold mb-0">
+                                                <?php echo $all->judul_artikel ?>
+                                            </h6>
+                                        </a>
                                         <h6 class="desc mb-0">
                                             <?php echo $all->deskripsi_artikel ?>
                                         </h6>
@@ -426,6 +453,37 @@
                     }
                 </script>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="beli" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header text-center form-group" style="background: aquamarine; justify-content:center; height: 4rem;" align="center">
+                <h2 class="modal-title text-black" id="exampleModalLabel"><strong>Informasi</strong></h2>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center justify-content-center">
+                    <h5>Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
+                </div>
+                <div class="container text-center mt-3">
+                    
+                    <form action="<?php echo base_url('Artikel/beli_artikel') ?>" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="slug" value="<?php echo $article->slug ?>">
+                        <input type="hidden" name="url" value="<?php echo $article->file_pdf ?>">
+                        <input type="hidden" name="id_artikel" value="<?php echo $article->id_artikel ?>">
+                        <button class="btn btn-primary mr-4" type="submit">Ya</button>
+                        <a class="btn btn-danger ml-3" onclick="close_modal()">Tidak</a>
+                    </form>
+                    
+                </div>
+            </div>
+            <script type="text/javascript">
+                function close_modal() {
+                    $('#beli').modal('hide');
+                }
+            </script>
         </div>
     </div>
 </div>

@@ -74,6 +74,7 @@ class Model_artikel extends CI_Model
         return $this->db->get('kategori_tag');
     }
 
+
     public function get_tag($where)
     {
         return $this->db->get_where('t_tag', $where);
@@ -180,5 +181,8 @@ class Model_artikel extends CI_Model
         $this->db->where($where);
         $query = $this->db->update($table, $data);
         return $query;
+    }
+    public function pembelian(){
+        return $this->db->get('t_beliartikel');
     }
 }

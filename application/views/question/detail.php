@@ -228,9 +228,9 @@
                                     </div>
                                 </a>
                                 <?php if ($ques['gambar_tanya'] !== '') : ?>
-                                    <img src="<?php echo base_url() . 'assets/img/gambar_tanya/' . $ques['gambar_tanya']; ?>" style="width:50%">
+                                    <img src="<?php echo base_url() . 'assets/img/gambar_tanya/' . $ques['gambar_tanya']; ?>" class="mb-2" style="width:50%">
                                 <?php endif; ?>
-                                <div class="d-flex justify-content-between align-items-center position-relative mt-3">
+                                <!-- <div class="d-flex justify-content-between align-items-center position-relative mt-3"> -->
                                     <?php if ($ques['status_jawab'] == 1) : ?>
                                         <div class="jawab d-flex justify-content-center">
                                             <i class="iconify my-auto me-2" data-icon="fa-solid:check"></i>
@@ -337,7 +337,7 @@
 
 
                                     </div>
-                                </div>
+                                <!-- </div> -->
                             </div>
                         <?php endforeach; ?>
                     </div>
