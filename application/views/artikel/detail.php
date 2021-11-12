@@ -2,7 +2,7 @@
 <div class="detail-artikel pb-5" id="detail-artikel">
     <div class="py-4">
         <div class="container route">
-            Home / Jurnal / <?= $article->judul_artikel; ?>
+            Home / Jurnal / <?= $article->judul_artikel; ?> <?= $article->id_artikel; ?>
         </div>
 
     </div>
@@ -33,28 +33,28 @@
                             <div class="d-flex justify-content-between align-items-end mb-1">
                                 <div class="d-block">
                                     <div class="d-flex mb-1 nb">
-                                        <?php
-                                        $article_tag = $this->Model_dashboard->get_tag_article($article->id_artikel)->result_array();
+                                    <?php
                                         $i = 0;
-                                        if ($article_tag != null) : ?>
+                                        foreach ($tag_artikel as $tga) :
+                                            if ($article->id_artikel == $tga->id_artikel) {
+                                                $i++;
+                                            }
+                                        endforeach; ?>
+                                        <?php if ($i !== 0) : ?>
                                             <i class="fa fa-tag my-auto me-2"></i>
                                         <?php endif; ?>
                                         <div class="tag">
+                                            <?php foreach ($tag_artikel as $tga) :
+                                                if ($article->id_artikel == $tga->id_artikel) {
+                                                    echo $tga->namaTag;
+                                                    if ($i > 1) {
+                                                        echo " , ";
+                                                        $i--;
+                                                    }
+                                                }
+                                            endforeach; ?>
 
-                                            <?php foreach ($article_tag as $arg) :
-                                                if ($i == 0) :
-                                                    echo $arg['namaTag'];
-                                                else :
-                                                    echo ", " . $arg['namaTag'];
-                                                endif;
-                                                $i++;
-                                            endforeach;
-                                            ?>
                                         </div>
-                                        <!-- <i class="fa fa-tag my-auto me-2"></i>
-                                        <div class="tag">
-                                            Pemrograman PHP
-                                        </div> -->
                                     </div>
                                     <div class="d-flex nb">
                                         <i class="fas fa-file-pdf my-auto me-2"></i>
@@ -85,6 +85,7 @@
                                     $jum = 0;
                                     foreach ($pembelian as $beli) {
                                         if($this->session->userdata('id_user') == $beli->id_user && $article->id_artikel == $beli->id_artikel) {
+                                            
                                             $jum++;
                                         }
                                     } ?>
@@ -465,7 +466,7 @@
             </div>
             <div class="modal-body">
                 <div class="container text-center justify-content-center">
-                    <h5>Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
+                    <h5><?php echo $article->id_artikel ?> Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
                 </div>
                 <div class="container text-center mt-3">
                     
@@ -473,7 +474,7 @@
                         <input type="hidden" name="slug" value="<?php echo $article->slug ?>">
                         <input type="hidden" name="url" value="<?php echo $article->file_pdf ?>">
                         <input type="hidden" name="id_artikel" value="<?php echo $article->id_artikel ?>">
-                        <button class="btn btn-primary mr-4" type="submit">Ya</button>
+                        <button class="btn btn-primary mr-4" type="submit">Ya <?php echo $article->id_artikel ?></button>
                         <a class="btn btn-danger ml-3" onclick="close_modal()">Tidak</a>
                     </form>
                     

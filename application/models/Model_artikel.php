@@ -104,9 +104,9 @@ class Model_artikel extends CI_Model
         $this->db->select('*');
         $this->db->from('t_artikel');
         $this->db->join('t_user', 't_user.id_user=t_artikel.id_user', 'left');
-        $this->db->join('t_artikeltag', 't_artikeltag.id_artikel=t_artikel.id_artikel', 'left');
-        $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
-        // return $this->db->get_where($table,$where);
+        // $this->db->join('t_artikeltag', 't_artikeltag.id_artikel=t_artikel.id_artikel', 'left');
+        // $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
+        // // return $this->db->get_where($table,$where);
         return $this->db->get();
     }
 

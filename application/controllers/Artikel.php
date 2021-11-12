@@ -69,6 +69,7 @@ class Artikel extends CI_Controller
 		$data['artikel_save'] = $this->Model_artikel->artikel_save($slug)->result_array();
 		// echo "<pre>"; print_r($data12);exit;
 		$data['article'] = $this->Model_artikel->detail_artikel($slug)->row();
+		$data['tag_artikel'] 	= $this->Model_artikel->get_tag_article_dashboard()->result();
 		$viewcount = (int) $data['article']->jumlah_view + 1;
 		$updatecount = array(
 			'jumlah_view' => $viewcount
@@ -77,7 +78,7 @@ class Artikel extends CI_Controller
 			'slug' => $slug
 		);
 		$this->Model_artikel->update_artikel('t_artikel', $updatecount, $wherecount);
-		$data['tagg'] = $this->Model_artikel->detail_artikel($slug)->result();
+		// $data['tagg'] = $this->Model_artikel->detail_artikel($slug)->result();
 		$data['article_all'] 	= $this->Model_artikel->get_article_dashboard()->result();
 		$data['pembelian'] 	= $this->Model_artikel->pembelian()->result();
 		// echo print_r($data['article_all']);
