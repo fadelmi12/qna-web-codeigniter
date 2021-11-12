@@ -466,7 +466,7 @@
             </div>
             <div class="modal-body">
                 <div class="container text-center justify-content-center">
-                    <h5><?php echo $article->id_artikel ?> Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
+                    <h5>Apakah anda yakin ingin Memebeli Artikel ini dengan harga <?php echo $article->harga_artikel ?> Coin !</h5>
                 </div>
                 <div class="container text-center mt-3">
                     
@@ -474,7 +474,7 @@
                         <input type="hidden" name="slug" value="<?php echo $article->slug ?>">
                         <input type="hidden" name="url" value="<?php echo $article->file_pdf ?>">
                         <input type="hidden" name="id_artikel" value="<?php echo $article->id_artikel ?>">
-                        <button class="btn btn-primary mr-4" type="submit">Ya <?php echo $article->id_artikel ?></button>
+                        <button class="btn btn-primary mr-4" type="submit">Ya</button>
                         <a class="btn btn-danger ml-3" onclick="close_modal()">Tidak</a>
                     </form>
                     
