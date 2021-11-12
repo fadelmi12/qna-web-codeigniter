@@ -7,26 +7,21 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Broadcast WA</h4>
-                        </div>
-                        <form action="<?php echo base_url('AdminPage/kirim_wa') ?>" method="post">
-                            <div class="card-body">
-                                <label for="">No. Whatsapp</label>
-                                <textarea class="form-control mb-3" name="no_wa" id="wa_number" cols="30" rows="10" required></textarea>
-                                <label for="">Pesan </label>
-                                <textarea class="form-control" name="pesan" id="" cols="30" rows="10" required></textarea>
-                            </div>
-                            <div class="card-body">
-                                <div style="float: right;">
-                                    <button type="button" class="btn btn-primary" id="btn_add_all_wa" onclick="get_all_contact()">Tambahkan Semua Kontak</button>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                        <div class="row mt-3 mr-3">
+                            <div class="col">
+                                <div class="card-header">
+                                    <h4>WA Terkirim</h4>
                                 </div>
                             </div>
-                        </form>
-                        <hr>
-                        <div class="card-header">
-                            <h4>Daftar Kontak</h4>
+                            <!-- <div class="col">
+                                <div style="float: right;">
+                                    <a href="<?php base_url() ?>Adminpage/kirim_semua">
+                                        <button class="btn btn-success">
+                                            Kirim Semua Pesan
+                                        </button>
+                                    </a>
+                                </div>
+                            </div> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -36,34 +31,29 @@
                                             <th scope="col" class="text-center">
                                                 #
                                             </th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Nama Lengkap</th>
-                                            <th scope="col">Email</th>
                                             <th scope="col">No. WA</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Pesan</th>
+                                            <th scope="col">Tanggal</th>
+                                            <!-- <th scope="col">Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no = 1;
-                                        foreach ($kontak as $user) : ?>
+                                        foreach ($pesan as $psn) : ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $no; ?>
                                                 </td>
-                                                <td><?php echo $user['nama_user'] ?></td>
-                                                <td><?php echo $user['nama_lengkap'] ?></td>
-                                                <td>
-                                                    <?php echo $user['email'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $user['no_hp'] ?>
-                                                    <input type="hidden" value="<?php echo $user['no_hp'] ?>">
-                                                </td>
-                                                <td>
+                                                <td><?php echo $psn['no_hp'] ?></td>
+                                                <td><?php echo $psn['pesan'] ?></td>
+                                                <td><?php echo $psn['tanggal'] ?></td>
+                                                <!-- <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-primary" id="btn_<?php echo $user['id_user'] ?>" data='<?php echo $user['no_hp'] ?>' id_user="<?php echo $user['id_user'] ?>" onclick="add_nomer_wa()">Tambahkan</button>
+                                                        <input type="hidden" name="no_wa" value="<?php echo $psn['no_hp'] ?>">
+                                                        <input type="hidden" name="pesan" value="<?php echo $psn['pesan'] ?>">
+                                                        <button class="btn btn-primary" type="submit">Kirim</button>
                                                     </div>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php $no++;
                                         endforeach; ?>
@@ -76,7 +66,7 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         function add_nomer_wa() {
             var no_wa = event.target.getAttribute('data');
             var id = event.target.getAttribute('id_user');
@@ -94,7 +84,6 @@
         }
 
         function get_all_contact() {
-            $('#wa_number').val('');
             <?php foreach ($kontak as $user) : ?>
                 var no_wa = '<?php echo $user['no_hp'] ?>';
                 if (no_wa != null) {
@@ -109,4 +98,4 @@
             <?php endforeach; ?>
             document.getElementById("btn_add_all_wa").disabled = true;
         }
-    </script>
+    </script> -->

@@ -28,6 +28,7 @@ class Profile extends CI_Controller
 		$data['Qcount'] = $this->Model_profile->QuestCount($id)->result_array();
 		$data['Arcount'] = $this->Model_profile->ArCount($id)->result_array();
 		$data['riwayat_jawab'] = $this->Model_profile->riwayat_jawab($id)->result_array();
+		$data['penarikan'] = $this->Model_profile->get_penarikan($id)->result_array();
 		$this->load->view('profil/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -179,10 +180,8 @@ class Profile extends CI_Controller
 			$user = $this->session->userdata('id_user');
 			$duit = $this->Model_profile->get_wallet($user)->row()->wallet;
 			$data['money'] = json_encode($duit);
-		} else {
 		}
-		$profil = $this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->id_profile;
-		$data['riwayat_tarik'] = $this->Model_profile->get_riwayat($profil)->result();
+		$data['riwayat_tarik'] = $this->Model_profile->get_penarikan($user)->result();
 		$nav['judul'] = "Buat Pertanyaan";
 		$nav['sidebar'] = "pengaturan";
 		$this->load->view('templates/header-page', $nav);
@@ -194,22 +193,18 @@ class Profile extends CI_Controller
 	}
 	public function tarik_uang()
 	{
-		if ($this->session->userdata('id_user') != null) {
-			$user = $this->session->userdata('id_user');
-			$duit = $this->Model_profile->get_wallet($user)->row()->wallet;
-			$data['money'] = json_encode($duit);
-		} else {
-		}
-		if ($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->no_rek == null && $this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->nama_bank == null) {
+		$user = $this->session->userdata('id_user');
+		$duit = $this->Model_profile->get_wallet($user)->row()->wallet;
+		$data['money'] = json_encode($duit);
+		$no_rek = $this->Model_profile->get_wallet($user)->row()->no_rek;
+		$nama_bank = $this->Model_profile->get_wallet($user)->row()->nama_bank;
+		if ($no_rek == null && $nama_bank == null) {
 
 			echo '<script language="javascript"> 
 			alert("Mohon Lengkapi dulu Bank dan No rekening");
 			window.history.back();
 			</script>';
 		} else {
-
-
-			$profil = $this->Model_profile->get_wallet($user)->row()->id_profile;
 			$coin =	$this->input->post('tarik_coin');
 			$sisa_coin = $duit - $coin;
 			$datawallet = array(
@@ -222,18 +217,18 @@ class Profile extends CI_Controller
 			$datawallet_xss = $this->security->xss_clean($datawallet);
 			$this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
 			$time = date('Y-m-d H:i:s');
-			$date = date('ymdHis');
+			// $date = date('y-mmdHis');
 			$data_penarikan = array(
-				'id_profile' => $profil,
+				'id_user' => $user,
 				'jumlah_coin' => $coin,
 				'jumlah_uang' => $jumlah_uang,
-				'tgl_penarikan' => $date,
+				'tgl_penarikan' => $time,
 				'status_terkirim' => 0
 
 			);
-			$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+			// $idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
 			$log_money = array(
-				'id_profile' => $idprofil,
+				'id_user' => $user,
 				'status_log' => 0,
 				'jumlah' => $coin,
 				'ket_log' => 'Penarikan Uang',
@@ -244,10 +239,6 @@ class Profile extends CI_Controller
 			redirect('Profile/penarikan');
 		}
 	}
-
-
-
-
 
 	public function edit()
 	{

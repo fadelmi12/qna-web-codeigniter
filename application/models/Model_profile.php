@@ -14,6 +14,14 @@ class Model_profile extends CI_Model
         return $this->db->get();
     }
 
+    public function getProfile_wa($no_wa)
+    {
+        $this->db->where('t_profile.no_hp', $no_wa);
+        $this->db->select('*');
+        $this->db->from('t_profile');
+        return $this->db->get();
+    }
+
     public function getAfiliate($afil)
     {
         $this->db->where('t_user.kode_afiliasi', $afil);
@@ -151,12 +159,19 @@ class Model_profile extends CI_Model
     {
         $this->db->insert($table, $data);
     }
-    public function get_riwayat($id)
+    public function penarikan($id)
     {
-        $this->db->where('t_penarikan.id_profile', $id);
         $this->db->select('*');
         $this->db->from('t_penarikan');
-        $this->db->join('t_profile', 't_profile.id_profile=t_penarikan.id_profile', 'left');
+        $this->db->where('id_user', $id);
+    }
+    public function get_penarikan($id)
+    {
+        $this->db->where('t_penarikan.id_user', $id);
+        $this->db->select('*');
+        $this->db->from('t_penarikan');
+        $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
         return $this->db->get();
     }
     public function get_log_money($id)

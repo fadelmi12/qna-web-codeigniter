@@ -107,6 +107,7 @@ class Register extends CI_Controller
 							$data_wa = array(
 								'id_user' 		=> $id,
 								'pesan'			=> $message,
+								'tanggal'		=> date('Y-M-d H:i:s'),
 								'status_kirim'	=> 0
 							);
 							$this->db->insert('t_wa', $data_wa);
@@ -114,6 +115,7 @@ class Register extends CI_Controller
 							$data_wa = array(
 								'id_user' 		=> $id,
 								'pesan'			=> $message,
+								'tanggal'		=> date('Y-M-d H:i:s'),
 								'status_kirim'	=> 1
 							);
 							$this->db->insert('t_wa', $data_wa);
@@ -303,6 +305,7 @@ class Register extends CI_Controller
 									$data_wa = array(
 										'id_user' 		=> $id,
 										'pesan'			=> $message,
+										'tanggal'		=> date('Y-M-d H:i:s'),
 										'status_kirim'	=> 0
 									);
 									$this->db->insert('t_wa', $data_wa);
@@ -310,6 +313,7 @@ class Register extends CI_Controller
 									$data_wa = array(
 										'id_user' 		=> $id,
 										'pesan'			=> $message,
+										'tanggal'		=> date('Y-M-d H:i:s'),
 										'status_kirim'	=> 1
 									);
 									$this->db->insert('t_wa', $data_wa);

@@ -20,8 +20,8 @@ class Daftar_artikel extends CI_Controller
 		$data['Qcount'] = $this->Model_admin->QuestiontCount()->result_array();
 		$data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
 		$data['kategori_tag'] = $this->Model_artikel->tampil_kategori_tag()->result_array();
-
-		$this->load->view('admin/template/header');
+		$data['nav'] = "artikel";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/kategori_artikel', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -70,7 +70,8 @@ class Daftar_artikel extends CI_Controller
 		$data['id_kategori_tag'] = $id_kategori_tag;
 		//echo print_r($data123);exit;
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "artikel";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/sub_artikel_tag', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -118,7 +119,8 @@ class Daftar_artikel extends CI_Controller
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['list_artikel_tag'] = $this->Model_artikel->list_artikel_tag($idTag)->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "artikel";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/list_artikel_sesuai_sub', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -129,7 +131,8 @@ class Daftar_artikel extends CI_Controller
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['artikel_verif'] = $this->Model_artikel->artikel_belum_verif()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "artikel";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/artikel_belum_verif', $data);
 		$this->load->view('admin/template/footer');
 	}

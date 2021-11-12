@@ -51,7 +51,7 @@
                                 Dijawab
                             </h6>
                             <h4 class="fw-bold">
-                                5
+                                <?php echo count($riwayat_jawab) ?>
                             </h4>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                                 Penarikan
                             </h6>
                             <h4 class="fw-bold">
-                                5
+                                <?php echo count($penarikan) ?>
                             </h4>
                         </div>
                     </div>

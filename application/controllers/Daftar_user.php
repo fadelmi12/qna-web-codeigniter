@@ -16,7 +16,8 @@ class Daftar_user extends CI_Controller
 		$data['daftar_user'] = $this->Model_admin->daftar_user()->result_array();
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "user";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/daftar_user', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -25,8 +26,9 @@ class Daftar_user extends CI_Controller
 	{
 		$data['data_user'] = $this->Model_admin->data_user($id_user)->result_array();
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
-		
-		$this->load->view('admin/template/header');
+
+		$data['nav'] = "user";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/view_edit_user', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -63,7 +65,7 @@ class Daftar_user extends CI_Controller
 		$provinsi 		= $this->input->post('provinsi');
 		$wallet 		= $this->input->post('wallet');
 		$e_wallet 		= preg_replace('/[Rp. ]+/', '', $wallet);
-		
+
 		$data2 = array(
 			'nama_lengkap' 	=> $nama_lengkap,
 			'tgl_lahir' 	=> $tgl_lahir,
@@ -75,30 +77,33 @@ class Daftar_user extends CI_Controller
 		);
 
 		$this->db->update('t_profile', $data2, $where);
-		redirect('Daftar_user/view_edit/'.$id_user);
+		redirect('Daftar_user/view_edit/' . $id_user);
 	}
 
 	public function banned_unbened($id_user)
 	{
 		$ambil = $this->db->get_where('t_user', array('id_user' => $id_user))->result_array();
-		foreach($ambil as $jupuk); $status_akun = $jupuk['status_user'];
+		foreach ($ambil as $jupuk);
+		$status_akun = $jupuk['status_user'];
 
 		$where 	= array('id_user' => $id_user);
 
-		if($status_akun == '0'){
+		if ($status_akun == '0') {
 			$data 	= array('status_user' => ("1"));
 
 			$this->db->update('t_user', $data, $where);
-			$this->session->set_flashdata('pesan',
+			$this->session->set_flashdata(
+				'pesan',
 				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 				<script type ="text/JavaScript">swal("Sukses","Akun berhasil di Un-Benned","success");</script>'
 			);
 			redirect('Daftar_user/index/');
-		}else{
+		} else {
 			$data 	= array('status_user' => ("0"));
 
 			$this->db->update('t_user', $data, $where);
-			$this->session->set_flashdata('pesan',
+			$this->session->set_flashdata(
+				'pesan',
 				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 				<script type ="text/JavaScript">swal("Sukses","Akun berhasil di Banned","success");</script>'
 			);
@@ -111,7 +116,8 @@ class Daftar_user extends CI_Controller
 		$where 	= array('id_user' => $id_user);
 
 		$this->db->delete('t_user', $where);
-		$this->session->set_flashdata('pesan',
+		$this->session->set_flashdata(
+			'pesan',
 			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 			<script type ="text/JavaScript">swal("Sukses","Akun berhasil dihapus","success");</script>'
 		);

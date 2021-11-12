@@ -19,8 +19,8 @@ class AdminPage extends CI_Controller
 		$data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['verifcount'] = $this->Model_admin->tampil_question(null, 1)->num_rows();
-		// $data['pertanyaan']=$this->Model_admin->tampil_pe()->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/index', $data);
 		$this->load->view('admin/template/footer', $data);
 		// echo json_encode($data);
@@ -83,7 +83,8 @@ class AdminPage extends CI_Controller
 		// $data['Qcount'] = $this->Model_admin->QuestiontCount()->result_array();
 		// $data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
 		$data['question'] = $this->Model_admin->tampil_question($nama)->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/question', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -95,7 +96,8 @@ class AdminPage extends CI_Controller
 		// $data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
 		// $data['question'] = $this->Model_admin->tampil_question($nama)->result_array();
 		$data['question'] = $this->Model_admin->tampil_question($nama, null)->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/question_all', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -104,7 +106,8 @@ class AdminPage extends CI_Controller
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['answer'] = $this->Model_admin->tampil_edit_jawaban($qst)->result_array();
 		$data['question'] = $this->Model_admin->detail_question($qst)->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/detail_question', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -163,7 +166,8 @@ class AdminPage extends CI_Controller
 		// $data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
 		// $data['question'] = $this->Model_admin->tampil_question($nama)->result_array();
 		$data['question'] = $this->Model_admin->tampil_question(null, 1)->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/verifikasi_pertanyaan', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -213,10 +217,13 @@ class AdminPage extends CI_Controller
 
 			$response = curl_exec($curl);
 			$result =  substr($response, 17, 5);
+			date_default_timezone_set("Asia/Jakarta");
+			$date = date("Y-m-d H:i:s");
 			if ($result == "false") {
 				$data_wa = array(
 					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
+					'tanggal'		=> $date,
 					'status_kirim'	=> 0
 				);
 				$this->db->insert('t_wa', $data_wa);
@@ -224,6 +231,7 @@ class AdminPage extends CI_Controller
 				$data_wa = array(
 					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
+					'tanggal'		=> $date,
 					'status_kirim'	=> 1
 				);
 				$this->db->insert('t_wa', $data_wa);
@@ -239,7 +247,8 @@ class AdminPage extends CI_Controller
 	{
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['log'] = $this->Model_admin->log_login()->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "log-login";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/log_login', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -293,7 +302,8 @@ class AdminPage extends CI_Controller
 
 		$foot['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['pesan'] = $this->Model_admin->tampil_pesan()->result_array();
-		$this->load->view('admin/template/header');
+		$data['nav'] = "message";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/message_page', $data);
 		$this->load->view('admin/template/footer', $foot);
 	}
@@ -303,7 +313,8 @@ class AdminPage extends CI_Controller
 		$foot['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 		$data['pesan'] = $this->Model_admin->tampil_pesan_blm_trbca()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "wa";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/message_belum_page', $data);
 		$this->load->view('admin/template/footer', $foot);
 	}
@@ -317,6 +328,7 @@ class AdminPage extends CI_Controller
 
 		$this->db->update('t_message', $data, $where);
 	}
+
 	public function ubah_status_baca_single($id_message)
 	{
 		$data = array('status_baca' => ("1"));
@@ -343,9 +355,132 @@ class AdminPage extends CI_Controller
 		$data['kontak'] = $this->Model_admin->kontak()->result_array();
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "wa";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/wa', $data);
 		$this->load->view('admin/template/footer');
+	}
+
+	public function belum_terkirim()
+	{
+		$data['pesan'] = $this->Model_admin->pesan_belum_terkirim()->result_array();
+		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+
+		$data['nav'] = "wa";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/belum_terkirim', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function sudah_terkirim()
+	{
+		$data['pesan'] = $this->Model_admin->pesan_sudah_terkirim()->result_array();
+		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+
+		$data['nav'] = "wa";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/sudah_terkirim', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function kirim_pesan_tertunda()
+	{
+		$id_pesan 	= $this->input->post('id_pesan');
+		$no_wa 		= $this->input->post('no_wa');
+		$pesan 		= $this->input->post('pesan');
+		$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+
+				'token' => $token, 'phone' => $no_wa, 'message' => $pesan
+
+			),
+
+		));
+
+		$response = curl_exec($curl);
+		$result =  substr($response, 17, 5);
+		if ($result != "false") {
+
+			$data_wa = array(
+				'status_kirim'	=> 1
+			);
+			$update = $this->db->update('t_wa', $data_wa, array('id_wa' => $id_pesan));
+			if ($update) {
+				redirect('Adminpage/sudah_terkirim');
+			}
+		} else {
+			$this->session->set_flashdata(
+				'pesan',
+				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+				<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+			);
+			redirect('Adminpage/belum_terkirim');
+		}
+		curl_close($curl);
+	}
+
+	public function tertunda_kirim_semua()
+	{
+		$pesan = $this->Model_admin->pesan_sudah_terkirim()->result_array();
+		$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		foreach ($pesan as $key) {
+			$curl = curl_init();
+			$phone = $key['no_wa'];
+			$message = $key['pesan'];
+			$id_wa = $key['id_wa'];
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+
+					'token' => $token, 'phone' => $phone, 'message' => $message
+
+				),
+
+			));
+
+			$response = curl_exec($curl);
+
+			curl_close($curl);
+			$result =  substr($response, 17, 5);
+			if ($result != "false") {
+				$data_wa = array(
+					'status_kirim'	=> 1
+				);
+				$update = $this->db->update('t_wa', $data_wa, array('id_wa' => $id_wa));
+				if ($update) {
+					redirect('Adminpage/sudah_terkirim');
+				}
+			} else {
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+				);
+				redirect('Adminpage/belum_terkirim');
+			}
+			curl_close($curl);
+			// redirect('auth/Login');
+			// echo $response;
+		}
+		// redirect('AdminPage/wa');
 	}
 
 	public function kirim_wa()
@@ -357,6 +492,7 @@ class AdminPage extends CI_Controller
 		$message = $this->input->post('pesan');
 		foreach ($phone2 as $key => $val) {
 			$curl = curl_init();
+
 
 			curl_setopt_array($curl, array(
 				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
@@ -376,28 +512,51 @@ class AdminPage extends CI_Controller
 			));
 
 			$response = curl_exec($curl);
+			// echo json_encode($response);
+			// die;
 
-			curl_close($curl);
 			$result =  substr($response, 17, 5);
+			curl_close($curl);
+
+			$no = $phone2[$key];
+			$user = $this->Model_profile->getProfile_wa($no)->result_array();
+			// foreach ($user as $asu);
+			$id_user = $user[0]['id_user'];
+			date_default_timezone_set("Asia/Jakarta");
+			$date = date("Y-m-d H:i:s");
 			if ($result == "false") {
+				// echo $id_user;
+				// die;
 				$data_wa = array(
-					'id_user' 		=> null,
+					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
+					'tanggal'		=> $date,
 					'status_kirim'	=> 0
 				);
+				// echo json_encode($data_wa);
+				// die;
 				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+				);
 			} else {
 				$data_wa = array(
-					'id_user' 		=> null,
+					'id_user' 		=> $id_user,
 					'pesan'			=> $message,
+					'tanggal'		=> $date,
 					'status_kirim'	=> 1
 				);
 				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Sukses","Pesan WA terkirim","success");</script>'
+				);
 			}
-			curl_close($curl);
-			redirect('auth/Login');
-			echo $response;
 		}
+
 		redirect('AdminPage/wa');
 	}
 }

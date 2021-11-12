@@ -15,9 +15,10 @@ class Penarikan_saldo extends CI_Controller
 	public function index()
 	{
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
-		$data['penarikan_sukses']	= $this->Model_admin->penarikan_sukses()->result_array();		
+		$data['penarikan_sukses']	= $this->Model_admin->penarikan_sukses()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "penarikan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/penarikan_sukses', $data);
 		$this->load->view('admin/template/footer');
 	}
@@ -28,7 +29,8 @@ class Penarikan_saldo extends CI_Controller
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['penarikan_batal']	= $this->Model_admin->penarikan_batal()->result_array();
 
-		$this->load->view('admin/template/header');
+		$data['nav'] = "penarikan";
+		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/penarikan_belum_sukses', $data);
 		$this->load->view('admin/template/footer');
 	}

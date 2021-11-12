@@ -169,6 +169,26 @@ class Model_admin extends CI_Model
         return $this->db->get();
     }
 
+    public function pesan_belum_terkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('t_wa');
+        $this->db->join('t_user', 't_wa.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        $this->db->where('status_kirim', 0);
+        return $this->db->get();
+    }
+
+    public function pesan_sudah_terkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('t_wa');
+        $this->db->join('t_user', 't_wa.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        $this->db->where('status_kirim', 1);
+        return $this->db->get();
+    }
+
     public function log_login()
     {
         $this->db->select('*');

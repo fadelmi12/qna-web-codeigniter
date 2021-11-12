@@ -65,20 +65,103 @@
                     <ul class="sidebar-menu">
                         <?php $unread = $this->db->query("SELECT * FROM t_message WHERE status_baca = '0'")->num_rows() ?>
                         <li class="menu-header">Main</li>
+                        <?php if ($nav == "pertanyaan") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('AdminPage') ?>" class="nav-link"><i data-feather="help-circle"></i><span>Pertanyaan</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('AdminPage') ?>" class="nav-link"><i data-feather="help-circle"></i><span>Pertanyaan</span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "pertanyaan") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('Daftar_artikel/index') ?>" class="nav-link"><i data-feather="book"></i><span>Artikel</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('Daftar_artikel/index') ?>" class="nav-link"><i data-feather="book"></i><span>Artikel</span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "pertanyaan") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "pertanyaan") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('Penarikan_saldo/index') ?>" class="nav-link"><i data-feather="dollar-sign"></i><span>Penarikan</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('Penarikan_saldo/index') ?>" class="nav-link"><i data-feather="dollar-sign"></i><span>Penarikan</span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "log-login") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url() ?>AdminPage/log_login" class="nav-link"><i data-feather="log-in"></i><span>Log Login</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url() ?>AdminPage/log_login" class="nav-link"><i data-feather="log-in"></i><span>Log Login</span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "message") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url() ?>AdminPage/MessageBox" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url() ?>AdminPage/MessageBox" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "wa") : ?>
+                            <li class="dropdown active">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fa fa-envelope"></i><span>WA</span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><span>Broadcast WA</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/sudah_terkirim" class="nav-link"><span> Pesan Terikirim</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/belum_terkirim" class="nav-link"><span> Belum Terikirim</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fa fa-envelope"></i><span>WA</span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><span>Broadcast WA</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/sudah_terkirim" class="nav-link"><span> Pesan Terikirim</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>AdminPage/belum_terkirim" class="nav-link"><span> Belum Terikirim</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($nav == "pertanyaan") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>
+                            </li>
+                        <?php endif; ?>
                         <li class="dropdown">
-                            <a href="<?php echo base_url('AdminPage') ?>" class="nav-link"><i data-feather="help-circle"></i><span>Pertanyaan</span></a>
-                            <a href="<?php echo base_url('Daftar_artikel/index') ?>" class="nav-link"><i data-feather="book"></i><span>Artikel</span></a>
-                            <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
-                            <a href="<?php echo base_url('Penarikan_saldo/index') ?>" class="nav-link"><i data-feather="dollar-sign"></i><span>Penarikan</span></a>
-                            <a href="<?php echo base_url() ?>AdminPage/log_login" class="nav-link"><i data-feather="log-in"></i><span>Log Login</span></a>
-                            <a href="<?php echo base_url() ?>AdminPage/MessageBox" class="nav-link"><i data-feather="monitor"></i><span>Pesan</span> <em style="color: #3177F3; font-weight: 100; "> <?= $unread ?></em></a>
-                            <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><i data-feather="monitor"></i><span>Broadcast WA</span></a>
-                            <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>
                             <a href="#" onclick="logout_admin()" class="nav-link"><i data-feather="log-out"></i><span>LogOut</span></a>
                         </li>
-
-
-
                     </ul>
                 </aside>
             </div>
