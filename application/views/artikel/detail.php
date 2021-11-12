@@ -2,7 +2,7 @@
 <div class="detail-artikel pb-5" id="detail-artikel">
     <div class="py-4">
         <div class="container route">
-            Home / Jurnal / <?= $article->judul_artikel; ?> <?= $article->id_artikel; ?>
+            Home / Jurnal / <?= $article->judul_artikel; ?>
         </div>
 
     </div>
