@@ -155,7 +155,8 @@ class Model_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('t_penarikan');
-        $this->db->join('t_profile', 't_profile.id_profile=t_penarikan.id_profile', 'left');
+        $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
         $this->db->where('t_penarikan.status_terkirim', '1');
         return $this->db->get();
     }
@@ -164,7 +165,8 @@ class Model_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('t_penarikan');
-        $this->db->join('t_profile', 't_profile.id_profile=t_penarikan.id_profile', 'left');
+        $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
         $this->db->where('t_penarikan.status_terkirim', '0');
         return $this->db->get();
     }

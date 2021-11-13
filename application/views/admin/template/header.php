@@ -74,7 +74,7 @@
                                 <a href="<?php echo base_url('AdminPage') ?>" class="nav-link"><i data-feather="help-circle"></i><span>Pertanyaan</span></a>
                             </li>
                         <?php endif; ?>
-                        <?php if ($nav == "pertanyaan") : ?>
+                        <?php if ($nav == "artikel") : ?>
                             <li class="dropdown active">
                                 <a href="<?php echo base_url('Daftar_artikel/index') ?>" class="nav-link"><i data-feather="book"></i><span>Artikel</span></a>
                             </li>
@@ -83,7 +83,7 @@
                                 <a href="<?php echo base_url('Daftar_artikel/index') ?>" class="nav-link"><i data-feather="book"></i><span>Artikel</span></a>
                             </li>
                         <?php endif; ?>
-                        <?php if ($nav == "pertanyaan") : ?>
+                        <?php if ($nav == "user") : ?>
                             <li class="dropdown active">
                                 <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
                             </li>
@@ -92,7 +92,7 @@
                                 <a href="<?php echo base_url('Daftar_user') ?>" class="nav-link"><i data-feather="users"></i><span>User</span></a>
                             </li>
                         <?php endif; ?>
-                        <?php if ($nav == "pertanyaan") : ?>
+                        <?php if ($nav == "penarikan") : ?>
                             <li class="dropdown active">
                                 <a href="<?php echo base_url('Penarikan_saldo/index') ?>" class="nav-link"><i data-feather="dollar-sign"></i><span>Penarikan</span></a>
                             </li>
@@ -150,7 +150,7 @@
                                 </ul>
                             </li>
                         <?php endif; ?>
-                        <?php if ($nav == "pertanyaan") : ?>
+                        <?php if ($nav == "faq") : ?>
                             <li class="dropdown active">
                                 <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>
                             </li>
