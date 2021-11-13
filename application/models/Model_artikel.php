@@ -140,6 +140,7 @@ class Model_artikel extends CI_Model
         $this->db->join('t_tag', 't_tag.idTag = t_artikeltag.idTag', 'left');
         $this->db->join('t_user', 't_user.id_user = t_artikel.id_user', 'left');
         $this->db->where('t_tag.idTag', $idTag);
+        $this->db->group_by('judul_artikel');
         return $this->db->get();
     }
 
@@ -182,7 +183,8 @@ class Model_artikel extends CI_Model
         $query = $this->db->update($table, $data);
         return $query;
     }
-    public function pembelian(){
+    public function pembelian()
+    {
         return $this->db->get('t_beliartikel');
     }
 }
