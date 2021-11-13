@@ -2,7 +2,7 @@
 <div id="question" class="question mb-5">
     <div class="py-4">
         <div class="container route">
-            Home / Pertanyaan / <?php echo $title; ?>
+            Home / Pertanyaan / <?php echo $jenis; ?>
         </div>
     </div>
 
