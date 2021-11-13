@@ -54,6 +54,17 @@ class Pertanyaan extends CI_Controller
 		$getPrice = $this->Model_pertanyaan->detail_tanya($prt)->row()->harga;
 		$getMoney =	$this->Model_profile->get_wallet($user)->row()->wallet;
 		$addMoney = $getMoney + $getPrice;
+		$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+		date_default_timezone_set('Asia/Jakarta');
+		$time =	date('Y-m-d H:i:s');
+		$log_money = array(
+			'id_profile' => $idprofil,
+			'status_log' => 1,
+			'jumlah' => $getPrice,
+			'ket_log' => 'Batalkan Pertanyaan',
+			'tgl_log' => $time
+		);
+		$this->db->insert('log_money', $log_money);
 		$where = array(
 			'id_pertanyaan' => $prt
 		);
@@ -63,6 +74,7 @@ class Pertanyaan extends CI_Controller
 		$wherewallet = array(
 			'id_user' => $user
 		);
+
 		$datawallet_xss = $this->security->xss_clean($datawallet);
 		$this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
 		$this->Model_pertanyaan->hapus_quest($where, 't_pertanyaan');
