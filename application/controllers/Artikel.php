@@ -141,9 +141,9 @@ class Artikel extends CI_Controller
 				)
 			);
 			$this->db->update_batch('t_profile', $datawallet, 'id_user');
-			$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+			// $idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
 			$log_money_buyer = array(
-				'id_profile' => $idprofil,
+				'id_user' => $user,
 				'status_log' => 0,
 				'jumlah' => $harga_artikel,
 				'ket_log' => 'Pembelian Artikel',
@@ -151,9 +151,9 @@ class Artikel extends CI_Controller
 			);
 			$this->db->insert('log_money', $log_money_buyer);
 
-			$idprofil2 = $this->Model_profile->get_wallet($seller_id)->row()->id_profile;
+			// $idprofil2 = $this->Model_profile->get_wallet($seller_id)->row()->id_profile;
 			$log_money_seller = array(
-				'id_profile' => $idprofil2,
+				'id_user' => $seller_id,
 				'status_log' => 1,
 				'jumlah' => $harga_artikel,
 				'ket_log' => 'Artikel Terjual',

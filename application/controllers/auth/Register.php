@@ -266,12 +266,12 @@ class Register extends CI_Controller
 							);
 							$add_coin		= $this->db->update('t_profile', $data_koin, array('id_user' => $id_user_afil));
 							if ($add_coin) {
-								$id_profile = $afil_user[0]['id_profile'];
+								// $id_profile = $afil_user[0]['id_profile'];
 								$log_money 	= array(
-									'id_profile'	=> $id_profile,
+									'id_user'	=> $id_user_afil,
 									'status_log' 	=> 0,
 									'jumlah' 		=> 10,
-									'ket_log' 		=> 'Membuat Pertanyaan',
+									'ket_log' 		=> 'Mendapat Koin afiliasi',
 									'tgl_log' 		=> date("Y-m-d H:i:s")
 								);
 								$this->db->insert('log_money', $log_money);

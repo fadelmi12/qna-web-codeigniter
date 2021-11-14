@@ -120,9 +120,9 @@ class Pertanyaan extends CI_Controller
 		$this->Model_pertanyaan->update_status_jawab($where, $data);
 		$this->Model_pertanyaan->set_status_jawab($prt, $data1);
 
-		$idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
+		// $idprofil = $this->Model_profile->get_wallet($user)->row()->id_profile;
 		$log_money = array(
-			'id_profile' => $idprofil,
+			'id_user' => $user,
 			'status_log' => 1,
 			'jumlah' => $getPrice,
 			'ket_log' => 'Menjawab Betul Pertanyaan',

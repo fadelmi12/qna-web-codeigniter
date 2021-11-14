@@ -105,9 +105,9 @@ class Dashboard extends CI_Controller
 			$act = $this->Model_activity->save_activity($data_log);
 
 			$data['datadiri'] = $this->Model_profile->getProfile($this->session->userdata('id_user'))->row();
-			$idprofil = $data['datadiri']->id_profile;
+			// $idprofil = $data['datadiri']->id_profile;
 			$log_money = array(
-				'id_profile' => $idprofil,
+				'id_user' => $user,
 				'status_log' => 0,
 				'jumlah' => $hargaquest,
 				'ket_log' => 'Membuat Pertanyaan',

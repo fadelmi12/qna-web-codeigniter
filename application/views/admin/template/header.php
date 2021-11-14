@@ -121,7 +121,7 @@
                         <?php endif; ?>
                         <?php if ($nav == "wa") : ?>
                             <li class="dropdown active">
-                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fa fa-envelope"></i><span>WA</span></a>
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-envelope"></i><span>WA</span></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><span>Broadcast WA</span></a>
@@ -136,7 +136,7 @@
                             </li>
                         <?php else : ?>
                             <li class="dropdown">
-                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fa fa-envelope"></i><span>WA</span></a>
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-envelope"></i><span>WA</span></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="<?php echo base_url() ?>AdminPage/wa" class="nav-link"><span>Broadcast WA</span></a>
