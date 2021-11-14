@@ -16,13 +16,18 @@
                         Kata Kunci : <?php echo $katakunci; ?>
                     </h3>
                     <?php echo $this->session->flashdata('pesan') ?>
-                    <span id="show"></span>
-                    <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
-                        <div class="fw-bold">
-                            Pertanyaan Lainnya
-                        </div>
+                    <span id="show">
+                        <img style=" display: block; margin-left: auto; margin-right: auto; width: 10%;" src="<?php echo base_url('assets/1481.gif') ?>" alt="">
 
-                    </div>
+                    </span>
+                    <a onclick="load_more_search()">
+                        <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
+                            <div class="fw-bold">
+                                Pertanyaan Lainnya
+                            </div>
+
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4  d-none d-sm-block">
                     <h3 class="mb-3 ">
@@ -199,25 +204,30 @@
         });
     });
 
-    // function load_more() {
-    //     console.log(total_record);
-    //     if (total_record <= total_groups) {
+    function load_more_search() {
+        console.log(total_record);
+        if (total_record <= total_groups) {
 
-    //         // console.log(segment_1);
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "<?php echo site_url('Pertanyaan/load_data/') ?>",
-    //             data: {
-    //                 'nama': segment_1,
-    //                 'offset': total_record
-    //             },
-    //             dataType: "text",
-    //             success: function(resultData) {
-    //                 $("#results").append(resultData);
-    //                 total_record++;
-    //             }
-    //         });
+            // console.log(segment_1);
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('Pertanyaan/load_data_search/') ?>",
+                data: {
+                    'nama': segment_1,
+                    'offset': total_record
+                },
+                dataType: "text",
+                success: function(resultData) {
+                    $("#show").append(resultData);
+                    total_record++;
+                    if (total_record > total_groups) {
+                        swal('Forbiden', 'Data Sudah Habis', 'warning');
+                    }
+                }
+            });
 
-    //     }
-    // }
+        } else if (total_record > total_groups) {
+            swal('Forbiden', 'Data Sudah Habis', 'warning');
+        }
+    }
 </script>
