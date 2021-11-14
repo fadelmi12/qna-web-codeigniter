@@ -2,7 +2,7 @@
 <div id="question" class="question mb-5">
     <div class="py-4">
         <div class="container route">
-            Home / Pertanyaan / <?php echo $title; ?>
+            Home / Pertanyaan / <?php echo $jenis; ?>
         </div>
     </div>
 
@@ -16,14 +16,19 @@
                         Pertanyaan Terbaru
                     </h3>
                     <span id="results">
-
+                        <img style=" display: block; margin-left: auto; margin-right: auto; width: 10%;" src="<?php echo base_url('assets/1481.gif') ?>" alt="">
                     </span>
-                    <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
-                        <div class="fw-bold">
-                            Pertanyaan Lainnya
-                        </div>
 
-                    </div>
+                    <a id="button-lainya" onclick="load_more()">
+                        <div class="btn-lainnya px-3 py-2 mx-auto mx-lg-0">
+
+                            <div class="fw-bold">
+                                Pertanyaan Lainnya
+                            </div>
+
+                        </div>
+                    </a>
+
                 </div>
                 <div class="col-md-4  d-none d-sm-block">
                     <h3 class="mb-3 ">
@@ -203,7 +208,7 @@
     });
 
     function load_more() {
-        console.log(total_record);
+        // console.log(total_record);
         if (total_record <= total_groups) {
 
             // console.log(segment_1);
@@ -216,11 +221,20 @@
                 },
                 dataType: "text",
                 success: function(resultData) {
-                    $("#results").append(resultData);
-                    total_record++;
+                    if (resultData != "") {
+                        $("#results").append(resultData);
+                        total_record++;
+                        if (total_record > total_groups) {
+                            swal('Forbiden', 'Data Sudah Habis', 'warning');
+                        }
+                    }
                 }
+
             });
 
+        } else if (total_record > total_groups) {
+            swal('Forbiden', 'Data Sudah Habis', 'warning');
         }
+
     }
 </script>

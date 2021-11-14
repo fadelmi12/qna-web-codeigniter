@@ -131,13 +131,12 @@
                                             var price = parseInt(document.getElementById("harga").value);
                                             if (dompet <= price) {
                                                 // swal('Forbiden', 'Saldo anda kurang', 'error');
-                                                alert("saldo kurang ");
+                                                $('#peringatan').modal('show');
                                                 // document.forms["my_form"]["tes"].focus();
                                             } else {
                                                 $('#beli').modal('show');
                                             }
                                         } else {
-                                            alert("login dulu");
                                             $('#Konfirmasi_Like_Login').modal('show');
                                         };
                                     };
@@ -539,6 +538,30 @@
             <script type="text/javascript">
                 function close_report() {
                     $('#reportartikel').modal('hide');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="peringatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header text-center form-group" style="background: aquamarine; justify-content:center; height: 4rem;" align="center">
+                <h2 class="modal-title text-black" id="exampleModalLabel"><strong>Informasi</strong></h2>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center justify-content-center">
+                    <h5>Saldo anda kurang silakan Topup dulu !</h5>
+                </div>
+                <div class="container text-center mt-3">
+                    
+                        <a class="btn btn-danger ml-3" onclick="close_report()">ok</a>
+                    
+                </div>
+            </div>
+            <script type="text/javascript">
+                function close_report() {
+                    $('#peringatan').modal('hide');
                 }
             </script>
         </div>

@@ -63,7 +63,7 @@ class Artikel extends CI_Controller
 	public function detail($slug)
 	{
 		if ($this->session->userdata('id_user') != null) {
-			$data['user_wallet'] = json_encode($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->wallet);
+			$data['user_wallet'] = $this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->wallet;
 		} else {
 		}
 		$data['artikel_save'] = $this->Model_artikel->artikel_save($slug)->result_array();

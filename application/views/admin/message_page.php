@@ -8,8 +8,8 @@
                         <div class="card-header">
                             <h4>List pesan yang sudah terbaca</h4>
                             <!-- <a href="<?= base_url('AdminPage/all_read') ?>" class="btn btn-primary ml-auto"><i class="fas fa-check"></i> Mark All as Read</a> -->
-                            <?php $psn_blm = $this->db->query("SELECT * FROM t_message WHERE status_baca='0'")->result_array();?>
-                            <a href="<?= base_url('AdminPage/pesan_blm_terbaca') ?>" class="btn btn-primary ml-auto">Tampil pesan belum terbaca <span class="badge" style="background:white; color: black;"><strong><?php echo count($psn_blm)?></strong></span></a>
+                            <?php $psn_blm = $this->db->query("SELECT * FROM t_message WHERE status_baca='0'")->result_array(); ?>
+                            <a href="<?= base_url('AdminPage/pesan_blm_terbaca') ?>" class="btn btn-primary ml-auto">Tampil pesan belum terbaca <span class="badge" style="background:white; color: black;"><strong><?php echo count($psn_blm) ?></strong></span></a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -20,7 +20,7 @@
                                                 #
                                             </th>
                                             <th>User</th>
-                                            <th>Pertanyaan</th>
+                                            <th>Jenis Pesan</th>
                                             <th>Pesan</th>
                                             <th>Tanggal/Jam</th>
                                             <th>Action</th>
@@ -36,7 +36,11 @@
                                                 <td><?php echo $ktg['nama_user'] ?></td>
 
                                                 <td>
-                                                    <?php echo $ktg['pertanyaan'] ?>
+                                                    <?php if ($ktg['id_pertanyaan'] != null) {
+                                                        echo "Pertanyaan";
+                                                    } else {
+                                                        echo "Artikel";
+                                                    } ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $ktg['pesan'] ?>
@@ -48,8 +52,14 @@
                                                     <div class="dropdown">
                                                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Options</a>
                                                         <div class="dropdown-menu">
-                                                            <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> View & Edit</a>
-                                                            <div class="dropdown-divider"></div>
+                                                            <?php if ($ktg['id_pertanyaan'] != null) : ?>
+                                                                <a href="<?= base_url('AdminPage/detail_question/' . $ktg['id_pertanyaan']) ?>" class="dropdown-item has-icon" onclick="ubah_status_baca(<?php echo $ktg['id_message'] ?>)"><i class="far fa-edit"></i> View message & Edit</a>
+                                                            <?php else : ?>
+                                                                <a onclick="tampilembed(<?php echo $ktg['id_artikel'] ?>)" href="#" class="dropdown-item has-icon"><i class="fas fa-search"></i> View & Detail</a>
+                                                                <a href="<?= base_url('AdminPage/ubah_status_baca_single/' . $ktg['id_message']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> Terbaca </a>
+
+                                                                <div class="dropdown-divider"></div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </td>
