@@ -239,6 +239,7 @@ class Register extends CI_Controller
 						'password' 		=> $password,
 						'view_password' => $pwd,
 						'role_id' 		=> $roleid,
+						'status_user'	=> 1,
 						'kode_afiliasi'	=> md5($username)
 					);
 					$data_xss	= $this->security->xss_clean($data_user);

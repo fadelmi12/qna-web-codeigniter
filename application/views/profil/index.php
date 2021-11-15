@@ -170,9 +170,9 @@
                                 Edit Profile
                             </div>
                         </a>
-                        <div class="btn btn-primary mt-3 ms-2">
+                        <!-- <div class="btn btn-primary mt-3 ms-2">
                             Verifikasi Akun
-                        </div>
+                        </div> -->
                     </div>
 
 

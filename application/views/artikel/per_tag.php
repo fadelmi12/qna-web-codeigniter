@@ -1,8 +1,8 @@
 <div class="artikel pb-5" id="artikel">
     <div class="py-4">
-    <div class="container route">
-        Home / Jurnal / <?= $namaTag ?>
-    </div>
+        <div class="container route">
+            Home / Jurnal / <?= $namaTag ?>
+        </div>
 
     </div>
 
@@ -73,8 +73,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script>
         var tag = <?php echo $idTag ?>;
-        var total_record = 0;
-        var total_groups = <?php echo $total_data; ?>;
+        var total_recordtag = 0;
+        var total_groupstag = <?php echo $total_data; ?>;
         console.log(tag);
         $(document).ready(function() {
             $('.sub-menu ul').hide();
@@ -83,26 +83,26 @@
                 $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
             });
             $('#pertag_place').load("<?php echo site_url('Artikel/load_pertag/') ?>", {
-                    'offset': total_record,
+                    'offset': total_recordtag,
                     'tag': tag
                 },
 
                 function() {
-                    total_record++;
+                    total_recordtag++;
                 });
             $(window).scroll(function() {
 
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    if (total_record <= total_groups) {
+                    if (total_recordtag <= total_groupstag) {
                         $.post('<?php echo site_url('Artikel/load_pertag/') ?>', {
-                                'offset': total_record,
+                                'offset': total_recordtag,
                                 'tag': tag
                             },
                             function(data) {
                                 if (data != "") {
                                     $("#pertag_place").append(data);
-                                    total_record++;
-                                    console.log(total_record);
+                                    total_recordtag++;
+                                    console.log(total_recordtag);
 
                                 }
 

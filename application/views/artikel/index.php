@@ -74,8 +74,8 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script>
-        var total_record = 0;
-        var total_groups = <?php echo $total_data; ?>;
+        var total_recordar = 0;
+        var total_groupsar = <?php echo $total_data; ?>;
         // console.log('asu');
         $(document).ready(function() {
             // console.log('asu');
@@ -86,24 +86,24 @@
                 $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
             });
             $('#artikelplace').load("<?php echo site_url('Artikel/load_index/') ?>", {
-                    'offset': total_record
+                    'offset': total_recordar
                 },
 
                 function() {
-                    total_record++;
+                    total_recordar++;
                 });
             $(window).scroll(function() {
 
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    if (total_record <= total_groups) {
+                    if (total_recordar <= total_groupsar) {
                         $.post('<?php echo site_url('Artikel/load_index/') ?>', {
-                                'offset': total_record
+                                'offset': total_recordar
                             },
                             function(data) {
                                 if (data != "") {
                                     $("#artikelplace").append(data);
-                                    total_record++;
-                                    console.log(total_record);
+                                    total_recordar++;
+                                    console.log(total_recordar);
 
                                 }
 

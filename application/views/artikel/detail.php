@@ -56,10 +56,16 @@
 
                                         </div>
                                     </div>
-                                    <div class="d-flex nb">
+                                    <div class="d-flex nb mb-1">
                                         <i class="fas fa-file-pdf my-auto me-2"></i>
                                         <div class="tag my-auto">
                                             <?php echo $article->jumlah_halaman . ' ' . 'Halaman' . ', ' . $article->tahun_rilis ?>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex nb mb-1">
+                                        <i class="fas fa-dollar-sign my-auto me-2"></i>
+                                        <div class="tag my-auto">
+                                            <?php echo "Coin" . " " .  $article->harga_artikel ?>
                                         </div>
                                     </div>
                                 </div>
@@ -503,6 +509,12 @@
                     $('#beli').modal('hide');
                 }
             </script>
+            <script type="text/javascript">
+                function close_reportArtikel() {
+
+                    $('#reportartikel').modal('hide');
+                }
+            </script>
         </div>
     </div>
 </div>
@@ -531,18 +543,14 @@
                         <input type="hidden" name="id_artikel" value="<?= $article->id_artikel ?>">
                         <input type="hidden" name="id_user" value="<?= $this->session->userdata('id_user') ?>">
                         <button class="btn btn-primary mr-4" type="submit">Kirim</button>
-                        <a class="btn btn-danger ml-3" onclick="close_report()">Batal</a>
+                        <a class="btn btn-danger ml-3" onclick="close_reportArtikel()">Batal</a>
                     </form>
                 </div>
             </div>
-            <script type="text/javascript">
-                function close_report() {
-                    $('#reportartikel').modal('hide');
-                }
-            </script>
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="peringatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
         <div class="modal-content">
@@ -554,9 +562,9 @@
                     <h5>Saldo anda kurang silakan Topup dulu !</h5>
                 </div>
                 <div class="container text-center mt-3">
-                    
-                        <a class="btn btn-danger ml-3" onclick="close_report()">ok</a>
-                    
+
+                    <a class="btn btn-danger ml-3" onclick="close_report()">ok</a>
+
                 </div>
             </div>
             <script type="text/javascript">

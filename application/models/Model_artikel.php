@@ -25,7 +25,7 @@ class Model_artikel extends CI_Model
         // $this->db->join('t_artikeltag', 't_artikeltag.id_artikel=t_artikel.id_artikel', 'left');
         // $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
         // $this->db->where('status_hidden=0');
-        $this->db->order_by('t_artikel.id_artikel', 'ASC');
+        $this->db->order_by('t_artikel.id_artikel', 'DESC');
         $this->db->limit($limit, $offset);
         $this->db->group_by('judul_artikel');
         return $this->db->get();
@@ -54,7 +54,7 @@ class Model_artikel extends CI_Model
         $this->db->join('t_user', 't_user.id_user=t_artikel.id_user', 'left');
         $this->db->join('t_tag', 't_tag.idTag=t_artikeltag.idTag', 'left');
         // $this->db->where('t_artikel.status_hidden=0');
-        $this->db->order_by('t_artikel.id_artikel', 'ASC');
+        $this->db->order_by('t_artikel.id_artikel', 'DESC');
         $this->db->where('t_artikeltag.idTag=' . $id_Tag);
         $this->db->limit($limit, $offset);
         $this->db->group_by('judul_artikel');
