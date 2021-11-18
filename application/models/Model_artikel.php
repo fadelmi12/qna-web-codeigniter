@@ -187,4 +187,12 @@ class Model_artikel extends CI_Model
     {
         return $this->db->get('t_beliartikel');
     }
+
+    public function tampil_semua_artikel()
+    {
+        $this->db->select('*');
+        $this->db->from('t_artikel');
+        $this->db->join('t_user', 't_user.id_user = t_artikel.id_user', 'left');
+        return $this->db->get();
+    }
 }

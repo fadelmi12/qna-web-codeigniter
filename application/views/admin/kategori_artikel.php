@@ -72,8 +72,8 @@
                                 <div class="card-header">
                                     <h4 class="text-left">Kategori</h4>
                                     <div class="card-header-action">
+                                        <a href="<?php echo base_url('Daftar_artikel/tampil_semua_artikel') ?>" class="btn btn-warning me-2"><i class="fas fa-book"></i> Tampilkan Semua Artikel</a>
                                         <?php $total = $this->db->query("SELECT * FROM t_artikel WHERE status_tampil = '0'")->num_rows() ?>
-
                                         <a href="<?php echo base_url('Daftar_artikel/verifikasi_artikel') ?>" class="btn btn-success me-2"><i class="fas fa-check"></i> Artikel Belum Terverifikasi<span class="badge" style="background:white; color:#67be7e;"><?php echo $total ?> </span></a>
                                         <button type="button" onclick="tambah_kategori_artikel()" class="btn btn-primary">Tambah Kategori</button>
                                     </div>

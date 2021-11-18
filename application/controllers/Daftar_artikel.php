@@ -12,6 +12,18 @@ class Daftar_artikel extends CI_Controller
 		}
 	}
 
+	//tampil semua artikel
+	public function tampil_semua_artikel()
+	{
+		$data['list_semua_artikel'] = $this->Model_artikel->tampil_semua_artikel()->result_array();
+		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
+		$data['nav'] = "artikel";
+		//echo($data); exit;
+		$this->load->view('admin/template/header',$data);
+		$this->load->view('admin/semua_artikel',$data);
+		$this->load->view('admin/template/footer');
+	}
+
 	// CRUD kategori Artikel
 	public function index()
 	{
