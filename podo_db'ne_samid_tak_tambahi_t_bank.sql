@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2021 pada 07.01
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 8.0.2
+-- Generation Time: Nov 18, 2021 at 06:30 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siswarajin_new`
+-- Database: `siswarajin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_tag`
+-- Table structure for table `kategori_tag`
 --
 
 CREATE TABLE `kategori_tag` (
@@ -34,7 +34,7 @@ CREATE TABLE `kategori_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori_tag`
+-- Dumping data for table `kategori_tag`
 --
 
 INSERT INTO `kategori_tag` (`id_kategori_tag`, `nama_kategori`, `svg`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `kategori_tag` (`id_kategori_tag`, `nama_kategori`, `svg`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_login`
+-- Table structure for table `log_login`
 --
 
 CREATE TABLE `log_login` (
@@ -62,7 +62,7 @@ CREATE TABLE `log_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `log_login`
+-- Dumping data for table `log_login`
 --
 
 INSERT INTO `log_login` (`id`, `device`, `ip`, `browser`, `email`, `date`) VALUES
@@ -121,64 +121,71 @@ INSERT INTO `log_login` (`id`, `device`, `ip`, `browser`, `email`, `date`) VALUE
 (53, 'Windows 7', '110.136.152.20', 'Chrome', 'hd722875@gmail.com', '2021-Nov-02 14:59'),
 (54, 'Windows 10', '182.2.72.171', 'Chrome', '', '2021-Nov-03 09:43'),
 (55, 'Android', '182.2.72.171', 'Chrome', 'auliafaizah397@gmail.com', '2021-Nov-03 09:49'),
-(56, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-03 21:15'),
-(57, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-03 22:12'),
-(58, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-03 22:52'),
-(59, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-03 22:54'),
-(60, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-03 23:04'),
-(61, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-03 23:04'),
-(62, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-03 23:05'),
-(63, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-03 23:09'),
-(64, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-03 23:09'),
-(65, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 13:33'),
-(66, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 13:34'),
-(67, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 13:36'),
-(68, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 13:36'),
-(69, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 13:37'),
-(70, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 13:38'),
-(71, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 13:40'),
-(72, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 13:41'),
-(73, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 13:48'),
-(74, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 19:34'),
-(75, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:47'),
-(76, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:48'),
-(77, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-04 19:52'),
-(78, 'Windows 10', '::1', 'Chrome', 'dhanter@gmail.com', '2021-Nov-04 19:53'),
-(79, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 20:12'),
-(80, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:08'),
-(81, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-04 22:13'),
-(82, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-05 14:52'),
-(83, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-05 17:11'),
-(84, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:24'),
-(85, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-07 12:26'),
-(86, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:26'),
-(87, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 12:27'),
-(88, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-07 12:30'),
-(89, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 17:39'),
-(90, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-07 17:40'),
-(91, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-07 18:58'),
-(92, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:52'),
-(93, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-08 21:17'),
-(94, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 19:45'),
-(95, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 19:46'),
-(96, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:47'),
-(97, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:47'),
-(98, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:49'),
-(99, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:54'),
-(100, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-09 19:56'),
-(101, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 19:57'),
-(102, 'Windows 10', '::1', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 20:00'),
-(103, 'Windows 10', '::1', 'Chrome', 'alex@gmail.com', '2021-Nov-09 21:57');
+(56, 'Windows 10', '125.167.95.121', 'Chrome', 'alex@gmail.com', '2021-Nov-03 22:14'),
+(57, 'Windows 10', '182.0.205.143', 'Chrome', 'hd722875@gmail.com', '2021-Nov-04 11:33'),
+(58, 'Windows 10', '182.0.205.143', 'Chrome', '', '2021-Nov-04 11:33'),
+(59, 'Windows 10', '182.0.205.143', 'Chrome', 'hd722875@gmail.com', '2021-Nov-04 11:33'),
+(60, 'Windows 10', '182.0.205.143', 'Chrome', 'hd722875@gmail.com', '2021-Nov-04 11:33'),
+(61, 'Windows 10', '182.0.205.143', 'Chrome', 'hd722875@gmail.com', '2021-Nov-04 11:35'),
+(62, 'Windows 10', '182.0.205.143', 'Chrome', 'hd722875@gmail.com', '2021-Nov-04 11:36'),
+(63, 'Windows 10', '115.178.226.176', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-04 20:06'),
+(64, 'Windows 10', '115.178.226.176', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-04 20:06'),
+(65, 'Windows 10', '115.178.246.216', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-05 10:57'),
+(66, 'Windows 10', '115.178.246.216', 'Chrome', 'admin@gmail.com', '2021-Nov-05 11:29'),
+(67, 'Windows 10', '115.178.246.216', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-05 11:29'),
+(68, 'Windows 10', '115.178.246.216', 'Chrome', 'admin@gmail.com', '2021-Nov-05 11:32'),
+(69, 'Windows 10', '115.178.246.216', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-05 11:32'),
+(70, 'Windows 10', '115.178.246.216', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-05 11:33'),
+(71, 'Windows 10', '115.178.246.216', 'Chrome', 'admin@gmail.com', '2021-Nov-05 11:34'),
+(72, 'Windows 10', '115.178.246.216', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-05 11:35'),
+(73, 'Windows 10', '125.167.95.121', 'Chrome', 'admin@gmail.com', '2021-Nov-05 12:23'),
+(74, 'Windows 10', '94.158.190.52', 'Chrome', 'everodo24@mail.ru', '2021-Nov-06 06:13'),
+(75, 'Windows 10', '125.167.95.121', 'Chrome', 'dekapra@gmail.com', '2021-Nov-07 20:32'),
+(76, 'Windows 10', '125.167.95.121', 'Chrome', 'alex@gmail.com', '2021-Nov-07 20:33'),
+(77, 'Windows 10', '125.167.95.121', 'Chrome', 'admin@gmail.com', '2021-Nov-07 20:33'),
+(78, 'Windows 10', '125.167.95.121', 'Chrome', 'admin@gmail.com', '2021-Nov-07 20:35'),
+(79, 'Windows 10', '125.167.95.121', 'Chrome', 'alex@gmail.com', '2021-Nov-07 20:35'),
+(80, 'Windows 10', '180.253.163.66', 'Chrome', 'alex@gmail.com', '2021-Nov-08 20:19'),
+(81, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:25'),
+(82, 'Windows 10', '180.253.163.66', 'Chrome', 'admin@gmail.com', '2021-Nov-08 20:25'),
+(83, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:28'),
+(84, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:29'),
+(85, 'Windows 10', '114.79.17.91', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-08 20:38'),
+(86, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:38'),
+(87, 'Windows 10', '114.79.17.91', 'Chrome', 'sayapunyasaham@gmail.com', '2021-Nov-08 20:38'),
+(88, 'Windows 10', '180.253.163.66', 'Chrome', 'admin@gmail.com', '2021-Nov-08 20:39'),
+(89, 'Windows 10', '114.79.17.91', 'Chrome', 'event1945@gmail.com', '2021-Nov-08 20:41'),
+(90, 'Windows 10', '114.79.17.91', 'Chrome', 'thousani@pnm.ac.id', '2021-Nov-08 20:41'),
+(91, 'Windows 10', '114.79.17.91', 'Chrome', 'thousani@pnm.ac.id', '2021-Nov-08 20:41'),
+(92, 'Windows 10', '116.206.40.87', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-08 20:45'),
+(93, 'Windows 10', '116.206.40.87', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-08 20:48'),
+(94, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-08 20:56'),
+(95, 'Windows 10', '116.206.40.79', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-08 22:46'),
+(96, 'Windows 10', '180.253.163.66', 'Chrome', 'admin@gmail.com', '2021-Nov-09 20:13'),
+(97, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 20:15'),
+(98, 'Windows 10', '180.253.163.66', 'Chrome', 'admin@gmail.com', '2021-Nov-09 20:16'),
+(99, 'Windows 10', '180.253.163.66', 'Chrome', 'dekapra@gmail.com', '2021-Nov-09 20:17'),
+(100, 'Windows 10', '180.253.163.66', 'Chrome', 'alex@gmail.com', '2021-Nov-09 20:46'),
+(101, 'Windows 10', '202.67.40.12', 'Chrome', 'bepeduapuluh@Gmail.com', '2021-Nov-09 20:46'),
+(102, 'Windows 10', '116.206.40.123', 'Chrome', 'admin@gmail.com', '2021-Nov-09 20:47'),
+(103, 'Windows 10', '180.253.163.66', 'Chrome', 'admin@gmail.com', '2021-Nov-09 21:37'),
+(104, 'Windows 10', '202.67.40.9', 'Chrome', 'bepeduapuluh@gmail.com', '2021-Nov-09 21:57'),
+(105, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@Gmail.com', '2021-Nov-10 14:51'),
+(106, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-10 16:50'),
+(107, 'Windows 10', '::1', 'Chrome', 'bepeduapuluh@Gmail.com', '2021-Nov-12 14:09'),
+(108, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-12 14:13'),
+(109, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-12 18:00'),
+(110, 'Windows 10', '::1', 'Chrome', 'admin@gmail.com', '2021-Nov-12 20:25');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_money`
+-- Table structure for table `log_money`
 --
 
 CREATE TABLE `log_money` (
   `id_logMoney` int(11) NOT NULL,
-  `id_profile` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `status_log` tinyint(1) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `ket_log` varchar(150) NOT NULL,
@@ -186,29 +193,41 @@ CREATE TABLE `log_money` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `log_money`
+-- Dumping data for table `log_money`
 --
 
-INSERT INTO `log_money` (`id_logMoney`, `id_profile`, `status_log`, `jumlah`, `ket_log`, `tgl_log`) VALUES
-(1, 1, 1, 25, 'Menjawab', '2021-11-04 12:37:49'),
-(3, 1, 0, 20, 'Membuat Pertanyaan', '2021-11-04 12:37:49'),
-(6, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 12:37:49'),
-(7, 3, 0, 1000, 'Mendownload', '2021-11-04 12:37:49'),
-(8, 1, 1, 1000, 'Artikel Di Download', '2021-11-04 12:37:49'),
-(9, 1, 0, 550, 'Penarikan Uang', '2021-11-04 12:37:49'),
-(10, 1, 0, 550, 'Penarikan Uang', '2021-11-04 12:46:52'),
-(11, 1, 0, 20, 'Membuat Pertanyaan', '2021-11-04 12:47:23'),
-(12, 3, 0, 0, 'Mendownload', '2021-11-04 12:50:55'),
-(13, 1, 1, 0, 'Artikel Di Download', '2021-11-04 12:50:55'),
-(14, 3, 0, 70, 'Mendownload', '2021-11-04 12:51:44'),
-(15, 1, 1, 70, 'Artikel Di Download', '2021-11-04 12:51:44'),
-(16, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 12:52:55'),
-(17, 10, 0, 10, 'Membuat Pertanyaan', '2021-11-09 12:59:37');
+INSERT INTO `log_money` (`id_logMoney`, `id_user`, `status_log`, `jumlah`, `ket_log`, `tgl_log`) VALUES
+(1, 1, 1, 25, 'Menjawab', '2021-11-04 05:37:49'),
+(3, 1, 0, 20, 'Membuat Pertanyaan', '2021-11-04 05:37:49'),
+(6, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 05:37:49'),
+(7, 3, 0, 1000, 'Mendownload', '2021-11-04 05:37:49'),
+(8, 1, 1, 1000, 'Artikel Di Download', '2021-11-04 05:37:49'),
+(9, 1, 0, 550, 'Penarikan Uang', '2021-11-04 05:37:49'),
+(10, 1, 0, 550, 'Penarikan Uang', '2021-11-04 05:46:52'),
+(11, 1, 0, 20, 'Membuat Pertanyaan', '2021-11-04 05:47:23'),
+(12, 3, 0, 0, 'Mendownload', '2021-11-04 05:50:55'),
+(13, 1, 1, 0, 'Artikel Di Download', '2021-11-04 05:50:55'),
+(14, 3, 0, 70, 'Mendownload', '2021-11-04 05:51:44'),
+(15, 1, 1, 70, 'Artikel Di Download', '2021-11-04 05:51:44'),
+(16, 3, 1, 5000, 'Menjawab Betul Pertanyaan', '2021-11-04 05:52:55'),
+(17, 2, 0, 10, 'Membuat Pertanyaan', '2021-11-08 15:48:43'),
+(18, 10, 0, 10, 'Membuat Pertanyaan', '2021-11-09 13:17:41'),
+(19, 1, 0, 0, 'Mendownload', '2021-11-09 13:46:13'),
+(20, 1, 1, 0, 'Artikel Di Download', '2021-11-09 13:46:13'),
+(21, 2, 0, 0, 'Mendownload', '2021-11-09 13:47:00'),
+(22, 1, 1, 0, 'Artikel Di Download', '2021-11-09 13:47:00'),
+(23, 6, 0, 0, 'Mendownload', '2021-11-09 13:47:51'),
+(24, 1, 1, 0, 'Artikel Di Download', '2021-11-09 13:47:51'),
+(25, 6, 0, 0, 'Mendownload', '2021-11-09 13:48:09'),
+(26, 1, 1, 0, 'Artikel Di Download', '2021-11-09 13:48:09'),
+(27, 2, 0, 550, 'Penarikan Uang', '2021-11-12 07:27:09'),
+(28, 2, 0, 550, 'Penarikan Uang', '2021-11-12 08:07:04'),
+(29, 13, 0, 550, 'Penarikan Uang', '2021-11-12 08:09:51');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_aktivitas`
+-- Table structure for table `t_aktivitas`
 --
 
 CREATE TABLE `t_aktivitas` (
@@ -219,7 +238,7 @@ CREATE TABLE `t_aktivitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_aktivitas`
+-- Dumping data for table `t_aktivitas`
 --
 
 INSERT INTO `t_aktivitas` (`id_aktivitas`, `id_user`, `aktivitas`, `waktu_aktivitas`) VALUES
@@ -283,16 +302,19 @@ INSERT INTO `t_aktivitas` (`id_aktivitas`, `id_user`, `aktivitas`, `waktu_aktivi
 (63, 16, 'up_pertanyaan', '2021-10-30 21:30:20'),
 (64, 18, 'registrasi', '2021-11-01 10:48:48'),
 (65, 19, 'registrasi', '2021-11-02 14:59:19'),
-(66, 10, 'up_pertanyaan', '2021-11-03 22:03:27'),
-(67, 14, 'up_pertanyaan', '2021-11-03 23:04:39'),
-(68, 10, 'up_pertanyaan', '2021-11-04 19:47:23'),
-(69, 20, 'registrasi', '2021-11-07 12:29:43'),
-(70, 23, 'registrasi', '2021-11-09 19:59:37');
+(66, 16, 'up_pertanyaan', '2021-11-05 11:29:00'),
+(67, 16, 'up_pertanyaan', '2021-11-05 11:29:24'),
+(68, 16, 'up_pertanyaan', '2021-11-05 11:31:53'),
+(69, 16, 'up_pertanyaan', '2021-11-05 11:32:24'),
+(70, 20, 'registrasi', '2021-11-08 20:28:03'),
+(71, 21, 'registrasi', '2021-11-08 20:34:46'),
+(72, 24, 'registrasi', '2021-11-08 22:48:43'),
+(73, 25, 'registrasi', '2021-11-09 20:17:41');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_artikel`
+-- Table structure for table `t_artikel`
 --
 
 CREATE TABLE `t_artikel` (
@@ -312,24 +334,23 @@ CREATE TABLE `t_artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `t_artikel`
+-- Dumping data for table `t_artikel`
 --
 
 INSERT INTO `t_artikel` (`id_artikel`, `judul_artikel`, `id_user`, `tahun_rilis`, `deskripsi_artikel`, `jumlah_halaman`, `author`, `slug`, `file_pdf`, `tanggal_upload`, `status_tampil`, `harga_artikel`, `jumlah_view`) VALUES
-(1, 'GGWP', 10, '1999', 'Abstrak Warna yang diterima oleh mata dari sebuah objek ditentukan oleh warna sinar yang dipantulkan oleh objek tersebut. Digitalisasi yaitu gambar yang diolah dengan komputer digital, direpresentasikan secara numerik dengan nilai-nilai diskrit. Deteksi tepi merupakan langkah untuk melengkapi informasi di dalam citra, tepi mencirikan batas-batas objek berguna untuk proses segmentasi dan identifikasi objek. Deteksi tepi citra bertujuan meningkatkan penampakan garis batas daerah atau objek. Proses segmentasi mengidentifikasi objek dalam beberapa potongan gambar yang bertujuan untuk mempermudah membaca informasi citra. Metode segmentasi mengasumsikan setiap objek cenderung memiliki warna yang homogen dan terletak pada kisaran keabuan tertentu. Setiap komponen warna menggunakan 8 bit (nilainya berkisar antara 0 sampai dengan 255). Proses thresholding mengkonversi citra warna menjadi hitam dan putih sehingga mempermudah mendeteksi objek.', 10, 'samid', 'implementasi-teknik-threshoding-pada-segmentasi-citra-digital', 'GGWP232726.pdf', '2021-09-24 23:27:26', 1, 0, 2),
-(2, 'Perbandingan Metode Peningkatan Kualitas Citra dan Deteksi Tepi pada Citra Kutu Kebul', 10, '2020', 'Abstrak-Citra digital dapat dijadikan sebagai sumber untuk memperoleh informasi yang dapat digunakan untuk menentukan suatu keputusan. Sebagai informasi, pengolahan citra digital perlu dilakukan dengan beberapa metode dan operasi. Pre-processing menjadi tahapan awal dalam pengolahan citra untuk meningkatkan kualitas citra digital. Terdapat beberapa metode pre-processing yang dapat digunakan untuk melakukan pengolahan citra digital. Operasi pre-processing yang dapat digunakan diantaranya histogram equalization, operasi titik, intensity adjustment, thresholding, median averaging, median filtering, dan fast fouring transform. Setiap metode dari pre-processing memiliki algoritma yang berbeda dengan tujuan yang sama yaitu untuk meningkatkan kualitas citra. Penggunaan metode pre-processing dapat dilakukan dengan mengambil salah satu metode terbaik sebelum melakukan proses pengolahan citra. Dari hasil pre-processing kemudian diolah kembali dengan metode deteksi tepi sobel, isotropic, canny, dan gradient untuk mendeteksi kutu kebul pada daun. Dari deteksi tepi yang dilakukan, operasi canny paling tidak sesuai untuk mendeteksi kutu kebul pada daun.', 1, 'wadkawd', 'perbandingan-metode-peningkatan-kualitas-citra-dan-deteksi-tepi-pada-citra-kutu-kebul', 'wadwd.pdf\r\n', '0000-00-00 00:00:00', 1, 70, 3),
-(3, 'Analisa Tekstur Kulit Wajah', 10, '2019', 'The problem in determining the selection of soybean seeds for replanting, especially in East Nusa Tenggara is still an important issue. The thing that affects the quality of soybean seeds is found broken seeds, dull seeds, dirty seeds, and broken seeds due to the process of drying and shelling. Determination of soy bean quality is usually done manually by visual observation. The manual system takes a long time and produces products with inconsistent quality due to visual limitations, fatigue, and different perceptions of each observer. This research was conducted using comparison of image texture extraction with statistical methods of order I (color moment) and order II statistics (GLCM) for soy bean selection. Order I statistics (color moment) show the probability of the appearance of the value of the gray degree of pixels in an image, while the order II statistics (GLCM) show the probability of a neighborhood relationship between two pixels that form a cohesion matrix from the image data. This research is expected to help the classification process in determining soybean seeds. The k-Nearest Neighbor (k-NN) algorithm used in previous studies to classify the image objects to be examined. The results of this study were successfully conducted using k-Nearest Neighbor (k-NN) with euclidean distance and k = 1 with the results of color moment extracts getting the highest accuracy of 88% and the results of GLCM feature extraction for homogeneity characteristics of 75.5%, correlations of 78.67% , contrast is 65.75% and energy is 63.83% with an average accuracy of 70.93%.', 25, 'Fadel M', 'analisa-tekstur-kulit-wajah', 'jawaban-telo.pdf', '0000-00-00 00:00:00', 0, 0, 0),
+(1, 'GGWP', 10, '1999', 'Abstrak Warna yang diterima oleh mata dari sebuah objek ditentukan oleh warna sinar yang dipantulkan oleh objek tersebut. Digitalisasi yaitu gambar yang diolah dengan komputer digital, direpresentasikan secara numerik dengan nilai-nilai diskrit. Deteksi tepi merupakan langkah untuk melengkapi informasi di dalam citra, tepi mencirikan batas-batas objek berguna untuk proses segmentasi dan identifikasi objek. Deteksi tepi citra bertujuan meningkatkan penampakan garis batas daerah atau objek. Proses segmentasi mengidentifikasi objek dalam beberapa potongan gambar yang bertujuan untuk mempermudah membaca informasi citra. Metode segmentasi mengasumsikan setiap objek cenderung memiliki warna yang homogen dan terletak pada kisaran keabuan tertentu. Setiap komponen warna menggunakan 8 bit (nilainya berkisar antara 0 sampai dengan 255). Proses thresholding mengkonversi citra warna menjadi hitam dan putih sehingga mempermudah mendeteksi objek.', 10, 'samid', 'implementasi-teknik-threshoding-pada-segmentasi-citra-digital', 'GGWP232726.pdf', '2021-09-24 23:27:26', 1, 0, 0),
+(2, 'Perbandingan Metode Peningkatan Kualitas Citra dan Deteksi Tepi pada Citra Kutu Kebul', 10, '2020', 'Abstrak-Citra digital dapat dijadikan sebagai sumber untuk memperoleh informasi yang dapat digunakan untuk menentukan suatu keputusan. Sebagai informasi, pengolahan citra digital perlu dilakukan dengan beberapa metode dan operasi. Pre-processing menjadi tahapan awal dalam pengolahan citra untuk meningkatkan kualitas citra digital. Terdapat beberapa metode pre-processing yang dapat digunakan untuk melakukan pengolahan citra digital. Operasi pre-processing yang dapat digunakan diantaranya histogram equalization, operasi titik, intensity adjustment, thresholding, median averaging, median filtering, dan fast fouring transform. Setiap metode dari pre-processing memiliki algoritma yang berbeda dengan tujuan yang sama yaitu untuk meningkatkan kualitas citra. Penggunaan metode pre-processing dapat dilakukan dengan mengambil salah satu metode terbaik sebelum melakukan proses pengolahan citra. Dari hasil pre-processing kemudian diolah kembali dengan metode deteksi tepi sobel, isotropic, canny, dan gradient untuk mendeteksi kutu kebul pada daun. Dari deteksi tepi yang dilakukan, operasi canny paling tidak sesuai untuk mendeteksi kutu kebul pada daun.', 1, 'wadkawd', 'perbandingan-metode-peningkatan-kualitas-citra-dan-deteksi-tepi-pada-citra-kutu-kebul', 'wadwd.pdf\r\n', '0000-00-00 00:00:00', 1, 1000, 0),
+(3, 'Analisa Tekstur Kulit Wajah', 10, '2019', 'The problem in determining the selection of soybean seeds for replanting, especially in East Nusa Tenggara is still an important issue. The thing that affects the quality of soybean seeds is found broken seeds, dull seeds, dirty seeds, and broken seeds due to the process of drying and shelling. Determination of soy bean quality is usually done manually by visual observation. The manual system takes a long time and produces products with inconsistent quality due to visual limitations, fatigue, and different perceptions of each observer. This research was conducted using comparison of image texture extraction with statistical methods of order I (color moment) and order II statistics (GLCM) for soy bean selection. Order I statistics (color moment) show the probability of the appearance of the value of the gray degree of pixels in an image, while the order II statistics (GLCM) show the probability of a neighborhood relationship between two pixels that form a cohesion matrix from the image data. This research is expected to help the classification process in determining soybean seeds. The k-Nearest Neighbor (k-NN) algorithm used in previous studies to classify the image objects to be examined. The results of this study were successfully conducted using k-Nearest Neighbor (k-NN) with euclidean distance and k = 1 with the results of color moment extracts getting the highest accuracy of 88% and the results of GLCM feature extraction for homogeneity characteristics of 75.5%, correlations of 78.67% , contrast is 65.75% and energy is 63.83% with an average accuracy of 70.93%.', 25, 'Fadel M', 'analisa-tekstur-kulit-wajah', 'jawaban-telo.pdf', '0000-00-00 00:00:00', 1, 0, 0),
 (27, 'Asyiknya Bercocok Tanam', 1, '2020', 'Buku Modul Bercocok Tanam', 24, 'Kemendikbud', 'panduan-bercocok-tanam', 'tanam.pdf', '2021-10-30 09:53:07', 1, 0, 0),
 (28, 'Kesehatan Masyarakat', 12, '2020', 'Buku Modul Kesehatan Masyarakat', 24, 'Kemendikbud', 'kesehatan-masyarakat', 'kesmas.pdf', '2021-10-30 10:06:14', 1, 0, 0),
 (29, 'Sehat Berolahraga', 12, '2020', 'Buku Modul Sehat Berolahraga', 24, 'Kemendikbud', 'sehat-berolahraga', 'olahraga.pdf', '2021-10-30 10:07:47', 1, 0, 0),
 (30, 'Ragam Budaya', 12, '2020', 'Buku Modul Keragaman Budaya Indonesia', 24, 'Kemendikbud', 'ragam-budaya', 'budaya.pdf', '2021-10-30 10:09:55', 1, 0, 0),
-(31, 'tips dan trik tembus hibah penelitian dan pengabdian nasional', 16, '2021', 'tips dan trik gimana cara lolos hibah', 90, 'Poltek Fak-Fak', 'tips-dan-trik-tembus-hibah-penelitian-dan-pengabdian-nasional', 'MARKETING_CLASSICS_MARKETING_CLASSICS_MA.pdf', '2021-10-30 20:00:42', 1, 900, 0),
-(32, 'kalimat lomba', 10, '2021', 'ahjha', 11, 'deka', 'kalimat-lomba', 'Akta_lahir_tosan.pdf', '2021-10-30 20:11:47', 1, 100, 0);
+(31, 'tips dan trik tembus hibah penelitian dan pengabdian nasional', 16, '2021', 'tips dan trik gimana cara lolos hibah', 90, 'Poltek Fak-Fak', 'tips-dan-trik-tembus-hibah-penelitian-dan-pengabdian-nasional', 'MARKETING_CLASSICS_MARKETING_CLASSICS_MA.pdf', '2021-10-30 20:00:42', 1, 900, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_artikelbookmark`
+-- Table structure for table `t_artikelbookmark`
 --
 
 CREATE TABLE `t_artikelbookmark` (
@@ -340,17 +361,19 @@ CREATE TABLE `t_artikelbookmark` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_artikelbookmark`
+-- Dumping data for table `t_artikelbookmark`
 --
 
 INSERT INTO `t_artikelbookmark` (`id`, `id_user`, `id_artikel`, `status_save`) VALUES
+(0, 12, 1, 0),
+(0, 14, 1, 1),
 (0, 12, 1, 0),
 (0, 14, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_artikeltag`
+-- Table structure for table `t_artikeltag`
 --
 
 CREATE TABLE `t_artikeltag` (
@@ -360,21 +383,61 @@ CREATE TABLE `t_artikeltag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `t_artikeltag`
+-- Dumping data for table `t_artikeltag`
 --
 
 INSERT INTO `t_artikeltag` (`id_artikeltag`, `id_artikel`, `idTag`) VALUES
 (3, 1, 7),
 (4, 1, 8),
 (5, 3, 5),
-(6, 31, 5),
-(7, 32, 5),
-(8, 32, 7);
+(6, 31, 5);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_bookmark`
+-- Table structure for table `t_bank`
+--
+
+CREATE TABLE `t_bank` (
+  `id_bank` int(11) NOT NULL,
+  `nama_bank` varchar(50) NOT NULL,
+  `kode_bank` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_bank`
+--
+
+INSERT INTO `t_bank` (`id_bank`, `nama_bank`, `kode_bank`) VALUES
+(1, 'BNI', 0),
+(2, 'BCA', 0),
+(3, 'Mandiri', 0),
+(4, 'BRI', 0),
+(5, 'BTN', 0),
+(6, 'BSI (Bank Syariah Indonesia)', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_beliartikel`
+--
+
+CREATE TABLE `t_beliartikel` (
+  `id_user` int(11) NOT NULL,
+  `id_artikel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_beliartikel`
+--
+
+INSERT INTO `t_beliartikel` (`id_user`, `id_artikel`) VALUES
+(18, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_bookmark`
 --
 
 CREATE TABLE `t_bookmark` (
@@ -385,7 +448,7 @@ CREATE TABLE `t_bookmark` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_bookmark`
+-- Dumping data for table `t_bookmark`
 --
 
 INSERT INTO `t_bookmark` (`id`, `id_user`, `id_pertanyaan`, `status_bookmark`) VALUES
@@ -401,7 +464,7 @@ INSERT INTO `t_bookmark` (`id`, `id_user`, `id_pertanyaan`, `status_bookmark`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_faq`
+-- Table structure for table `t_faq`
 --
 
 CREATE TABLE `t_faq` (
@@ -411,7 +474,7 @@ CREATE TABLE `t_faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `t_faq`
+-- Dumping data for table `t_faq`
 --
 
 INSERT INTO `t_faq` (`id_faq`, `question`, `answer`) VALUES
@@ -424,7 +487,7 @@ INSERT INTO `t_faq` (`id_faq`, `question`, `answer`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_jawaban`
+-- Table structure for table `t_jawaban`
 --
 
 CREATE TABLE `t_jawaban` (
@@ -439,7 +502,7 @@ CREATE TABLE `t_jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_jawaban`
+-- Dumping data for table `t_jawaban`
 --
 
 INSERT INTO `t_jawaban` (`id_jawaban`, `id_user`, `id_pertanyaan`, `jawaban`, `jawaban_benar`, `status_sembunyi`, `gambar_jawab`, `waktu_jawab`) VALUES
@@ -458,19 +521,17 @@ INSERT INTO `t_jawaban` (`id_jawaban`, `id_user`, `id_pertanyaan`, `jawaban`, `j
 (26, 11, 22, 'jendral', 1, 0, '', '2021-10-18 22:07:18'),
 (27, 13, 23, 'oit', 1, 0, '', '2021-10-18 22:10:35'),
 (28, 14, 6, 'oioi', 1, 0, '', '2021-10-23 06:44:29'),
-(29, 14, 48, 'jojol', 0, 0, '', '2021-10-28 11:53:31'),
+(29, 14, 48, 'jojol', 1, 0, '', '2021-10-28 11:53:31'),
 (30, 17, 59, 'homooo', 1, 0, '', '2021-10-28 23:35:55'),
 (31, 13, 58, 'KNIL adalah singkatan dari bahasa Belanda, yaitu Koninklijke Nederlands(ch)-Indische Leger, atau secara harafiah artinya Tentara Kerajaan Hindia Belanda', 1, 0, '', '2021-10-29 02:09:02'),
 (32, 13, 60, 'Dokuritsu Junbi Cosakai', 1, 0, '', '2021-10-29 02:23:51'),
 (33, 16, 61, 'kasih tau ga yaa', 0, 0, '', '2021-10-29 02:57:53'),
-(34, 10, 50, 'tak tau', 1, 0, '', '2021-11-03 15:52:29'),
-(35, 14, 28, 'satelit\r\n', 1, 0, '', '2021-11-03 16:05:42'),
-(36, 14, 27, '1\r\n', 1, 0, '', '2021-11-04 12:48:27');
+(34, 12, 62, 'sudah liat', 0, 0, '', '2021-11-05 04:34:40');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kategori`
+-- Table structure for table `t_kategori`
 --
 
 CREATE TABLE `t_kategori` (
@@ -481,7 +542,7 @@ CREATE TABLE `t_kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kategori`
+-- Dumping data for table `t_kategori`
 --
 
 INSERT INTO `t_kategori` (`id_kategori`, `nama_kategori`, `gambar`, `logo_abu`) VALUES
@@ -498,7 +559,7 @@ INSERT INTO `t_kategori` (`id_kategori`, `nama_kategori`, `gambar`, `logo_abu`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_like`
+-- Table structure for table `t_like`
 --
 
 CREATE TABLE `t_like` (
@@ -509,7 +570,7 @@ CREATE TABLE `t_like` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_like`
+-- Dumping data for table `t_like`
 --
 
 INSERT INTO `t_like` (`id`, `id_user`, `id_pertanyaan`, `status_like`) VALUES
@@ -548,15 +609,12 @@ INSERT INTO `t_like` (`id`, `id_user`, `id_pertanyaan`, `status_like`) VALUES
 (290, 10, 21, 1),
 (291, 10, 22, 1),
 (292, 10, 23, 1),
-(293, 17, 61, 1),
-(294, 10, 62, 0),
-(295, 10, 41, 1),
-(296, 10, 39, 1);
+(293, 17, 61, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_love`
+-- Table structure for table `t_love`
 --
 
 CREATE TABLE `t_love` (
@@ -567,7 +625,7 @@ CREATE TABLE `t_love` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `t_love`
+-- Dumping data for table `t_love`
 --
 
 INSERT INTO `t_love` (`id`, `id_jawaban`, `id_user`, `status_love`) VALUES
@@ -578,12 +636,13 @@ INSERT INTO `t_love` (`id`, `id_jawaban`, `id_user`, `status_love`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_message`
+-- Table structure for table `t_message`
 --
 
 CREATE TABLE `t_message` (
   `id_message` int(11) NOT NULL,
-  `id_pertanyaan` int(11) NOT NULL,
+  `id_pertanyaan` int(11) DEFAULT NULL,
+  `id_artikel` int(11) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   `status_baca` tinyint(1) NOT NULL,
   `pesan` text NOT NULL,
@@ -591,21 +650,21 @@ CREATE TABLE `t_message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_message`
+-- Dumping data for table `t_message`
 --
 
-INSERT INTO `t_message` (`id_message`, `id_pertanyaan`, `id_user`, `status_baca`, `pesan`, `tgl_pesan`) VALUES
-(1, 15, 10, 1, 'Sudah Saya Jawab', '2021-10-24 18:00:27'),
-(2, 49, 13, 1, 'Saya Sudaah Menjawab', '2021-10-24 18:30:56'),
-(3, 11, 3, 1, 'Pertanyaan Tidak Pantas', '2021-10-24 18:30:56'),
-(4, 7, 11, 1, 'Saya Sudah Menjawab', '2021-10-24 18:30:56'),
-(5, 60, 13, 0, 'Jawaban Perlu di Verifikasi', '2021-10-29 03:30:33'),
-(6, 62, 18, 0, 'Pertanyaan Tidak Pantas', '2021-11-01 03:49:20');
+INSERT INTO `t_message` (`id_message`, `id_pertanyaan`, `id_artikel`, `id_user`, `status_baca`, `pesan`, `tgl_pesan`) VALUES
+(1, 15, NULL, 10, 1, 'Sudah Saya Jawab', '2021-10-24 18:00:27'),
+(2, 49, NULL, 13, 1, 'Saya Sudaah Menjawab', '2021-10-24 18:30:56'),
+(3, 11, NULL, 3, 1, 'Pertanyaan Tidak Pantas', '2021-10-24 18:30:56'),
+(4, 7, NULL, 11, 1, 'Saya Sudah Menjawab', '2021-10-24 18:30:56'),
+(5, 60, NULL, 13, 0, 'Jawaban Perlu di Verifikasi', '2021-10-29 03:30:33'),
+(6, 62, NULL, 18, 0, 'Pertanyaan Tidak Pantas', '2021-11-01 03:49:20');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_otp`
+-- Table structure for table `t_otp`
 --
 
 CREATE TABLE `t_otp` (
@@ -616,7 +675,7 @@ CREATE TABLE `t_otp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_otp`
+-- Dumping data for table `t_otp`
 --
 
 INSERT INTO `t_otp` (`id_otp`, `no_wa`, `kode_otp`, `kadaluarsa`) VALUES
@@ -624,17 +683,19 @@ INSERT INTO `t_otp` (`id_otp`, `no_wa`, `kode_otp`, `kadaluarsa`) VALUES
 (2, '081111111111111', 287925, '2021-11-05 02:15:38'),
 (3, '0822222222222', 854186, '2021-11-05 02:18:59'),
 (4, '0833333333333', 663041, '2021-11-05 14:59:58'),
-(5, '0895710605100', 971715, '2021-11-09 20:03:49');
+(5, '0895710605100', 414629, '2021-11-09 20:22:06'),
+(6, '085607011503', 273507, '2021-11-08 21:15:31'),
+(7, '082222222222222', 216828, '2021-11-08 22:52:29');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_penarikan`
+-- Table structure for table `t_penarikan`
 --
 
 CREATE TABLE `t_penarikan` (
   `id_penarikan` int(11) NOT NULL,
-  `id_profile` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `jumlah_coin` int(11) NOT NULL,
   `jumlah_uang` int(11) NOT NULL,
   `tgl_penarikan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -642,27 +703,26 @@ CREATE TABLE `t_penarikan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_penarikan`
+-- Dumping data for table `t_penarikan`
 --
 
-INSERT INTO `t_penarikan` (`id_penarikan`, `id_profile`, `jumlah_coin`, `jumlah_uang`, `tgl_penarikan`, `status_terkirim`) VALUES
-(9, 1, 550, 50000, '2021-10-27 08:48:31', 0),
-(10, 1, 550, 50000, '2021-10-27 09:08:32', 0),
-(11, 1, 550, 50000, '2021-10-27 09:11:31', 0),
-(12, 3, 550, 50000, '2021-10-27 09:25:11', 0),
-(13, 1, 600, 55000, '2021-10-27 16:06:20', 0),
-(14, 1, 550, 50000, '2021-10-28 12:59:59', 0),
-(15, 2, 550, 50000, '2021-10-29 04:33:06', 1),
-(16, 2, 5500, 545000, '2021-10-29 04:34:09', 0),
-(17, 2, 550, 50000, '2021-11-01 17:32:08', 0),
-(18, 5, 5500, 545000, '2021-11-02 05:41:51', 1),
-(19, 1, 550, 50000, '2021-11-04 06:48:29', 0),
-(20, 1, 550, 50000, '2021-11-04 12:46:52', 0);
+INSERT INTO `t_penarikan` (`id_penarikan`, `id_user`, `jumlah_coin`, `jumlah_uang`, `tgl_penarikan`, `status_terkirim`) VALUES
+(9, 10, 550, 50000, '2021-11-12 07:19:41', 0),
+(10, 10, 550, 50000, '2021-11-12 07:19:41', 0),
+(11, 10, 550, 50000, '2021-11-12 07:19:41', 0),
+(12, 14, 550, 50000, '2021-11-12 07:20:43', 0),
+(13, 10, 600, 55000, '2021-11-12 07:19:42', 0),
+(14, 10, 550, 50000, '2021-11-12 07:19:42', 0),
+(15, 13, 550, 50000, '2021-11-12 07:20:24', 1),
+(16, 13, 5500, 545000, '2021-11-12 07:20:24', 1),
+(17, 13, 550, 50000, '2021-11-12 07:20:25', 0),
+(18, 16, 5500, 545000, '2021-11-12 07:21:05', 1),
+(19, 13, 550, 50000, '2021-11-12 08:09:51', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pertanyaan`
+-- Table structure for table `t_pertanyaan`
 --
 
 CREATE TABLE `t_pertanyaan` (
@@ -678,7 +738,7 @@ CREATE TABLE `t_pertanyaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pertanyaan`
+-- Dumping data for table `t_pertanyaan`
 --
 
 INSERT INTO `t_pertanyaan` (`id_pertanyaan`, `id_user`, `id_kategori`, `pertanyaan`, `status_jawab`, `waktu_question`, `gambar_tanya`, `status_hidden`, `harga`) VALUES
@@ -699,8 +759,8 @@ INSERT INTO `t_pertanyaan` (`id_pertanyaan`, `id_user`, `id_kategori`, `pertanya
 (23, 10, 5, 'lubu jendral dari?', 0, '2021-10-19 02:54:54', '', 0, 0),
 (24, 11, 8, 'Leonardo dicaprio merupakan actor dari?', 0, '2021-10-19 03:13:05', '', 0, 0),
 (26, 10, 4, 'singkong tanaman berbiji?', 0, '2021-10-20 05:52:50', '', 0, 5000),
-(27, 10, 4, 'mangga merupakan tanaman berbiji?', 1, '2021-10-20 05:56:05', '', 0, 5000),
-(28, 10, 4, 'Bulan merupakan?', 1, '2021-10-20 06:03:55', '', 0, 5000),
+(27, 10, 4, 'mangga merupakan tanaman berbiji?', 0, '2021-10-20 05:56:05', '', 0, 5000),
+(28, 10, 4, 'Bulan merupakan?', 0, '2021-10-20 06:03:55', '', 0, 5000),
 (29, 10, 4, 'kuda itu?', 0, '2021-10-20 06:18:44', '', 0, 10000),
 (30, 10, 2, 'Saturnus merupakan planet dengan urutan ke?', 0, '2021-10-20 07:04:34', '', 0, 15000),
 (31, 10, 1, 'planet yang memiliki cincin adalah?', 0, '2021-10-20 07:05:22', '', 0, 5000),
@@ -722,7 +782,7 @@ INSERT INTO `t_pertanyaan` (`id_pertanyaan`, `id_user`, `id_kategori`, `pertanya
 (47, 10, 2, 'Masa atom air?', 0, '2021-10-20 07:45:46', '', 0, 10000),
 (48, 10, 2, 'Carbon monoksida adalha?', 0, '2021-10-20 07:47:22', '', 0, 5000),
 (49, 13, 8, 'Apa yang lebih lucu dari 24?', 0, '2021-10-22 14:56:58', '', 1, 10000),
-(50, 14, 2, 'how?', 1, '2021-10-23 06:29:28', '', 0, 5000),
+(50, 14, 2, 'how?', 0, '2021-10-23 06:29:28', '', 0, 5000),
 (51, 14, 2, 'Kamu merupakan?', 0, '2021-10-27 08:59:07', '', 1, 15),
 (52, 14, 2, 'Apa itu?', 0, '2021-10-27 15:18:32', '', 1, 20),
 (53, 13, 5, 'Kapan Portugis pertama kali masuk ke Indonesia?', 0, '2021-10-28 12:59:02', '', 1, 25),
@@ -734,15 +794,12 @@ INSERT INTO `t_pertanyaan` (`id_pertanyaan`, `id_user`, `id_kategori`, `pertanya
 (59, 16, 4, 'burung ketemu burung, disebut apa?', 1, '2021-10-28 15:18:04', '', 0, 25),
 (60, 15, 5, 'Apa nama jepang dari BPUPKI?', 1, '2021-10-29 02:21:29', '', 0, 30),
 (61, 17, 5, 'Siapa manusia pertama yang ke akhirat?', 0, '2021-10-29 02:54:13', '', 0, 30),
-(62, 16, 2, 'coba buka gambar ini', 0, '2021-10-30 14:29:13', 'IMG-20211018-WA0002.jpg', 0, 20),
-(64, 10, 2, 'Kau Merupakan Anugrah dari??', 0, '2021-11-03 15:03:27', '', 1, 20),
-(65, 14, 4, 'Kuda hewan berkaki?', 0, '2021-11-03 16:04:39', '', 1, 35),
-(66, 10, 5, 'Dinosurus hidup di zaman?', 0, '2021-11-04 12:47:23', '', 1, 20);
+(62, 16, 2, 'coba buka gambar ini', 0, '2021-10-30 14:29:13', 'IMG-20211018-WA0002.jpg', 0, 20);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_profile`
+-- Table structure for table `t_profile`
 --
 
 CREATE TABLE `t_profile` (
@@ -762,26 +819,28 @@ CREATE TABLE `t_profile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_profile`
+-- Dumping data for table `t_profile`
 --
 
 INSERT INTO `t_profile` (`id_profile`, `id_user`, `nama_lengkap`, `no_hp`, `tgl_lahir`, `alamat`, `kota`, `provinsi`, `gender`, `wallet`, `nama_bank`, `no_rek`, `nama_rek`) VALUES
-(1, 10, 'alex pramesta', '08953779415', '0000-00-00', 'Dagangan, Madiun', 3519, 35, 'laki', 3850, 'bri', '6518218982181', 'Alex Pramesta'),
-(2, 13, 'Bambang Pamungkas', '085192820111', '1999-02-19', 'Ds. Bringharjo RT 10 RW 3 Kec. Sukorejo', 3510, 35, 'laki', 983355, 'bri', '6856126941862174820', 'Bambang Pamungkas'),
-(3, 14, 'dhanter', '089666536', '0000-00-00', '', 0, 0, '', 5130, '', '', ''),
-(4, 15, 'Dimas Afrilliyan Purnama', '085607011503', '2021-10-12', '', 0, 0, 'laki', 199999945, '', '', ''),
+(1, 10, 'alex pramesta', '0895377941818', '0000-00-00', 'Dagangan, Madiun', 3519, 35, 'laki', 9993224, 'bri', '6518218982181', 'Alex Pramesta'),
+(2, 13, 'Bambang Pamungkas', '083323333332', '2021-11-10', 'Jl. Pahlawan', 3216, 32, 'laki', 981165, 'bri', '6856126941862174820', 'Bambang Pamungkas'),
+(3, 14, 'dhanter', '089666536', '0000-00-00', '', 0, 0, '', 15900, '', '', ''),
+(4, 15, 'Dimas Afrilliyan Purnama', '085607011521', '2021-10-12', '', 0, 0, 'laki', 199999945, '', '', ''),
 (5, 16, 'Hifzhan Frima Thousani', '08819390025', '1992-01-13', '', 0, 35, 'laki', 1999993655, 'bni', '12739812871', 'Hifzhan'),
 (6, 12, 'Admin Siswa Rajin', '089111111', '2021-10-07', 'Jl.kenagan', 3577, 35, 'Pria', 99999999, 'bri', '651821898276676', 'SiswaRajin'),
 (7, 17, 'Depri Tri', '088228356410', '1995-03-22', '', 0, 0, 'perempuan', 15, '', '', ''),
 (8, 18, 'Muhammad Alifuddin', '085806773034', '2016-01-14', '', 0, 0, 'laki', 20, '', '', ''),
 (9, 19, 'dede aja ', '089601650778', '2000-07-20', '', 0, 0, 'laki', 20, '', '', ''),
 (10, 20, 'dekapramesta', '0895377941531', '2021-11-07', '', 0, 0, 'laki', 30, '', '', ''),
-(13, 23, 'mama deka', '0895710605100', '2021-11-09', '', 0, 0, 'laki', 20, '', '', '');
+(11, 21, 'Kempu', '081237082780', '1995-03-22', '', 0, 0, 'laki', 20, '', '', ''),
+(14, 24, 'dimmmmm', '082222222222222', '2021-11-08', '', 0, 0, 'laki', 20, '', '', ''),
+(15, 25, 'mama deka', '0895710605100', '2021-11-09', '', 0, 0, 'perempuan', 20, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tag`
+-- Table structure for table `t_tag`
 --
 
 CREATE TABLE `t_tag` (
@@ -791,19 +850,22 @@ CREATE TABLE `t_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `t_tag`
+-- Dumping data for table `t_tag`
 --
 
 INSERT INTO `t_tag` (`idTag`, `id_kategori_tag`, `namaTag`) VALUES
 (5, 3, 'Inggris'),
 (6, 3, 'Jawa'),
 (7, 1, 'Java'),
-(8, 1, 'Kotlin');
+(8, 1, 'Kotlin'),
+(9, 1, 'PHP'),
+(10, 2, 'Ketimpangan'),
+(11, 2, 'Keadilan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_transaksi`
+-- Table structure for table `t_transaksi`
 --
 
 CREATE TABLE `t_transaksi` (
@@ -818,7 +880,7 @@ CREATE TABLE `t_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_transaksi`
+-- Dumping data for table `t_transaksi`
 --
 
 INSERT INTO `t_transaksi` (`id_transaksi`, `id_user`, `id_topup`, `total_topup`, `payment_type`, `transaction_time`, `status_code`, `pdf_url`) VALUES
@@ -828,7 +890,7 @@ INSERT INTO `t_transaksi` (`id_transaksi`, `id_user`, `id_topup`, `total_topup`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_user`
+-- Table structure for table `t_user`
 --
 
 CREATE TABLE `t_user` (
@@ -844,7 +906,7 @@ CREATE TABLE `t_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_user`
+-- Dumping data for table `t_user`
 --
 
 INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_password`, `foto_user`, `role_id`, `kode_afiliasi`, `status_user`) VALUES
@@ -856,45 +918,49 @@ INSERT INTO `t_user` (`id_user`, `nama_user`, `email`, `password`, `view_passwor
 (6, 'fadel', '', '', '', '', 1, '', 0),
 (7, 'Mamad', 'mamad@gmail.com', 'mamad', '', '', 1, '', 0),
 (8, 'alif5', 'alif5@gmail.com', 'alif5', '', '', 2, '', 0),
-(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2, '', 0),
+(9, 'fadelmi12', 'fadelirsyad04@gmail.com', '$2y$10$sWSeXcEQJBLinyV0exH11uTKr7AIS5yPAPrSqeOxNmGKrNlSMeoE2', '', '', 2, '', 1),
 (10, 'alex', 'alex@gmail.com', '$2y$10$x8ePSS/TzlGJLnFpBr/gwettckhPZtMOl8q8x/lQz31ZuX0VnCJJ6', '', '', 2, '', 1),
 (11, 'samid', 'samid@gmail.com', '$2y$10$zwJ4augJr.xqT2FCv7.wjuf/0CaPcnN0d7uaKmKNIkBzIzXxYcfDi', '', '', 2, '', 0),
 (12, 'admin', 'admin@gmail.com', '$2y$10$hwGEZZg.k7DT3/xwiULKWudS7Rh7bbXwWjaVQV4w5vBwlRIxZA7fG', '', '', 77, '', 1),
-(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2, 'a0b892ddff0e3fd36e584e0ff1e4c1c6', 0),
-(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2, '', 0),
-(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2, '', 0),
-(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2, '', 0),
-(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2, '', 0),
-(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2, '', 0),
-(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2, '', 0),
-(20, 'dekapra', 'dekapra@gmail.com', '$2y$10$thlEjQ7QtcOMJtz9vBoCgunwDwWKEwq4JCyUK68hBVnv8tA3gYlh.', 'Dekapra12', '', 2, 'f7e8c772b9bbfa49c15da77dcf82e69c', 1),
-(23, 'mamadeka', 'mamadeka@gmail.com', '$2y$10$sl1dpN.rJvh8q0ZnwEGqT.fSY8HC391mXqrqiI5HHd7AFTwzY4kzS', 'Mamadeka12', '', 2, 'acbee65019b59bc94a301fee375c3915', 0);
+(13, 'BP20', 'bepeduapuluh@gmail.com', '$2y$10$H1mOKiIJPnPz3JFUluNy5uEYmNjof6FYoDKY0YVPsadso9HfTGhcq', 'bambang', 'user13211021003211.png', 2, '8e296a067a37563370ded05f5a3bf3ec', 1),
+(14, 'dhanter', 'dhanter@gmail.com', '$2y$10$UwvJU/UESoEbhsTYBQdp7uUZJ98F1h6VG71lEVReq9XLjft99n8uy', 'Dhanter12', '', 2, '', 1),
+(15, 'dimasaf', 'dimasaf@gmail.com', '$2y$10$YPmObvXucm2lGBtQHtqUIOi9c7K5KyNeHQ3woo2alG3DkQa0tKvHW', 'Dimas1987', '', 2, '', 1),
+(16, 'HIFR92', 'sayapunyasaham@gmail.com', '$2y$10$4BkMxQm3m8JrdfDoLMIeduU88nvXOUhwumQ14KTHHs1.AInX2oTJa', 'Hifr1301', '', 2, '', 1),
+(17, 'deppp', 'event1945@gmail.com', '$2y$10$HAX8j2QpE3hG9Xh.unqSb.5a97GSU9WGywpz40chEqh9pLQmgSYyq', 'Hifr1301', '', 2, '', 1),
+(18, 'Alif12', 'alif1@gmail.com', '$2y$10$2sqP140RDygwjlqM6F3fCe8zw143BugWvljv96GmgMLhl4EdOGPfe', 'Alifuddin5', '', 2, '', 1),
+(19, 'dede', 'hd722875@gmail.com', '$2y$10$QynIrOqOngdztwRwrfFWhepLN3g4u8e1/KBJzTljwSZ8cJaoI15.O', 'Anaksepi4', '', 2, '', 1),
+(20, 'dekapra', 'dekapra@gmail.com', '$2y$10$KeDQbDimfNhnCHV6lsBQtOIR83DBYtdlBZZYu2iY9YuNXpeLdwbFW', 'Dekapra12', '', 2, 'f7e8c772b9bbfa49c15da77dcf82e69c', 1),
+(21, 'KempuJosss', 'thousani@pnm.ac.id', '$2y$10$bzYPOqyKZMiL20x9pq9ixOi7zxu9yQPKvpSXaONVfp7.6FJYsfoJq', 'Hifr1301', '', 2, '950bb31c64a2329c4a68d728486e6f63', 1),
+(24, 'dimmmmm', 'dim32@gmail.com', '$2y$10$m0ucs8/HZCXwxDd538sUQOvr9KB0Al0OAWB78850ijGfkJP/7QqgG', 'Dim54321', '', 2, '35c8ba18cd2acd76034885daeeeaad5c', 0),
+(25, 'mamadeka', 'mamadeka@gmail.com', '$2y$10$a.OaLgtVYI.ZcCgTf0riDOOE51Onm0LxVJ7he4zzvFEmEDqqbTK5G', 'Mamadeka12', '', 2, 'acbee65019b59bc94a301fee375c3915', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_wa`
+-- Table structure for table `t_wa`
 --
 
 CREATE TABLE `t_wa` (
   `id_wa` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `pesan` text NOT NULL,
+  `tanggal` datetime NOT NULL,
   `status_kirim` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_wa`
+-- Dumping data for table `t_wa`
 --
 
-INSERT INTO `t_wa` (`id_wa`, `id_user`, `pesan`, `status_kirim`) VALUES
-(1, 20, 'Terimakasih dekapramesta, Anda telah bergabung dengan Ssiswa Rajin', 1),
-(2, 23, 'Terimakasih mama deka, Anda telah bergabung dengan Ssiswa Rajin', 1);
+INSERT INTO `t_wa` (`id_wa`, `id_user`, `pesan`, `tanggal`, `status_kirim`) VALUES
+(76, 10, 'sjgfsahgdsahfgsakjfhashdfgsah', '0000-00-00 00:00:00', 0),
+(77, 13, 'sjgfsahgdsahfgsakjfhashdfgsah', '0000-00-00 00:00:00', 0),
+(78, 15, 'sjgfsahgdsahfgsakjfhashdfgsah', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wilayah_kabupaten`
+-- Table structure for table `wilayah_kabupaten`
 --
 
 CREATE TABLE `wilayah_kabupaten` (
@@ -904,7 +970,7 @@ CREATE TABLE `wilayah_kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `wilayah_kabupaten`
+-- Dumping data for table `wilayah_kabupaten`
 --
 
 INSERT INTO `wilayah_kabupaten` (`id`, `provinsi_id`, `nama_kota`) VALUES
@@ -1411,7 +1477,7 @@ INSERT INTO `wilayah_kabupaten` (`id`, `provinsi_id`, `nama_kota`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wilayah_provinsi`
+-- Table structure for table `wilayah_provinsi`
 --
 
 CREATE TABLE `wilayah_provinsi` (
@@ -1420,7 +1486,7 @@ CREATE TABLE `wilayah_provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `wilayah_provinsi`
+-- Dumping data for table `wilayah_provinsi`
 --
 
 INSERT INTO `wilayah_provinsi` (`id`, `nama_provinsi`) VALUES
@@ -1464,47 +1530,47 @@ INSERT INTO `wilayah_provinsi` (`id`, `nama_provinsi`) VALUES
 --
 
 --
--- Indeks untuk tabel `kategori_tag`
+-- Indexes for table `kategori_tag`
 --
 ALTER TABLE `kategori_tag`
   ADD PRIMARY KEY (`id_kategori_tag`);
 
 --
--- Indeks untuk tabel `log_login`
+-- Indexes for table `log_login`
 --
 ALTER TABLE `log_login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `log_money`
+-- Indexes for table `log_money`
 --
 ALTER TABLE `log_money`
   ADD PRIMARY KEY (`id_logMoney`),
-  ADD KEY `id_profile` (`id_profile`);
+  ADD KEY `id_profile` (`id_user`);
 
 --
--- Indeks untuk tabel `t_aktivitas`
+-- Indexes for table `t_aktivitas`
 --
 ALTER TABLE `t_aktivitas`
   ADD PRIMARY KEY (`id_aktivitas`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `t_artikel`
+-- Indexes for table `t_artikel`
 --
 ALTER TABLE `t_artikel`
   ADD PRIMARY KEY (`id_artikel`),
   ADD KEY `usertoartikel` (`id_user`);
 
 --
--- Indeks untuk tabel `t_artikelbookmark`
+-- Indexes for table `t_artikelbookmark`
 --
 ALTER TABLE `t_artikelbookmark`
   ADD KEY `id_artikel` (`id_artikel`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `t_artikeltag`
+-- Indexes for table `t_artikeltag`
 --
 ALTER TABLE `t_artikeltag`
   ADD PRIMARY KEY (`id_artikeltag`),
@@ -1512,7 +1578,20 @@ ALTER TABLE `t_artikeltag`
   ADD KEY `idTag` (`idTag`);
 
 --
--- Indeks untuk tabel `t_bookmark`
+-- Indexes for table `t_bank`
+--
+ALTER TABLE `t_bank`
+  ADD PRIMARY KEY (`id_bank`);
+
+--
+-- Indexes for table `t_beliartikel`
+--
+ALTER TABLE `t_beliartikel`
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_artikel` (`id_artikel`);
+
+--
+-- Indexes for table `t_bookmark`
 --
 ALTER TABLE `t_bookmark`
   ADD PRIMARY KEY (`id`),
@@ -1520,13 +1599,13 @@ ALTER TABLE `t_bookmark`
   ADD KEY `t_bookmark_fk1` (`id_pertanyaan`);
 
 --
--- Indeks untuk tabel `t_faq`
+-- Indexes for table `t_faq`
 --
 ALTER TABLE `t_faq`
   ADD PRIMARY KEY (`id_faq`);
 
 --
--- Indeks untuk tabel `t_jawaban`
+-- Indexes for table `t_jawaban`
 --
 ALTER TABLE `t_jawaban`
   ADD PRIMARY KEY (`id_jawaban`),
@@ -1534,13 +1613,13 @@ ALTER TABLE `t_jawaban`
   ADD KEY `t_jawaban_fk1` (`id_pertanyaan`);
 
 --
--- Indeks untuk tabel `t_kategori`
+-- Indexes for table `t_kategori`
 --
 ALTER TABLE `t_kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `t_like`
+-- Indexes for table `t_like`
 --
 ALTER TABLE `t_like`
   ADD PRIMARY KEY (`id`),
@@ -1548,7 +1627,7 @@ ALTER TABLE `t_like`
   ADD KEY `t_like_fk1` (`id_pertanyaan`);
 
 --
--- Indeks untuk tabel `t_love`
+-- Indexes for table `t_love`
 --
 ALTER TABLE `t_love`
   ADD PRIMARY KEY (`id`),
@@ -1556,28 +1635,29 @@ ALTER TABLE `t_love`
   ADD KEY `id_jawaban` (`id_jawaban`);
 
 --
--- Indeks untuk tabel `t_message`
+-- Indexes for table `t_message`
 --
 ALTER TABLE `t_message`
   ADD PRIMARY KEY (`id_message`),
   ADD KEY `t_message_ibfk_1` (`id_pertanyaan`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_artikel` (`id_artikel`);
 
 --
--- Indeks untuk tabel `t_otp`
+-- Indexes for table `t_otp`
 --
 ALTER TABLE `t_otp`
   ADD PRIMARY KEY (`id_otp`);
 
 --
--- Indeks untuk tabel `t_penarikan`
+-- Indexes for table `t_penarikan`
 --
 ALTER TABLE `t_penarikan`
   ADD PRIMARY KEY (`id_penarikan`),
-  ADD KEY `t_penarikan_ibfk_1` (`id_profile`);
+  ADD KEY `t_penarikan_ibfk_1` (`id_user`);
 
 --
--- Indeks untuk tabel `t_pertanyaan`
+-- Indexes for table `t_pertanyaan`
 --
 ALTER TABLE `t_pertanyaan`
   ADD PRIMARY KEY (`id_pertanyaan`),
@@ -1585,286 +1665,300 @@ ALTER TABLE `t_pertanyaan`
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
--- Indeks untuk tabel `t_profile`
+-- Indexes for table `t_profile`
 --
 ALTER TABLE `t_profile`
   ADD PRIMARY KEY (`id_profile`),
   ADD KEY `t_profile_ibfk_1` (`id_user`);
 
 --
--- Indeks untuk tabel `t_tag`
+-- Indexes for table `t_tag`
 --
 ALTER TABLE `t_tag`
   ADD PRIMARY KEY (`idTag`),
   ADD KEY `id_kategori_tag` (`id_kategori_tag`);
 
 --
--- Indeks untuk tabel `t_transaksi`
+-- Indexes for table `t_transaksi`
 --
 ALTER TABLE `t_transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `t_user`
+-- Indexes for table `t_user`
 --
 ALTER TABLE `t_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `t_wa`
+-- Indexes for table `t_wa`
 --
 ALTER TABLE `t_wa`
   ADD PRIMARY KEY (`id_wa`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `wilayah_kabupaten`
+-- Indexes for table `wilayah_kabupaten`
 --
 ALTER TABLE `wilayah_kabupaten`
   ADD PRIMARY KEY (`id`),
   ADD KEY `provinsi_id` (`provinsi_id`);
 
 --
--- Indeks untuk tabel `wilayah_provinsi`
+-- Indexes for table `wilayah_provinsi`
 --
 ALTER TABLE `wilayah_provinsi`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `kategori_tag`
+-- AUTO_INCREMENT for table `kategori_tag`
 --
 ALTER TABLE `kategori_tag`
   MODIFY `id_kategori_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `log_login`
+-- AUTO_INCREMENT for table `log_login`
 --
 ALTER TABLE `log_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
--- AUTO_INCREMENT untuk tabel `log_money`
+-- AUTO_INCREMENT for table `log_money`
 --
 ALTER TABLE `log_money`
-  MODIFY `id_logMoney` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_logMoney` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT untuk tabel `t_aktivitas`
+-- AUTO_INCREMENT for table `t_aktivitas`
 --
 ALTER TABLE `t_aktivitas`
-  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
--- AUTO_INCREMENT untuk tabel `t_artikel`
+-- AUTO_INCREMENT for table `t_artikel`
 --
 ALTER TABLE `t_artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT untuk tabel `t_artikeltag`
+-- AUTO_INCREMENT for table `t_artikeltag`
 --
 ALTER TABLE `t_artikeltag`
   MODIFY `id_artikeltag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `t_bookmark`
+-- AUTO_INCREMENT for table `t_bank`
+--
+ALTER TABLE `t_bank`
+  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `t_bookmark`
 --
 ALTER TABLE `t_bookmark`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
--- AUTO_INCREMENT untuk tabel `t_faq`
+-- AUTO_INCREMENT for table `t_faq`
 --
 ALTER TABLE `t_faq`
   MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `t_jawaban`
+-- AUTO_INCREMENT for table `t_jawaban`
 --
 ALTER TABLE `t_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT untuk tabel `t_kategori`
+-- AUTO_INCREMENT for table `t_kategori`
 --
 ALTER TABLE `t_kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `t_like`
+-- AUTO_INCREMENT for table `t_like`
 --
 ALTER TABLE `t_like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
 
 --
--- AUTO_INCREMENT untuk tabel `t_love`
+-- AUTO_INCREMENT for table `t_love`
 --
 ALTER TABLE `t_love`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `t_message`
+-- AUTO_INCREMENT for table `t_message`
 --
 ALTER TABLE `t_message`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `t_otp`
+-- AUTO_INCREMENT for table `t_otp`
 --
 ALTER TABLE `t_otp`
-  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `t_penarikan`
+-- AUTO_INCREMENT for table `t_penarikan`
 --
 ALTER TABLE `t_penarikan`
-  MODIFY `id_penarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_penarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `t_pertanyaan`
+-- AUTO_INCREMENT for table `t_pertanyaan`
 --
 ALTER TABLE `t_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
--- AUTO_INCREMENT untuk tabel `t_profile`
+-- AUTO_INCREMENT for table `t_profile`
 --
 ALTER TABLE `t_profile`
-  MODIFY `id_profile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_profile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `t_tag`
+-- AUTO_INCREMENT for table `t_tag`
 --
 ALTER TABLE `t_tag`
-  MODIFY `idTag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idTag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `t_transaksi`
+-- AUTO_INCREMENT for table `t_transaksi`
 --
 ALTER TABLE `t_transaksi`
   MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `t_user`
+-- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `t_wa`
+-- AUTO_INCREMENT for table `t_wa`
 --
 ALTER TABLE `t_wa`
-  MODIFY `id_wa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_wa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `log_money`
+-- Constraints for table `log_money`
 --
 ALTER TABLE `log_money`
-  ADD CONSTRAINT `log_money_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `t_profile` (`id_profile`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_money_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_artikel`
+-- Constraints for table `t_artikel`
 --
 ALTER TABLE `t_artikel`
   ADD CONSTRAINT `usertoartikel` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_artikelbookmark`
+-- Constraints for table `t_artikelbookmark`
 --
 ALTER TABLE `t_artikelbookmark`
   ADD CONSTRAINT `t_artikelbookmark_ibfk_1` FOREIGN KEY (`id_artikel`) REFERENCES `t_artikel` (`id_artikel`),
   ADD CONSTRAINT `t_artikelbookmark_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`);
 
 --
--- Ketidakleluasaan untuk tabel `t_artikeltag`
+-- Constraints for table `t_artikeltag`
 --
 ALTER TABLE `t_artikeltag`
   ADD CONSTRAINT `fk_artikelid` FOREIGN KEY (`id_artikel`) REFERENCES `t_artikel` (`id_artikel`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tag` FOREIGN KEY (`idTag`) REFERENCES `t_tag` (`idTag`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_bookmark`
+-- Constraints for table `t_beliartikel`
+--
+ALTER TABLE `t_beliartikel`
+  ADD CONSTRAINT `t_beliartikel_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`),
+  ADD CONSTRAINT `t_beliartikel_ibfk_2` FOREIGN KEY (`id_artikel`) REFERENCES `t_artikel` (`id_artikel`);
+
+--
+-- Constraints for table `t_bookmark`
 --
 ALTER TABLE `t_bookmark`
   ADD CONSTRAINT `t_bookmark_fk0` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_bookmark_fk1` FOREIGN KEY (`id_pertanyaan`) REFERENCES `t_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_jawaban`
+-- Constraints for table `t_jawaban`
 --
 ALTER TABLE `t_jawaban`
   ADD CONSTRAINT `t_jawaban_fk0` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_jawaban_fk1` FOREIGN KEY (`id_pertanyaan`) REFERENCES `t_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_like`
+-- Constraints for table `t_like`
 --
 ALTER TABLE `t_like`
   ADD CONSTRAINT `t_like_fk0` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_like_fk1` FOREIGN KEY (`id_pertanyaan`) REFERENCES `t_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_love`
+-- Constraints for table `t_love`
 --
 ALTER TABLE `t_love`
   ADD CONSTRAINT `t_love_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_love_ibfk_2` FOREIGN KEY (`id_jawaban`) REFERENCES `t_jawaban` (`id_jawaban`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_message`
+-- Constraints for table `t_message`
 --
 ALTER TABLE `t_message`
   ADD CONSTRAINT `t_message_ibfk_1` FOREIGN KEY (`id_pertanyaan`) REFERENCES `t_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE,
-  ADD CONSTRAINT `t_message_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE;
+  ADD CONSTRAINT `t_message_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE,
+  ADD CONSTRAINT `t_message_ibfk_3` FOREIGN KEY (`id_artikel`) REFERENCES `t_artikel` (`id_artikel`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_penarikan`
+-- Constraints for table `t_penarikan`
 --
 ALTER TABLE `t_penarikan`
-  ADD CONSTRAINT `t_penarikan_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `t_profile` (`id_profile`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_penarikan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pertanyaan`
+-- Constraints for table `t_pertanyaan`
 --
 ALTER TABLE `t_pertanyaan`
   ADD CONSTRAINT `t_pertanyaan_fk0` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pertanyaan_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_profile`
+-- Constraints for table `t_profile`
 --
 ALTER TABLE `t_profile`
   ADD CONSTRAINT `t_profile_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_tag`
+-- Constraints for table `t_tag`
 --
 ALTER TABLE `t_tag`
   ADD CONSTRAINT `idKategoriTag` FOREIGN KEY (`id_kategori_tag`) REFERENCES `kategori_tag` (`id_kategori_tag`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_transaksi`
+-- Constraints for table `t_transaksi`
 --
 ALTER TABLE `t_transaksi`
   ADD CONSTRAINT `t_transaksi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_wa`
+-- Constraints for table `t_wa`
 --
 ALTER TABLE `t_wa`
   ADD CONSTRAINT `t_wa_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `wilayah_kabupaten`
+-- Constraints for table `wilayah_kabupaten`
 --
 ALTER TABLE `wilayah_kabupaten`
   ADD CONSTRAINT `wilayah_kabupaten_ibfk_1` FOREIGN KEY (`provinsi_id`) REFERENCES `wilayah_provinsi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
