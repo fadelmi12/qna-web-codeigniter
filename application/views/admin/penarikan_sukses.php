@@ -11,6 +11,7 @@
                             </div>
 
                             <div class="col" align="right">
+                                <button class="btn btn-warning mr-4" onclick="window.location.href='<?php echo base_url('Penarikan_saldo/daftar_bank/') ?>'"><i class="fas fa-money-bill-wave"></i> Daftar Bank</button>
                                 <button class="btn btn-primary" onclick="window.location.href='<?php echo base_url('Penarikan_saldo/belum_sukses/') ?>'"><i class="fas fa-times"></i> Belum Terkirim</button>
                             </div>
                         </div>

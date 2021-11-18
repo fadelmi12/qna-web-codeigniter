@@ -42,4 +42,60 @@ class Penarikan_saldo extends CI_Controller
 		$this->db->update('t_penarikan', $data, $where);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
+
+	// CRUD Bank
+	public function daftar_bank()
+	{
+		$data['nama_bank'] = $this->db->get('t_bank')->result_array();
+		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
+		$data['nav'] = "penarikan";
+
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/daftar_bank', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function tambah_bank()
+	{
+		$nama_bank = $this->input->post("nama_bank");
+		$kode_bank = $this->input->post("kode_bank");
+
+		$data = array(
+			'nama_bank' => $nama_bank,
+			'kode_bank' => $kode_bank,
+		);
+		//echo "<pre>"; print_r($data); exit;
+		$this->db->insert('t_bank', $data);
+
+		redirect('Penarikan_saldo/daftar_bank');
+	}
+
+	public function edit_bank()
+	{
+		$id_bank	= $this->input->post("id_bank");
+		$nama_bank 	= $this->input->post("nama_bank");
+		$kode_bank 	= $this->input->post("kode_bank");
+
+		$data = array(
+			'nama_bank' => $nama_bank,
+			'kode_bank' => $kode_bank,
+		);
+
+		$where = array('id_bank' => $id_bank);
+
+		$this->db->update('t_bank', $data, $where);
+
+		redirect('Penarikan_saldo/daftar_bank');
+	}
+
+	public function delete_bank()
+	{
+		$id_bank	= $this->input->post("id_bank");
+
+		$where = array('id_bank' => $id_bank);
+
+		$this->db->delete('t_bank', $where);
+
+		redirect('Penarikan_saldo/daftar_bank');
+	}
 }
