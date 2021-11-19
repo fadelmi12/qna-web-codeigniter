@@ -11,6 +11,7 @@ class Model_profile extends CI_Model
         $this->db->join('t_profile', 't_profile.id_user=t_user.id_user', 'left');
         $this->db->join('wilayah_provinsi', 'wilayah_provinsi.id=t_profile.provinsi', 'left');
         $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id=t_profile.kota', 'left');
+        $this->db->join('t_bank', 't_bank.id_bank=t_profile.id_bank', 'left');
         return $this->db->get();
     }
 
