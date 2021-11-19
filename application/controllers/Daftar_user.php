@@ -47,12 +47,15 @@ class Daftar_user extends CI_Controller
 
 		$nama_user 		= $this->input->post('nama_user');
 		$email 			= $this->input->post('email');
-		$password 		= $this->input->post('password');
+		//$password 		= $this->input->post('password');
+		$pwd 			= $this->input->post('password');
+		$password 		= password_hash($pwd, PASSWORD_DEFAULT);
 
 		$data = array(
 			'nama_user' 	=> $nama_user,
 			'email' 		=> $email,
 			'password' 		=> $password,
+			'view_password' => $pwd,
 		);
 
 		$this->db->update('t_user', $data, $where);

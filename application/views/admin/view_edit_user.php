@@ -23,7 +23,10 @@
                                         <input class="form-control" type="email" name="email" value="<?php echo $d_user['email'] ?>"><br>
 
                                         <h5>Password</h5>
-                                        <input class="form-control" type="password" name="password" value="<?php echo $d_user['password'] ?>"><br>
+                                        <input id="password-field" class="form-control w-100 p-2 px-3" type="password" name="password" value="<?php echo $d_user['view_password'] ?>">
+                                        <div align="right">
+                                            <span style="position: absolute;margin-left: -30px;margin-top: -27px;" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span><br>
+                                        </div>
 
                                         <h5>Tanggal Lahir</h5>
                                         <input class="form-control" type="date" name="tgl_lahir" value="<?php echo $d_user['tgl_lahir'] ?>"><br>
@@ -118,6 +121,17 @@
                     $('#kota').html(html);
                 }
             });
+        });
+
+        $(".toggle-password").click(function() {
+            
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
         });
     });
 </script>
