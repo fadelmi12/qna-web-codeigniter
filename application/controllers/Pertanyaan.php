@@ -143,6 +143,45 @@ class Pertanyaan extends CI_Controller
 		$this->db->insert('log_money', $log_money);
 
 		// <script></script>
+
+		$user_jwb 	= $this->Model_profile->getProfile($user)->result_array();
+		$nohp		= $user_jwb[0]['no_hp'];
+		$token 		= '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		$message 	= "Selamat... Jawaban Anda telah diverifikasi sebagai jawaban benar. Anda mendapat tambahan " . $getPrice . " Coin.";
+		$curl 		= curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+				'token' => $token, 'phone' => $nohp, 'message' => $message
+			),
+		));
+		$response = curl_exec($curl);
+		$result =  substr($response, 17, 5);
+		if ($result == "false") {
+			$data_wa = array(
+				'id_user' 		=> $user,
+				'pesan'			=> $message,
+				'tanggal'		=> date('Y-m-d H:i:s'),
+				'status_kirim'	=> 0
+			);
+			$this->db->insert('t_wa', $data_wa);
+		} else {
+			$data_wa = array(
+				'id_user' 		=> $user,
+				'pesan'			=> $message,
+				'tanggal'		=> date('Y-m-d H:i:s'),
+				'status_kirim'	=> 1
+			);
+			$this->db->insert('t_wa', $data_wa);
+		}
+		curl_close($curl);
 		redirect(base_url('pertanyaan/detail/' . $prt));
 	}
 
@@ -183,14 +222,54 @@ class Pertanyaan extends CI_Controller
 		$data_xss = $this->security->xss_clean($data);
 
 		$this->Model_pertanyaan->tambah_jawaban('t_jawaban', $data_xss);
+
+		$user_qty 		= $this->Model_pertanyaan->get_user_qty($id_pertanyaan)->result_array();
+		$id_user_qty 	= $user_qty[0]['id_user'];
+		$nohp			= $user_qty[0]['no_hp'];
+		$token 			= '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		$user_jwb		= $this->Model_profile->getProfile($user)->row()->nama_user;
+		$message 		= "Pertanyaan Anda telah dijawab oleh " . $user_jwb . ", Segera verifikasi jawaban jika jawaban tersebut benar. Terima kasih.";
+		$curl 			= curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+				'token' => $token, 'phone' => $nohp, 'message' => $message
+			),
+		));
+		$response = curl_exec($curl);
+		$result =  substr($response, 17, 5);
+		if ($result == "false") {
+			$data_wa = array(
+				'id_user' 		=> $id_user_qty,
+				'pesan'			=> $message,
+				'tanggal'		=> date('Y-m-d H:i:s'),
+				'status_kirim'	=> 0
+			);
+			$this->db->insert('t_wa', $data_wa);
+		} else {
+			$data_wa = array(
+				'id_user' 		=> $id_user_qty,
+				'pesan'			=> $message,
+				'tanggal'		=> date('Y-m-d H:i:s'),
+				'status_kirim'	=> 1
+			);
+			$this->db->insert('t_wa', $data_wa);
+		}
+		curl_close($curl);
+
+		$this->session->set_flashdata(
+			'pesan',
+			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+			<script type ="text/JavaScript">swal("Sukses","Anda telah menjawab pertanyaan, tunggu ' . $user_qty[0]['nama_user'] . ' untuk memverifikasi jawaban Anda. Koin akan didapatkan jika jawaban terverifikasi sebagai jawaban benar","success");</script>'
+		);
 		redirect('Pertanyaan/detail/' . $id_pertanyaan);
-		// if ($simpan) {
-		// 	echo json_encode($data_xss);
-		// 	// redirect('Dashboard');
-		// } else {
-		// 	echo "GAGAL";
-		// 	echo json_encode($data_xss);
-		// }
 	}
 	public function edit_pertanyaan($id_pertanyaan)
 	{

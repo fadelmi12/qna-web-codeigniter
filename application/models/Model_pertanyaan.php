@@ -145,4 +145,15 @@ class Model_pertanyaan extends CI_Model
         $this->db->limit($limit, $offset);
         return $this->db->get();
     }
+
+    public function get_user_qty($id_qty)
+    {
+        $this->db->select('*');
+        $this->db->from('t_pertanyaan');
+        $this->db->join('t_user', 't_user.id_user=t_pertanyaan.id_user', 'left');
+        $this->db->join('t_profile', 't_profile.id_user=t_user.id_user', 'left');
+        $this->db->where('id_pertanyaan', $id_qty);
+
+        return $this->db->get();
+    }
 }
