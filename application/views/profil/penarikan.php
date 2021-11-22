@@ -39,7 +39,7 @@
                         <div class="down p-2 px-3">
                             <ul class="m-0 px-3">
                                 <li>
-                                    Daftar harga penarikan saldo 
+                                    Daftar harga penarikan saldo
                                     <table class="table">
                                         <tr>
                                             <th>Coin</th>
@@ -131,20 +131,20 @@
                             </div>
                         </button>
                         </form>
-                        <?php $namabank = json_encode($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->nama_bank);
+                        <?php $id_bank = json_encode($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->id_bank);
                         $nama_rek = json_encode($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->nama_rek);
                         $no_rek = json_encode($this->Model_profile->get_wallet($this->session->userdata('id_user'))->row()->no_rek); ?>
                         <script type="text/javascript">
                             document.getElementById("form_tarik").addEventListener('submit', function(e) {
                                 e.preventDefault();
                                 var noRek = <?php echo $no_rek ?>;
-                                var namaBank = <?php echo $namabank ?>;
+                                var id_Bank = <?php echo $id_bank ?>;
                                 var namaRek = <?php echo $nama_rek ?>;
                                 var select = document.getElementById('coin_pull').value;
                                 var a = <?php echo $money ?>;
                                 var wallet = parseInt(a);
                                 var hargaselect = parseInt(select);
-                                if (!noRek || !namaBank || !namaRek) {
+                                if (!noRek || !id_Bank || !namaRek) {
                                     swal('Forbiden', 'Lengkapi Terlebih dahulu Nama Bank, No Rekening, dan Nama Rekening', 'error');
                                 } else {
                                     if (hargaselect < 550) {
@@ -193,24 +193,18 @@
                                     <th class="text-center" scope="row"><?= $no ?></th>
                                     <td style="font-size: small;"><?= $rwt->tgl_penarikan ?> WIB</td>
                                     <td style="font-size: small;">
-                                    <?php if($rwt->nama_bank == "bri") :
-                                        echo "Bank BRI";
-                                    elseif($rwt->nama_bank == "bca") :
-                                        echo "Bank BCA";
-                                    elseif($rwt->nama_bank == "bni") :
-                                        echo "Bank BCA";
-                                    endif;
-                                    ?></td>
+                                        <?= $datadiri->nama_bank ?>
+                                    </td>
                                     <?php $coin = $rwt->jumlah_coin;
                                     if ($coin == 550) :
                                         $rupiah = 50000;
-                                    elseif($coin == 1100) :
+                                    elseif ($coin == 1100) :
                                         $rupiah = 100000;
-                                    elseif($coin == 5500) :
+                                    elseif ($coin == 5500) :
                                         $rupiah = 500000;
                                     endif; ?>
-                                    <td style="font-size: small;"><?= $rwt->jumlah_coin ?> Coin - Rp<?= number_format($rupiah,'0', ',' ,'.') ?></td>
-                                    <td class="text-center" ><?php if ($rwt->status_terkirim == 0) : ?>
+                                    <td style="font-size: small;"><?= $rwt->jumlah_coin ?> Coin - Rp<?= number_format($rupiah, '0', ',', '.') ?></td>
+                                    <td class="text-center"><?php if ($rwt->status_terkirim == 0) : ?>
                                             <span class="badge bg-warning">Menunggu Dikirim</span>
                                         <?php else : ?>
                                             <span class="badge bg-success">Sudah Dikirim</span>

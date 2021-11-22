@@ -52,19 +52,12 @@
                             <tr>
                                 <td>Bank</td>
                                 <td>:
-                                    <?php if ($datadiri->nama_bank == null) : ?>
+                                    <?php if ($datadiri->id_bank == null) : ?>
                                         <span class="px-2 py-1">
                                             Belum Terhubung
                                         </span>
                                     <?php else :
                                         echo $datadiri->nama_bank;
-                                        // if ($datadiri->nama_bank == "bri") :
-                                        //     echo "Bank BRI";
-                                        // elseif ($datadiri->nama_bank == "bca") :
-                                        //     echo "Bank BCA";
-                                        // elseif ($datadiri->nama_bank == "bni") :
-                                        //     echo "Bank BNI";
-                                        // endif;
                                     endif;
                                     ?>
                                 </td>
@@ -170,67 +163,56 @@
 </script>
 
 <div class="modal fade" id="edit_rekening" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-scrollable modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <form class="d-block" action="<?php echo base_url('Profile/edit_rekening') ?>" method="POST" enctype="multipart/form-data">
-          <h4>Data Rekening</h4>
-          <hr>
-          <div class="row ms-3 mb-3">
-            <div class="col-3">
-              <h5 class="mt-1">Nama Bank</h5>
-            </div>
-            <div class="col-8">
-              <select class="form-control" name="nama_bank" id="" required>
-                <?php if($datadiri->id_bank == null): ?>
-                    <option value="" disabled selected hidden>pilih bank</option>
-                <?php else: ?>
-                    <option selected value="<?php echo $datadiri->id_bank?>"><?php echo $datadiri->nama_bank?></option>
-                <?php 
-                    $id_bank = $datadiri->id_bank;
-                    $nama_bank = $this->db->query("SELECT * FROM t_bank WHERE id_bank!='$id_bank'")->result_array();    
-                    foreach ($nama_bank as $bank): ?>
-                    <option value="<?php echo $bank['id_bank'] ?>"><?php echo $bank['nama_bank'] ?></option>
-                <?php endforeach; ?>
-                <?php endif; ?>
-                <!-- <option value="bri" <?php if ($datadiri->nama_bank == "bri") {
-                                      echo "selected";
-                                    } ?>>Bank BRI</option>
-                <option value="bca" <?php if ($datadiri->nama_bank == "bca") {
-                                      echo "selected";
-                                    } ?>>Bank BCA</option>
-                <option value="bni" <?php if ($datadiri->nama_bank == "bni") {
-                                      echo "selected";
-                                    } ?>>Bank BNI</option> -->
-              </select>
-            </div>
-          </div>
-          <div class="row ms-3 mb-3">
-            <div class="col-3">
-              <h5 class="mt-1">No. Rekening</h5>
-            </div>
-            <div class="col-8">
-              <input class="form-control" type="number" name="no_rek" value="<?php echo $datadiri->no_rek ?>" required placeholder="masukkan no rekening">
-            </div>
-          </div>
-          <div class="row ms-3 mb-3">
-            <div class="col-3">
-              <h5 class="mt-1">Nama Rekening</h5>
-            </div>
-            <div class="col-8">
-              <input class="form-control" type="text" name="nama_rek" value="<?php echo $datadiri->nama_rek ?>" required placeholder="masukkan nama rekening">
-            </div>
-          </div>
+    <div class="modal-dialog  modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="d-block" action="<?php echo base_url('Profile/edit_rekening') ?>" method="POST" enctype="multipart/form-data">
+                    <h4>Data Rekening</h4>
+                    <hr>
+                    <div class="row ms-3 mb-3">
+                        <div class="col-3">
+                            <h5 class="mt-1">Nama Bank</h5>
+                        </div>
+                        <div class="col-8">
+                            <select class="form-control" name="nama_bank" id="" required>
+                                <option value="" disabled selected hidden>pilih bank</option>
+                                <?php
+                                $id_bank = $datadiri->id_bank;
+                                $nama_bank = $this->db->query("SELECT * FROM t_bank")->result_array();
+                                foreach ($nama_bank as $bank) : ?>
+                                    <option value="<?php echo $bank['id_bank'] ?>" <?php if ($bank['id_bank'] == $id_bank) {
+                                                                                        echo "selected";
+                                                                                    } ?>><?php echo $bank['nama_bank'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row ms-3 mb-3">
+                        <div class="col-3">
+                            <h5 class="mt-1">No. Rekening</h5>
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" type="number" name="no_rek" value="<?php echo $datadiri->no_rek ?>" required placeholder="masukkan no rekening">
+                        </div>
+                    </div>
+                    <div class="row ms-3 mb-3">
+                        <div class="col-3">
+                            <h5 class="mt-1">Nama Rekening</h5>
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" type="text" name="nama_rek" value="<?php echo $datadiri->nama_rek ?>" required placeholder="masukkan nama rekening">
+                        </div>
+                    </div>
 
-          <div class="mt-5 me-5" style="text-align: right;">
-            <button class="btn btn-primary" type="submit">Simpan</button>
-          </div>
+                    <div class="mt-5 me-5" style="text-align: right;">
+                        <button class="btn btn-primary" type="submit">Simpan</button>
+                    </div>
 
-          <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
-        </form>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
