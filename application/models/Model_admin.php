@@ -151,6 +151,25 @@ class Model_admin extends CI_Model
         $this->db->update($table, $data);
     }
 
+    public function get_table_afiliasi()
+    {
+        $this->db->select('*');
+        $this->db->from('t_afiliasi');
+        $this->db->join('t_user', 't_afiliasi.id_user_afil=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        return $this->db->get();
+    }
+
+    public function get_afiliasi($id)
+    {
+        $this->db->select('*');
+        $this->db->from('t_afiliasi');
+        $this->db->join('t_user', 't_afiliasi.id_user_new=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        $this->db->where('id_user_afil', $id);
+        return $this->db->get();
+    }
+
     public function penarikan_sukses()
     {
         $this->db->select('*');

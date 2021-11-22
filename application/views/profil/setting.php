@@ -1,3 +1,5 @@
+<?php echo $this->session->flashdata('pesan'); ?>
+
 <div class="profile mb-5 " id="#profile">
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -29,7 +31,7 @@
                 </h3>
                 <hr class="m-0">
                 <div class="col-lg-8 text-center text-sm-start">
-                    <form action="<?php base_url() ?>ddd" method="post">
+                    <form action="<?php echo base_url() ?>Profile/edit_password" method="post">
                         <div class="edit-profile text-start">
                             <div class="form-group mt-3">
                                 <h6 class="fw-bolder">

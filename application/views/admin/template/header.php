@@ -150,6 +150,15 @@
                                 </ul>
                             </li>
                         <?php endif; ?>
+                        <?php if ($nav == "afiliasi") : ?>
+                            <li class="dropdown active">
+                                <a href="<?php echo base_url('Adminpage/afiliasi') ?>" class="nav-link"><i data-feather="users"></i><span>Afiliasi</span></a>
+                            </li>
+                        <?php else : ?>
+                            <li class="dropdown">
+                                <a href="<?php echo base_url('Adminpage/afiliasi') ?>" class="nav-link"><i data-feather="users"></i><span>Afiliasi</span></a>
+                            </li>
+                        <?php endif; ?>
                         <?php if ($nav == "faq") : ?>
                             <li class="dropdown active">
                                 <a href="<?php echo base_url('Faq/index') ?>" class="nav-link"><i data-feather="help-circle"></i><span>FaQ</span></a>

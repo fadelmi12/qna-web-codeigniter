@@ -261,7 +261,7 @@ class Register extends CI_Controller
 							$afil_user		= $this->Model_profile->getAfiliate($kode_afiliasi)->result_array();
 							$id_user_afil	= $afil_user[0]['id_user'];
 							$koin			= $afil_user[0]['wallet'];
-							$koin_new		= $koin + 10;
+							$koin_new		= $koin + 15;
 							$data_koin		= array(
 								'wallet'	=> $koin_new
 							);
@@ -271,11 +271,19 @@ class Register extends CI_Controller
 								$log_money 	= array(
 									'id_user'	=> $id_user_afil,
 									'status_log' 	=> 0,
-									'jumlah' 		=> 10,
+									'jumlah' 		=> 15,
 									'ket_log' 		=> 'Mendapat Koin afiliasi',
 									'tgl_log' 		=> date("Y-m-d H:i:s")
 								);
 								$this->db->insert('log_money', $log_money);
+
+								$data_afil = array(
+									'id_user_afil' 	=> $id_user_afil,
+									'id_user_new'	=> $id,
+									'koin'			=> 15,
+									'tgl_afiliasi'	=> date("Y-m-d H:i:s")
+								);
+								$this->db->insert('t_afiliasi', $data_afil);
 							}
 							$data_log = array(
 								'id_user' 			=> $id,
@@ -285,7 +293,7 @@ class Register extends CI_Controller
 							$act = $this->Model_activity->save_activity($data_log);
 							if ($act) {
 								$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
-								$message = "Terimakasih " . $namalengkap . ", Anda telah bergabung dengan Ssiswa Rajin";
+								$message = "Terimakasih " . $namalengkap . ", Anda telah bergabung dengan Siswa Rajin";
 								$curl = curl_init();
 								curl_setopt_array($curl, array(
 									CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
@@ -306,7 +314,7 @@ class Register extends CI_Controller
 									$data_wa = array(
 										'id_user' 		=> $id,
 										'pesan'			=> $message,
-										'tanggal'		=> date('Y-M-d H:i:s'),
+										'tanggal'		=> date('Y-m-d H:i:s'),
 										'status_kirim'	=> 0
 									);
 									$this->db->insert('t_wa', $data_wa);
@@ -314,7 +322,7 @@ class Register extends CI_Controller
 									$data_wa = array(
 										'id_user' 		=> $id,
 										'pesan'			=> $message,
-										'tanggal'		=> date('Y-M-d H:i:s'),
+										'tanggal'		=> date('Y-m-d H:i:s'),
 										'status_kirim'	=> 1
 									);
 									$this->db->insert('t_wa', $data_wa);

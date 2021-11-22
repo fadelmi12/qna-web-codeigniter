@@ -391,6 +391,7 @@ class Profile extends CI_Controller
 		$this->load->view('templates/header-page', $nav);
 		$id = $this->session->userdata('id_user');
 		$data['datadiri'] = $this->Model_profile->getProfile($id)->row();
+		$data['afiliasi'] = $this->Model_profile->get_user_afiliasi($id)->result_array();
 		$this->load->view('profil/afiliasi', $data);
 		$this->load->view('templates/footer');
 	}
@@ -406,6 +407,55 @@ class Profile extends CI_Controller
 		$random = $this->db->update('t_user', $data, array('id_user' => $id_user));
 		if ($random) {
 			redirect('Profile/afiliasi');
+		}
+	}
+
+	public function edit_password()
+	{
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('confirm_password', 'Konfirmasi Password', 'required|matches[password]');
+
+		$this->form_validation->set_message('required', '{field} tidak boleh kosong!');
+		$this->form_validation->set_message('matches', '{field} tidak sesuai!');
+
+		if ($this->form_validation->run()) {
+			$id_user	= $this->session->userdata('id_user');
+			$pass_new 	= $this->input->post('password');
+			$hash		= password_hash($pass_new, PASSWORD_DEFAULT);
+			$data 		= array(
+				'password'		=> $hash,
+				'view_password'	=> $pass_new
+			);
+			$data_xss 	= $this->security->xss_clean($data);
+			$update		= $this->db->update('t_user', $data_xss, array('id_user' => $id_user));
+			if ($update) {
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Sukses","Password berhasil diubah","success");</script>'
+				);
+				redirect('Profile/pengaturan');
+			} else {
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Password gagal diubah!","error");</script>'
+				);
+				redirect('Profile/pengaturan');
+			}
+		} else {
+			if ($this->session->userdata('id_user') != null) {
+				$user = $this->session->userdata('id_user');
+				$duit = $this->Model_profile->get_wallet($user)->row()->wallet;
+				$data['money'] = json_encode($duit);
+			}
+			$nav['judul'] = "Buat Pertanyaan";
+			$nav['sidebar'] = "pengaturan";
+			$this->load->view('templates/header-page', $nav);
+			$id = $this->session->userdata('id_user');
+			$data['datadiri'] = $this->Model_profile->getProfile($id)->row();
+			$this->load->view('profil/setting', $data);
+			$this->load->view('templates/footer');
 		}
 	}
 }

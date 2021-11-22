@@ -559,4 +559,27 @@ class AdminPage extends CI_Controller
 
 		redirect('AdminPage/wa');
 	}
+
+	public function afiliasi()
+	{
+		$data['afiliasi'] 	= $this->Model_admin->get_table_afiliasi()->result_array();
+		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
+
+		$data['nav'] = "afiliasi";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/afiliasi', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function daftar_afiliasi($id)
+	{
+		$data['afiliasi'] 	= $this->Model_admin->get_afiliasi($id)->result_array();
+		$data['profile']	= $this->Model_profile->getProfile($id)->row()->nama_user;
+		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
+
+		$data['nav'] = "afiliasi";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/afiliasi_detail', $data);
+		$this->load->view('admin/template/footer');
+	}
 }

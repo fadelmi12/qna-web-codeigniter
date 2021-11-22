@@ -185,4 +185,15 @@ class Model_profile extends CI_Model
         $this->db->order_by('tgl_log', 'DESC');
         return $this->db->get();
     }
+
+    public function get_user_afiliasi($id)
+    {
+        $this->db->where('id_user_afil', $id);
+        $this->db->select('*');
+        $this->db->from('t_afiliasi');
+        $this->db->join('t_user', 't_afiliasi.id_user_afil=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        $this->db->order_by('tgl_afiliasi', 'DESC');
+        return $this->db->get();
+    }
 }
