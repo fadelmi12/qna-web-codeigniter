@@ -22,6 +22,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+    <!--Google Ads-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588551381081954" crossorigin="anonymous"></script>
+
     <!-- Favicons -->
     <link href="<?php echo base_url(); ?>assets/img/favicon.png" rel="icon">
     <link href="<?php echo base_url(); ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -97,7 +100,7 @@
                             <li><a href="<?php echo base_url("Profile/keuangan") ?>">Keuangan</a></li>
                             <li><a href="<?php echo base_url("Profile/daftar_pertanyaan") ?>">Pertanyaan Saya</a></li>
                             <li><a href="<?php echo base_url("Profile/daftar_artikel") ?>">Artikel Saya</a></li>
-                            <?php if($this->session->userdata('role_id') == '77' ) : ?>
+                            <?php if ($this->session->userdata('role_id') == '77') : ?>
                                 <li><a href="<?php echo base_url("AdminPage") ?>">Admin</a></li>
                             <?php endif; ?>
                             <li><a href="<?php echo base_url("auth/Login/logout") ?>">Logout</a></li>
