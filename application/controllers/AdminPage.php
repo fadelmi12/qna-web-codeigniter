@@ -520,19 +520,28 @@ class AdminPage extends CI_Controller
 
 			$no = $phone2[$key];
 			$user = $this->Model_profile->getProfile_wa($no)->result_array();
-			// foreach ($user as $asu);
-			$id_user = $user[0]['id_user'];
+
 			date_default_timezone_set("Asia/Jakarta");
 			$date = date("Y-m-d H:i:s");
 			if ($result == "false") {
-				// echo $id_user;
-				// die;
-				$data_wa = array(
-					'id_user' 		=> $id_user,
-					'pesan'			=> $message,
-					'tanggal'		=> $date,
-					'status_kirim'	=> 0
-				);
+				if ($user != null) {
+					//  echo "false";
+					// die;
+					$id_user = $user[0]['id_user'];
+					$data_wa = array(
+						'id_user' 		=> $id_user,
+						'pesan'			=> $message,
+						'tanggal'		=> $date,
+						'status_kirim'	=> 0
+					);
+				} else {
+					$data_wa = array(
+						'id_user' 		=> null,
+						'pesan'			=> $message,
+						'tanggal'		=> $date,
+						'status_kirim'	=> 0
+					);
+				}
 				// echo json_encode($data_wa);
 				// die;
 				$this->db->insert('t_wa', $data_wa);
@@ -542,12 +551,26 @@ class AdminPage extends CI_Controller
 					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
 				);
 			} else {
-				$data_wa = array(
-					'id_user' 		=> $id_user,
-					'pesan'			=> $message,
-					'tanggal'		=> $date,
-					'status_kirim'	=> 1
-				);
+				if ($user != null) {
+					//   echo ("true");
+					//   die;
+					$id_user = $user[0]['id_user'];
+					$data_wa = array(
+						'id_user' 		=> $id_user,
+						'pesan'			=> $message,
+						'tanggal'		=> $date,
+						'status_kirim'	=> 1
+					);
+				} else {
+					// echo "id tidak ada";
+					// die;
+					$data_wa = array(
+						'id_user' 		=> null,
+						'pesan'			=> $message,
+						'tanggal'		=> $date,
+						'status_kirim'	=> 1
+					);
+				}
 				$this->db->insert('t_wa', $data_wa);
 				$this->session->set_flashdata(
 					'pesan',
