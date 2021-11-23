@@ -176,7 +176,15 @@ class Model_admin extends CI_Model
         $this->db->from('t_penarikan');
         $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
         $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        $this->db->join('t_bank', 't_profile.id_bank=t_bank.id_bank', 'left');
         $this->db->where('t_penarikan.status_terkirim', '1');
+        return $this->db->get();
+    }
+    public function fitur_check($nama)
+    {
+        $this->db->select('*');
+        $this->db->from('t_setup');
+        $this->db->where('nama_fitur', $nama);
         return $this->db->get();
     }
 
@@ -214,6 +222,26 @@ class Model_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('log_login');
+        return $this->db->get();
+    }
+    public function tampil_question_all($status_hidden)
+    {
+        if ($status_hidden != "") {
+            $this->db->where('t_pertanyaan.status_hidden', $status_hidden);
+            $this->db->select('*');
+            $this->db->from('t_pertanyaan');
+            $this->db->join('t_user', 't_user.id_user=t_pertanyaan.id_user', 'left');
+            $this->db->join('t_kategori', 't_kategori.id_kategori=t_pertanyaan.id_kategori', 'left');
+            $this->db->order_by('waktu_question', 'DESC');
+            return $this->db->get();
+        }
+        $this->db->select('*');
+        $this->db->from('t_pertanyaan');
+        $this->db->join('t_user', 't_user.id_user=t_pertanyaan.id_user', 'left');
+        $this->db->join('t_kategori', 't_kategori.id_kategori=t_pertanyaan.id_kategori', 'left');
+        $this->db->order_by('waktu_question', 'DESC');
+
+
         return $this->db->get();
     }
 }

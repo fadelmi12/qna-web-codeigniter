@@ -139,12 +139,17 @@ class Register extends CI_Controller
 	}
 	public function afiliasi($otp)
 	{
-		$nav['judul']		= "Buat Pertanyaan";
-		$data['afiliasi']	= $this->Model_profile->get_table_where('t_user', array('kode_afiliasi' => $otp))->result_array();
-		$data['user']		= $this->Model_profile->get_no_wa()->result_array();
-		$this->load->view('templates/header-page', $nav);
-		$this->load->view('auth/register_afiliasi', $data);
-		$this->load->view('templates/footer');
+		$status = $this->Model_admin->fitur_check('afiliasi')->row()->status_fitur;
+		if ($status == 0) {
+			$this->load->view('errors/error_page');
+		} else {
+			$nav['judul']		= "Buat Pertanyaan";
+			$data['afiliasi']	= $this->Model_profile->get_table_where('t_user', array('kode_afiliasi' => $otp))->result_array();
+			$data['user']		= $this->Model_profile->get_no_wa()->result_array();
+			$this->load->view('templates/header-page', $nav);
+			$this->load->view('auth/register_afiliasi', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 	public function kirim_otp()
 	{
@@ -270,7 +275,7 @@ class Register extends CI_Controller
 								// $id_profile = $afil_user[0]['id_profile'];
 								$log_money 	= array(
 									'id_user'	=> $id_user_afil,
-									'status_log' 	=> 0,
+									'status_log' 	=> 1,
 									'jumlah' 		=> 15,
 									'ket_log' 		=> 'Mendapat Koin afiliasi',
 									'tgl_log' 		=> date("Y-m-d H:i:s")

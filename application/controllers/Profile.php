@@ -403,7 +403,7 @@ class Profile extends CI_Controller
 	{
 		$id_user	= $this->session->userdata('id_user');
 		$user 		= $this->session->userdata('nama_user');
-		$kode		= $user + rand(10, 99);
+		$kode		= $user . rand(10, 99);
 		$data 		= array(
 			'kode_afiliasi' => md5($kode)
 		);

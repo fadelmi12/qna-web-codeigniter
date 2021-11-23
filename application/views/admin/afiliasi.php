@@ -8,7 +8,47 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Afiliasi</h4>
+                            <div class="col" align="right">
+                                <?php $status = $this->db->query("SELECT * FROM t_setup WHERE nama_fitur = 'afiliasi'")->row()->status_fitur;
+                                ?>
+                                <button class="<?php if ($status == 1) {
+                                                    echo 'btn btn-danger';
+                                                } else {
+                                                    echo 'btn btn-success';
+                                                } ?>" onclick="if (<?php echo $status ?> == 1){saklar(0)}else{saklar(1)}"><i class="fas fa-<?php if ($status == 1) {
+                                                                                                                                                echo 'times';
+                                                                                                                                            } else {
+                                                                                                                                                echo 'check';
+                                                                                                                                            } ?>"></i><?php if ($status == 1) {
+                                                                                                                                                            echo ' Matikan Affiliasi';
+                                                                                                                                                        } else {
+                                                                                                                                                            echo ' Nyalakan Affiliasi';
+                                                                                                                                                        } ?></button>
+
+                            </div>
+                            <script>
+                                function saklar(status) {
+                                    var nama = "afiliasi";
+                                    swal({
+                                        title: "Anda Yakin?",
+                                        text: "Merubah Status Affiliasi?",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    }).then((willChange) => {
+                                        if (willChange) {
+                                            $(location).attr('href', '<?= base_url("AdminPage/change_status/") ?>' + status + '/' + nama);
+
+                                        } else {
+                                            swal("Data Tidak Berubah");
+                                        }
+                                    });
+
+
+                                }
+                            </script>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">

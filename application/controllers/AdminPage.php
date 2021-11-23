@@ -101,6 +101,28 @@ class AdminPage extends CI_Controller
 		$this->load->view('admin/question_all', $data);
 		$this->load->view('admin/template/footer');
 	}
+	public function Question_All()
+	{
+		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+		// $data['user'] = $this->Model_admin->getUser()->result_array();
+		// $data['Qcount'] = $this->Model_admin->QuestiontCount()->result_array();
+		// $data['Arcount'] = $this->Model_admin->ArtikelCount()->result_array();
+		// $data['question'] = $this->Model_admin->tampil_question($nama)->result_array();
+		$data['question'] = $this->Model_admin->tampil_question_all(null)->result_array();
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/pertanyaan_semua', $data);
+		$this->load->view('admin/template/footer');
+	}
+	public function LogMoney($id)
+	{
+		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
+		$data['logmoney'] = $this->Model_profile->get_log_money($id)->result_array();
+		$data['nav'] = "pertanyaan";
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/log_money_user', $data);
+		$this->load->view('admin/template/footer');
+	}
 	public function detail_question($qst)
 	{
 		$data['kategori'] = $this->Model_admin->tampil_kategori()->result_array();
@@ -593,7 +615,19 @@ class AdminPage extends CI_Controller
 		$this->load->view('admin/afiliasi', $data);
 		$this->load->view('admin/template/footer');
 	}
+	public function change_status($sts, $table)
+	{
+		$data = array(
+			'status_fitur' => $sts
 
+		);
+
+		$where = array(
+			'nama_fitur' => $table
+		);
+		$this->Model_admin->update_data($where, $data, 't_setup');
+		redirect('AdminPage/afiliasi');
+	}
 	public function daftar_afiliasi($id)
 	{
 		$data['afiliasi'] 	= $this->Model_admin->get_afiliasi($id)->result_array();

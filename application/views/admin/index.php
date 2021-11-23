@@ -98,6 +98,7 @@
                                 <div class="card-header">
                                     <h4 class="text-left">Kategori</h4>
                                     <div class="card-header-action">
+                                        <a href="<?php echo base_url('AdminPage/Question_All') ?>" class="btn btn-warning me-2"><i class="fas fa-book"></i> Tampilkan Semua Pertanyaan</a>
                                         <a href="<?= base_url('AdminPage/Verifikasi_Pertanyaan') ?>" class="btn btn-success me-2"><i class="fas fa-check"></i> Verifikasi Pertanyaan <span class="badge" style="background:white; color:#67be7e;">
                                                 <?= $verifcount ?> </span> </a>
                                         <button type="button" onclick="tambahktg()" class="btn btn-primary">Tambah Kategori</button>
