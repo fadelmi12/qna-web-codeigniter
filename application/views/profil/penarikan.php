@@ -182,8 +182,10 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Bank</th>
+                                <th scope="col">No. Rek</th>
+                                <th scope="col">Nama Rek</th>
                                 <th scope="col">Jumlah</th>
-                                <th scope="col">Status</th>
+                                <th class="text-center" scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -194,6 +196,12 @@
                                     <td style="font-size: small;"><?= $rwt->tgl_penarikan ?> WIB</td>
                                     <td style="font-size: small;">
                                         <?= $datadiri->nama_bank ?>
+                                    </td>
+                                    <td style="font-size: small;">
+                                        <?= $datadiri->no_rek ?>
+                                    </td>
+                                    <td style="font-size: small;">
+                                        <?= $datadiri->nama_rek ?>
                                     </td>
                                     <?php $coin = $rwt->jumlah_coin;
                                     if ($coin == 550) :
@@ -206,8 +214,12 @@
                                     <td style="font-size: small;"><?= $rwt->jumlah_coin ?> Coin - Rp<?= number_format($rupiah, '0', ',', '.') ?></td>
                                     <td class="text-center"><?php if ($rwt->status_terkirim == 0) : ?>
                                             <span class="badge bg-warning">Menunggu Dikirim</span>
-                                        <?php else : ?>
+                                        <?php elseif ($rwt->status_terkirim == 1) : ?>
                                             <span class="badge bg-success">Sudah Dikirim</span>
+                                        <?php elseif ($rwt->status_terkirim == 2) : ?>
+                                            <span class="badge bg-danger">Rek Tidak Ada</span>
+                                        <?php elseif ($rwt->status_terkirim == 3) : ?>
+                                            <span class="badge bg-danger">Penarikan Ditolak</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>

@@ -64,9 +64,9 @@
                                                     <?php
                                                     $data = $tarik['status_terkirim'];
                                                     if ($data == '1') {
-                                                        echo ('Terkirim');
+                                                        echo 'Terkirim';
                                                     } else {
-                                                        echo ('Belum Terkirim');
+                                                        echo 'Belum Terkirim';
                                                     }
                                                     ?>
                                                 </td>
@@ -74,7 +74,8 @@
                                                     <div class="dropdown">
                                                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Options</a>
                                                         <div class="dropdown-menu">
-                                                            <a href="<?php echo base_url() ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> Hapus</a>
+                                                            <a href="<?php echo base_url('Penarikan_saldo/hapus_penarikan/' . $tarik['id_penarikan']) ?>" class="dropdown-item has-icon"><i class="far fa-trash"></i> Hapus</a>
+                                                            <a href="<?php echo base_url('Penarikan_saldo/batal_penarikan/' . $tarik['id_penarikan']) ?>" class="dropdown-item has-icon"><i class="far fa-edit"></i> Batalkan Penarikan</a>
                                                         </div>
                                                     </div>
                                                 </td>

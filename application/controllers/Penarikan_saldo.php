@@ -42,7 +42,242 @@ class Penarikan_saldo extends CI_Controller
 	{
 		$where = array('id_penarikan' => $id_penarikan);
 		$data = array('status_terkirim' => ('1'));
-		$this->db->update('t_penarikan', $data, $where);
+		$update = $this->db->update('t_penarikan', $data, $where);
+		if ($update) {
+			$coin = $this->Model_admin->user_penarikan($id_penarikan)->row()->jumlah_coin;
+			if ($coin == 550) {
+				$uang = "Rp 50.000";
+			} elseif ($coin == 1100) {
+				$uang = "Rp 100.000";
+			} else {
+				$uang = "Rp 500.000";
+			}
+			$id_user = $this->Model_admin->user_penarikan($id_penarikan)->row()->id_user;
+			$nama_user = $this->Model_profile->getProfile($id_user)->row()->nama_lengkap;
+			$no_hp = $this->Model_profile->getProfile($id_user)->row()->no_hp;
+			$pesan 		= "Hai " . $nama_user . ". Penarikan saldo Anda sebesar " . $uang . " telah berhasil diproses";
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+
+					'token' => $token, 'phone' => $no_hp, 'message' => $pesan
+
+				),
+
+			));
+
+			$response = curl_exec($curl);
+			$result =  substr($response, 17, 5);
+			date_default_timezone_set("Asia/Jakarta");
+			$date = date("Y-m-d H:i:s");
+			if ($result == "false") {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 0
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+				);
+			} else {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 1
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Sukses","Pesan WA terkirim","success");</script>'
+				);
+			}
+			curl_close($curl);
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}
+
+	public function rek_not_found($id_penarikan)
+	{
+		$where = array('id_penarikan' => $id_penarikan);
+		$data = array('status_terkirim' => ('2'));
+		$update = $this->db->update('t_penarikan', $data, $where);
+		if ($update) {
+			$coin = $this->Model_admin->user_penarikan($id_penarikan)->row()->jumlah_coin;
+			if ($coin == 550) {
+				$uang = "Rp 50.000";
+			} elseif ($coin == 1100) {
+				$uang = "Rp 100.000";
+			} else {
+				$uang = "Rp 500.000";
+			}
+			$id_user = $this->Model_admin->user_penarikan($id_penarikan)->row()->id_user;
+			$nama_user = $this->Model_profile->getProfile($id_user)->row()->nama_lengkap;
+			$no_hp = $this->Model_profile->getProfile($id_user)->row()->no_hp;
+			$pesan 		= "Hai " . $nama_user . ". Penarikan saldo Anda sebesar " . $uang . " tidak dapat diproses karena rekening tidak ditemukan. Silakan ke ubah rekening di menu keuangan";
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+
+					'token' => $token, 'phone' => $no_hp, 'message' => $pesan
+
+				),
+
+			));
+
+			$response = curl_exec($curl);
+			$result =  substr($response, 17, 5);
+			date_default_timezone_set("Asia/Jakarta");
+			$date = date("Y-m-d H:i:s");
+			if ($result == "false") {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 0
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+				);
+			} else {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 1
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Sukses","Pesan WA terkirim","success");</script>'
+				);
+			}
+			curl_close($curl);
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}
+
+	public function tolak_penarikan($id_penarikan)
+	{
+		$where = array('id_penarikan' => $id_penarikan);
+		$data = array('status_terkirim' => ('3'));
+		$update = $this->db->update('t_penarikan', $data, $where);
+		if ($update) {
+			$coin = $this->Model_admin->user_penarikan($id_penarikan)->row()->jumlah_coin;
+			if ($coin == 550) {
+				$uang = "Rp 50.000";
+			} elseif ($coin == 1100) {
+				$uang = "Rp 100.000";
+			} else {
+				$uang = "Rp 500.000";
+			}
+			$id_user = $this->Model_admin->user_penarikan($id_penarikan)->row()->id_user;
+			$nama_user = $this->Model_profile->getProfile($id_user)->row()->nama_lengkap;
+			$no_hp = $this->Model_profile->getProfile($id_user)->row()->no_hp;
+			$pesan 		= "Hai " . $nama_user . ". Mohon maaf, penarikan saldo Anda sebesar " . $uang . " tidak bisa diproses karena Anda terindikasi curang.";
+			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+
+					'token' => $token, 'phone' => $no_hp, 'message' => $pesan
+
+				),
+
+			));
+
+			$response = curl_exec($curl);
+			$result =  substr($response, 17, 5);
+			date_default_timezone_set("Asia/Jakarta");
+			$date = date("Y-m-d H:i:s");
+			if ($result == "false") {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 0
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Gagal","Pesan WA belum terkirim, cek apakah device sudah terhung ke Nusa Gateway","error");</script>'
+				);
+			} else {
+				$id_user = $id_user;
+				$data_wa = array(
+					'id_user' 		=> $id_user,
+					'pesan'			=> $pesan,
+					'tanggal'		=> $date,
+					'status_kirim'	=> 1
+				);
+				$this->db->insert('t_wa', $data_wa);
+				$this->session->set_flashdata(
+					'pesan',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">swal("Sukses","Pesan WA terkirim","success");</script>'
+				);
+			}
+			curl_close($curl);
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}
+
+	public function batal_penarikan($id_penarikan)
+	{
+		$where = array('id_penarikan' => $id_penarikan);
+		$data = array('status_terkirim' => ('0'));
+		$update = $this->db->update('t_penarikan', $data, $where);
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}
+
+	public function hapus_penarikan($id_penarikan)
+	{
+		$where = array('id_penarikan' => $id_penarikan);
+		$delete = $this->db->delete('t_penarikan', $where);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 

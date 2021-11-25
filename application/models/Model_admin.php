@@ -180,6 +180,16 @@ class Model_admin extends CI_Model
         $this->db->where('t_penarikan.status_terkirim', '1');
         return $this->db->get();
     }
+
+    public function user_penarikan($id_penarikan)
+    {
+        $this->db->select('*');
+        $this->db->from('t_penarikan');
+        $this->db->where('id_penarikan', $id_penarikan);
+        $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
+        $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
+        return $this->db->get();
+    }
     public function fitur_check($nama)
     {
         $this->db->select('*');
@@ -194,7 +204,8 @@ class Model_admin extends CI_Model
         $this->db->from('t_penarikan');
         $this->db->join('t_user', 't_penarikan.id_user=t_user.id_user', 'left');
         $this->db->join('t_profile', 't_user.id_user=t_profile.id_user', 'left');
-        $this->db->where('t_penarikan.status_terkirim', '0');
+        $this->db->join('t_bank', 't_profile.id_bank=t_bank.id_bank', 'left');
+        $this->db->where('t_penarikan.status_terkirim !=', '1');
         return $this->db->get();
     }
 
