@@ -37,7 +37,33 @@
                                 <td>: <?php echo number_format($datadiri->wallet, '0', ',', '.') ?> Coin</td>
                             </tr>
                             <tr>
-                                <td>No Rekening</td>
+                                <td>
+                                    <?php if ($datadiri->nama_bank == null) {
+                                        echo "E-Wallet";
+                                    } else {
+                                        echo "Nama Bank";
+                                    } ?>
+                                </td>
+                                <td>:
+                                    <?php if ($datadiri->nama_bank != null) :
+                                        echo $datadiri->nama_bank;
+                                    elseif ($datadiri->e_wallet != null) :
+                                        echo $datadiri->e_wallet;
+                                    else : ?>
+                                        <span class="px-2 py-1">
+                                            Belum Terhubung
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?php if ($datadiri->nama_bank == null) {
+                                        echo "No. E-Wallet";
+                                    } else {
+                                        echo "No. Rekening";
+                                    } ?>
+                                </td>
                                 <td>:
                                     <?php if ($datadiri->no_rek == null) : ?>
                                         <span class="px-2 py-1">
@@ -50,21 +76,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Bank</td>
-                                <td>:
-                                    <?php if ($datadiri->id_bank == null) : ?>
-                                        <span class="px-2 py-1">
-                                            Belum Terhubung
-                                        </span>
-                                    <?php else :
-                                        echo $datadiri->nama_bank;
-                                    endif;
-                                    ?>
+                                <td>
+                                    <?php if ($datadiri->nama_bank == null) {
+                                        echo "Nama Akun";
+                                    } else {
+                                        echo "Nama Rekening";
+                                    } ?>
                                 </td>
-                            </tr>
-
-                            <tr>
-                                <td>Nama Rekening</td>
                                 <td>: <?php if ($datadiri->nama_rek == null) : ?>
                                         <span class="px-2 py-1">
                                             Belum Terhubung
@@ -78,7 +96,7 @@
 
                             <tr>
                                 <td>Jumlah Penarikan</td>
-                                <td>: 0x</td>
+                                <td>: <?php echo $penarikan ?> kali</td>
                             </tr>
                         </tbody>
                     </table>

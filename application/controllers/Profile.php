@@ -133,7 +133,7 @@ class Profile extends CI_Controller
 		$this->load->view('templates/header-page', $nav);
 		$id = $this->session->userdata('id_user');
 		$data['datadiri'] = $this->Model_profile->getProfile($id)->row();
-		// $data['penarikan'] = $this->Model_profile->get_penarikan($id)->result_array();
+		$data['penarikan'] = $this->Model_profile->get_penarikan($id)->num_rows();
 		// echo json_encode($data['penarikan']);
 		// die;
 		$data['logmoney'] = $this->Model_profile->get_log_money($id)->result_array();

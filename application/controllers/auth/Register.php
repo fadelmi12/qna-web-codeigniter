@@ -169,45 +169,27 @@ class Register extends CI_Controller
 		$get_otp = $this->Model_profile->get_table_where('t_otp', array('no_wa' => $no_wa))->row();
 		if (isset($get_otp)) {
 			$this->db->update('t_otp', $data_otp, array('no_wa' => $no_wa));
-			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
-			$message = "Kode OTP kamu : " . $kode_otp;
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_ENCODING => '',
-				CURLOPT_MAXREDIRS => 10,
-				CURLOPT_TIMEOUT => 0,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => 'POST',
-				CURLOPT_POSTFIELDS => array(
-					'token' => $token, 'phone' => $no_wa, 'message' => $message
-				),
-			));
-			$response = curl_exec($curl);
-			curl_close($curl);
 		} else {
 			$this->db->insert('t_otp', $data_otp);
-			$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
-			$message = "Kode OTP kamu : " . $kode_otp;
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_ENCODING => '',
-				CURLOPT_MAXREDIRS => 10,
-				CURLOPT_TIMEOUT => 0,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => 'POST',
-				CURLOPT_POSTFIELDS => array(
-					'token' => $token, 'phone' => $no_wa, 'message' => $message
-				),
-			));
-			$response = curl_exec($curl);
-			curl_close($curl);
 		}
+		$token = '3mqkViZWgqz8Y7X9HVEGTDBBBHeAYiMtPZhFyYN5JICSe1Xx3B';
+		$message = "Kode OTP Anda adalah : " . $kode_otp . ". Jika Anda merasa tidak mendaftar di siswarajin.com, mohon abaikan pesan ini. Terima Kasih";
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+				'token' => $token, 'phone' => $no_wa, 'message' => $message
+			),
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
 	}
 	public function daftar_afiliasi($afiliasi)
 	{
