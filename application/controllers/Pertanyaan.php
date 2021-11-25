@@ -189,6 +189,7 @@ class Pertanyaan extends CI_Controller
 	{
 		$jawaban = $this->input->post('jawaban');
 		$user = $this->session->userdata('id_user');
+
 		date_default_timezone_set('Asia/Jakarta');
 		$time = date('Y-m-d H:i:s');
 		$gambar_jawab = $_FILES['gambar_jawab']['name'];
@@ -220,6 +221,15 @@ class Pertanyaan extends CI_Controller
 		}
 
 		$data_xss = $this->security->xss_clean($data);
+		$getMoney =	$this->Model_profile->get_wallet($user)->row()->wallet;
+		$datawallet = array(
+			'wallet'	=> $getMoney + 2
+		);
+		$wherewallet = array(
+			'id_user' => $user
+		);
+		$datawallet_xss = $this->security->xss_clean($datawallet);
+		$this->Model_profile->edit_wallet($datawallet_xss, $wherewallet);
 
 		$this->Model_pertanyaan->tambah_jawaban('t_jawaban', $data_xss);
 
@@ -265,7 +275,7 @@ class Pertanyaan extends CI_Controller
 		curl_close($curl);
 
 		$this->session->set_flashdata(
-			'pesan',
+			'success',
 			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 			<script type ="text/JavaScript">swal("Sukses","Anda telah menjawab pertanyaan, tunggu ' . $user_qty[0]['nama_user'] . ' untuk memverifikasi jawaban Anda. Koin akan didapatkan jika jawaban terverifikasi sebagai jawaban benar","success");</script>'
 		);

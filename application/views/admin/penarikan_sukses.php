@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="col">
-                                <h4>Data Penarikan Saldo Terkirim <span class="bg-success col-2"><?php echo count($penarikan_sukses)?></span></h4>
+                                <h4>Data Penarikan Saldo Terkirim <span class="bg-success col-2"><?php echo count($penarikan_sukses) ?></span></h4>
                             </div>
 
                             <div class="col" align="right">
@@ -52,16 +52,22 @@
                                                     <?php echo $tarik['jumlah_coin'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $tarik['jumlah_uang'] ?>
+                                                    <?php if ($tarik['jumlah_coin'] == 550) {
+                                                        echo "Rp. 50.000";
+                                                    } elseif ($tarik['jumlah_coin'] == 1100) {
+                                                        echo "Rp. 100.000";
+                                                    } elseif ($tarik['jumlah_coin'] == 5500) {
+                                                        echo "Rp. 500.000";
+                                                    } ?>
                                                 </td>
                                                 <td>
                                                     <?php
-                                                        $data = $tarik['status_terkirim'];
-                                                        if ($data == '1') {
-                                                            echo('Terkirim');
-                                                        }else{
-                                                            echo('Belum Terkirim');
-                                                        }
+                                                    $data = $tarik['status_terkirim'];
+                                                    if ($data == '1') {
+                                                        echo ('Terkirim');
+                                                    } else {
+                                                        echo ('Belum Terkirim');
+                                                    }
                                                     ?>
                                                 </td>
                                                 <td>

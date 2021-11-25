@@ -10,7 +10,7 @@
         </h2>
         <hr style="width:220px;border:solid 1px" class="mx-auto">
         <div class="row">
-            <form action="<?php echo base_url() . 'auth/Register/daftar'; ?>" method="post" enctype="multipart/form-data">
+            <form id="form_register" action="<?php echo base_url() . 'auth/Register/daftar'; ?>" method="post" enctype="multipart/form-data">
                 <div class="col-md-5 mx-auto">
                     <div class="auth-box text-start p-4">
                         <div class="group mb-3">
@@ -40,6 +40,7 @@
                             </h5>
                             <input type="text" name="no_hp" value="<?= set_value('no_hp') ?>" id="" onfocus="(this.type='number')" class="w-100 p-2 px-3" required oninvalid="this.setCustomValidity('No Handphone masih kosong')" oninput="setCustomValidity('')" placeholder="Masukkan No Whatsapp" />
                             <span class="text-danger"><?= form_error('no_hp') ?></span>
+
                         </div>
                         <div class="group mb-3">
                             <h5>
@@ -102,12 +103,26 @@
 
                 </div>
             </form>
+            <?php
+            $ipcuk = $this->db->query("SELECT ip_user FROM t_user")->result_array();
+            $ip = json_encode($ipcuk);
+            $ipjs = json_encode($this->input->ip_address());  ?>
+
         </div>
 
     </div>
 </div>
 
 <script>
+    // var iparray = <?php echo $ip; ?>;
+    // var ipcek = <?php echo $ipjs ?>;
+    // var num = 0;
+    // $.each(iparray, function(i, data) {
+    //     if (data.ip_user == ipcek) {
+    //         num++;
+    //     }
+    // });
+    // console.log(num);
     $(".toggle-password").click(function() {
 
         $(this).toggleClass("fa-eye fa-eye-slash");
@@ -117,5 +132,24 @@
         } else {
             input.attr("type", "password");
         }
+    });
+    document.getElementById("form_register").addEventListener('submit', function(e) {
+        e.preventDefault();
+        var iparray = <?php echo $ip; ?>;
+        var ipcek = <?php echo $ipjs ?>;
+        var num = 0;
+        $.each(iparray, function(i, data) {
+            if (data.ip_user == ipcek) {
+                num++;
+            }
+
+        });
+        var asu = parseInt(num);
+        if (asu >= 3) {
+            swal('Forbiden', 'Device Ini Telah Mendaftar dari batas ketentuan', 'error');
+        } else {
+            document.getElementById("form_register").submit();
+        }
+
     });
 </script>

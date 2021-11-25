@@ -48,6 +48,7 @@ class Register extends CI_Controller
 			$data_user = array(
 				'nama_user'	 	=> $username,
 				'email' 		=> $email,
+				'ip_user' 		=> $this->input->ip_address(),
 				'password' 		=> $password,
 				'view_password' => $pwd,
 				'role_id' 		=> $roleid,

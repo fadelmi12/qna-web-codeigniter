@@ -16,6 +16,9 @@ class Penarikan_saldo extends CI_Controller
 	{
 		$data['kategori'] 	= $this->Model_dashboard->get_kategori_dasboard()->result_array();
 		$data['penarikan_sukses']	= $this->Model_admin->penarikan_sukses()->result_array();
+		// var_dump($data['penarikan_sukses']);
+		// die;
+
 
 		$data['nav'] = "penarikan";
 		$this->load->view('admin/template/header', $data);

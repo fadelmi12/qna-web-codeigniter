@@ -1,5 +1,5 @@
 <?php $sess = $this->session->userdata('id_user') ?>
-<?php echo $this->session->flashdata('pesan'); ?>
+<?php echo $this->session->flashdata('success'); ?>
 
 <div class="question-detail mb-5" id="question-detail" style="background-color: rgb(253, 253, 253);">
     <div class="py-3 py-lg-4">
@@ -106,11 +106,23 @@
                                         <script>
                                             function JawabShow() {
                                                 var id_user = '<?= $sess ?>';
+                                                var jawab = <?php echo json_encode($jawaban) ?>;
+                                                let asu;
                                                 if (id_user != '') {
-                                                    $('#tambahjawaban').modal('show');
+                                                    $.each(jawab, function(i, data) {
+                                                        if (data.id_user == id_user) {
+                                                            asu = data.id_user;
+                                                        }
+                                                    });
+                                                    if (id_user == asu) {
+                                                        swal('Forbiden', 'User Ini Telah Menjawab dari pertanyaan ini', 'error');
+                                                    } else {
+                                                        $('#tambahjawaban').modal('show');
+                                                    }
                                                 } else {
                                                     $('#Konfirmasi_Like_Login').modal('show');
                                                 };
+
 
                                             }
 
@@ -269,11 +281,25 @@
                                 <script>
                                     function JawabShow() {
                                         var id_user = '<?= $sess ?>';
+                                        var jawab = <?php echo json_encode($jawaban) ?>;
+                                        let asu;
                                         if (id_user != '') {
-                                            $('#tambahjawaban').modal('show');
+                                            $.each(jawab, function(i, data) {
+                                                if (data.id_user == id_user) {
+                                                    asu = data.id_user;
+                                                }
+                                            });
+                                            if (id_user == asu) {
+                                                swal('Forbiden', 'User Ini Telah Menjawab pertanyaan ini', 'error');
+                                            } else {
+                                                $('#tambahjawaban').modal('show');
+                                            }
                                         } else {
                                             $('#Konfirmasi_Like_Login').modal('show');
                                         };
+
+
+
 
                                     }
 
